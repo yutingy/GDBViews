@@ -1,7 +1,6 @@
 import gen.ViewBaseListener;
 import gen.ViewParser;
-import javafx.beans.binding.BooleanExpression;
-import javafx.util.Pair;
+
 import javassist.compiler.ast.Variable;
 import org.antlr.v4.runtime.misc.Interval;
 import org.antlr.v4.runtime.tree.ParseTree;

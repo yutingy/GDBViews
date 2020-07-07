@@ -176,8 +176,11 @@ public class Neo4jGraphConnector{
     public Neo4jGraphConnector() {
 //        File dbHome = new File("C:/Users/yutin/.Neo4jDesktop/neo4jDatabases/database-65f02676-ca76-4513-8b2b-c6580bc2cf38/installation-4.0.4/"); //small example - now empty
 //        File dbHome = new File("C:/Users/yutin/.Neo4jDesktop/neo4jDatabases/database-53cdba25-ce01-41d1-9e6e-cb75ee2a0825/installation-4.0.4/"); //twitter
-        File dbHome = new File("C:/Users/yutin/.Neo4jDesktop/neo4jDatabases/database-8c7060ab-2ba4-41a9-bbf3-2ebd19f0f78d/installation-4.0.4/"); //stackoverflow
+//        File dbHome = new File("C:/Users/yutin/.Neo4jDesktop/neo4jDatabases/database-8c7060ab-2ba4-41a9-bbf3-2ebd19f0f78d/installation-4.0.4/"); //stackoverflow
 
+
+        File dbHome = new File("D:/.Neo4jDesktop/neo4jDatabases/database-563487f6-0f55-4991-a72e-4265092f97d3/installation-4.0.4/"); //large-stackoverflow
+//        File dbHome = new File("D:/.Neo4jDesktop/neo4jDatabases/database-5f3da19a-6ab7-4c91-9ec6-41cd398c5153/installation-4.0.4/"); //medium stack-overflow
 
 //        dbHome = new File("C:/Users/yutin/Downloads/neo4j-community-4.0.4-windows/neo4j-community-4.0.4/");
 

@@ -51,13 +51,12 @@ public class ViewQueryListener extends ViewBaseListener {
     *  use entities of the view in a general query on the graph data-base.
     *
     * An example of a query restricted to a view:
-    *       USE VIEW myPathView MATCH  p = (n:Person)-[:Follows]-(m:Person) WHERE p IN myPathView
-    *           AND n.age > 18 RETURN ...
-    *   - Specifying that p IN myPathView indicates that the user wants all paths that satisfy the age condition
+    *       USE VIEW myPathView MATCH  p = (n:Person)-[:Follows]-(m:Person) WHERE n.age > 18 RETURN ...
+    *   - Not specifying that p IN myPathView indicates that the user wants all paths that satisfy the age condition
     *       to be in the view myPathView. The Follows relationship must also be contained within the view. Essentially
     *       this query first retrieves all paths then filters by the age.
     *
-    * An example of a query non-restricted to a view:
+    * An example of a query non-restricted to a view: (this is global)
     *       USE VIEW myPathView WITH VIEWS secondPathView MATCH (n:Person)-[:Follows]-(m:Person) WHERE n IN myPathView
     *           AND m IN secondPathView RETURN ...
     *   - This query means that while n must be a node contained within paths inside myPathView, we are interested in a

@@ -54,6 +54,9 @@ public class View {
         try {
             connector = new Neo4jGraphConnector();
 
+
+
+
             terminal();
         }
         finally{
@@ -78,7 +81,9 @@ public class View {
 
 
 
-    public static void matchAndSet(){
+    public static void matchAndSet(boolean materialized){
+
+        if(materialized) return;
 
         Set<String> views = vql.viewTable.keySet();
 
@@ -173,7 +178,7 @@ public class View {
 
             }
 
-            connector.executeQuery(query);
+             connector.executeQuery(query);
 
 
         }
@@ -205,7 +210,7 @@ public class View {
 
     }
 
-    public static void processMainView(String cmd){
+    public static void processMainView(String cmd, boolean materialized){
 
         String viewname = vql.getViewName();
         String fullQuery = cmd.split(viewname)[1];
@@ -245,7 +250,10 @@ public class View {
         }
 
         //System.out.println(fullQuery);
-        connector.executeQuery(fullQuery);
+        if(materialized) {
+            connector.executeQuery(fullQuery);
+            return;
+        }
 
         if(vql.metaDataTable.get(viewname).returnType == ViewQueryListener.retType.NODE) {
 
@@ -358,11 +366,11 @@ public class View {
 
     }
 
-    public static void changeGraph(String query){
+    public static void changeGraph(String query, boolean materialized){
         connector.executeQuery(query.split("CG")[1]);
 
         //need to update views ; so now for each view we have re-evaluate it..
-        connector.executeQuery("MATCH (n) REMOVE n.views"); //remove view
+        if(materialized) connector.executeQuery("MATCH (n) REMOVE n.views"); //remove view
         vql.changeGraph();
 
         for(String cmd : vql.getViewInstants()){ //re-evaluate all view instants...
@@ -379,8 +387,8 @@ public class View {
             ParseTree tree = parser.root();
             walker.walk(vql, tree);
 
-            matchAndSet();
-            processMainView(cmd);
+            matchAndSet(materialized);
+            processMainView(cmd, materialized);
 
         }
         vql.removeInstants();
@@ -391,6 +399,8 @@ public class View {
 
 
     public static void terminal(){
+
+        boolean materialized = false;
 
         boolean debug = false;
 
@@ -434,8 +444,8 @@ public class View {
 
                     if(vql.isViewInstant()) {
                         long now = System.currentTimeMillis();
-                        matchAndSet();
-                        processMainView(command);
+                        matchAndSet(materialized);
+                        processMainView(command, materialized);
                         long total = System.currentTimeMillis() - now;
                         System.out.println("Took " + total + "ms to create views");
                     }
@@ -449,7 +459,7 @@ public class View {
                     }
                     else if (vql.isCg()){
                         long now = System.currentTimeMillis();
-                        changeGraph(command);
+                        changeGraph(command, materialized);
                         long total = System.currentTimeMillis() - now;
                         System.out.println("Took " + total + "ms to change graph and update view(s)");
                     }
@@ -474,4 +484,107 @@ public class View {
         }
 
     }
+
+    public static void noGuiTest(String command, boolean materialized) {
+
+
+        if (command.startsWith("printView")) {
+            vql.printViewTable();
+        } else if (command.startsWith("printMeta")) {
+            vql.printMetadataTable();
+        } else if (command.startsWith("printNode")) {
+            System.out.println(nodeTable.toString());
+        } else if (command.startsWith("clear")) {
+            vql.clearAll();
+        } else if (command.startsWith("wipe")) {
+            connector.executeQuery("MATCH (n) REMOVE n.views");
+        } else {
+
+
+            ViewLexer VL = new ViewLexer(CharStreams.fromString(command));
+            CommonTokenStream tokens = new CommonTokenStream(VL);
+            ViewParser parser = new ViewParser(tokens);
+
+
+            ParseTree tree = parser.root();
+            walker.walk(vql, tree);
+
+            if (vql.isViewInstant()) {
+                long now = System.currentTimeMillis();
+                matchAndSet(materialized);
+                processMainView(command, materialized);
+                long total = System.currentTimeMillis() - now;
+                System.out.println("Took " + total + "ms to create views");
+            } else if (vql.isViewUse()) {
+                long now = System.currentTimeMillis();
+                processUseView(command);
+                long total = System.currentTimeMillis() - now;
+                System.out.println("Took " + total + "ms to use view");
+            } else if (vql.isCg()) {
+                long now = System.currentTimeMillis();
+                changeGraph(command, materialized);
+                long total = System.currentTimeMillis() - now;
+                System.out.println("Took " + total + "ms to change graph and update view(s)");
+            }
+
+        }
+
+        vql.clearAll();
+    }
+
+    public static void test(boolean mat){
+
+        ArrayList<String> cmdQ = new ArrayList<>();
+
+        cmdQ.add("CREATE VIEW AS view1 MATCH (n:Post) WHERE n.score > 350 RETURN n");
+        cmdQ.add("CREATE VIEW AS view2 MATCH (n:Post) WHERE n.score < 1000 RETURN n");
+        cmdQ.add("CREATE VIEW AS view3 MATCH p = (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.reputation > 5000 RETURN p");
+        cmdQ.add("CREATE VIEW AS view4 MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.reputation > 5000 RETURN po2");
+        cmdQ.add("CREATE VIEW AS view5 MATCH p = (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.reputation < 6000 RETURN p");
+
+
+        cmdQ.add("CG MATCH (n:User) RETURN n LIMIT 5");
+        cmdQ.add("CG MATCH (n:User) RETURN n LIMIT 5");
+        cmdQ.add("CG MATCH (n:User) RETURN n LIMIT 5");
+
+        cmdQ.add("USE VIEW view1 MATCH (n) WHERE n IN view1 RETURN n");
+        cmdQ.add("USE VIEW view1 WITH VIEWS view2 MATCH (n:Post) WHERE n IN view1 AND n IN view2 RETURN n");
+        cmdQ.add("USE VIEW view1 WITH VIEWS view3 MATCH (n:User)-[]-(p:Post) WHERE n IN view1 AND p IN view3 RETURN n"); //in one view but not the other
+
+
+
+        long avg1 = 0;
+        for(int i=0; i<5; i++){
+            long now = System.currentTimeMillis();
+            noGuiTest(cmdQ.get(i), mat);
+            avg1 += (System.currentTimeMillis() - now);
+        }
+
+        avg1 /= 5;
+
+        long avg2 = 0;
+        for(int i=5; i<8; i++){
+            long now = System.currentTimeMillis();
+            noGuiTest(cmdQ.get(i), mat);
+            avg2 += (System.currentTimeMillis() - now);
+        }
+
+        avg2 /= 3;
+
+        long avg3 = 0;
+        for(int i=8; i<11; i++){
+            long now = System.currentTimeMillis();
+            noGuiTest(cmdQ.get(i), mat);
+            avg3 += (System.currentTimeMillis() - now);
+        }
+
+        avg3 /= 3;
+
+        System.out.println("avg1:\t" + avg1
+        + "\navg2:\t" + avg2
+        + "\navg3:\t" + avg3);
+
+
+    }
+
 }

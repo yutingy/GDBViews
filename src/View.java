@@ -30,9 +30,9 @@ public class View {
 
     protected static Set<String> viewCreationTable = new HashSet<String>();
 
-    protected static Map<String, Set<String>> nodeTable = new HashMap<String, Set<String>>();
-    protected static Map<String, Set<Relationship>> pathTable = new HashMap<>();
-    protected static Map<String, Set<String>> edgeTable = new HashMap<>();
+    protected static Map<String, Set<String>> nodeTable = new ConcurrentHashMap<String, Set<String>>();
+    protected static Map<String, Set<Relationship>> pathTable = new ConcurrentHashMap<>();
+    protected static Map<String, Set<String>> edgeTable = new ConcurrentHashMap<>();
 
 //    protected Map<String,Set<SubPredTuple<String,GraphPredicate>>> viewTable;
 
@@ -55,7 +55,7 @@ public class View {
             connector = new Neo4jGraphConnector();
 
 
-
+//            test(false);
 
             terminal();
         }
@@ -83,7 +83,7 @@ public class View {
 
     public static void matchAndSet(boolean materialized){
 
-        if(materialized) return;
+        if(!materialized) return;
 
         Set<String> views = vql.viewTable.keySet();
 
@@ -259,6 +259,7 @@ public class View {
 
             Set<String> nodes = connector.executeQuery(makeMiddlewareView);
             nodeTable.put(viewname, nodes);
+            System.out.println("check2");
 
 
         }
@@ -366,17 +367,40 @@ public class View {
 
     }
 
-    public static void changeGraph(String query, boolean materialized){
+    synchronized public static void changeGraph(String query, boolean materialized){
         connector.executeQuery(query.split("CG")[1]);
 
         //need to update views ; so now for each view we have re-evaluate it..
         if(materialized) connector.executeQuery("MATCH (n) REMOVE n.views"); //remove view
         vql.changeGraph();
 
+        Set<String> instantiations = new HashSet<>();
+
         for(String cmd : vql.getViewInstants()){ //re-evaluate all view instants...
 
-            vql.viewInstants.remove(cmd);
+            instantiations.add(cmd);
 
+            System.out.println("checkpoint");
+//
+//            vql.viewInstants.remove(cmd);
+//
+//            ViewLexer VL = new ViewLexer(CharStreams.fromString(cmd));
+//            CommonTokenStream tokens = new CommonTokenStream(VL);
+//            ViewParser parser = new ViewParser(tokens);
+//
+//            System.out.println(cmd);
+//
+//
+//            ParseTree tree = parser.root();
+//            walker.walk(vql, tree);
+//
+//            matchAndSet(materialized);
+//            processMainView(cmd, materialized);
+
+        }
+        vql.removeInstants();
+        for(String cmd : instantiations){
+            vql.viewInstants.remove(cmd);
             ViewLexer VL = new ViewLexer(CharStreams.fromString(cmd));
             CommonTokenStream tokens = new CommonTokenStream(VL);
             ViewParser parser = new ViewParser(tokens);
@@ -389,9 +413,9 @@ public class View {
 
             matchAndSet(materialized);
             processMainView(cmd, materialized);
-
         }
-        vql.removeInstants();
+
+
 
     }
 
@@ -538,9 +562,9 @@ public class View {
 
         cmdQ.add("CREATE VIEW AS view1 MATCH (n:Post) WHERE n.score > 350 RETURN n");
         cmdQ.add("CREATE VIEW AS view2 MATCH (n:Post) WHERE n.score < 1000 RETURN n");
-        cmdQ.add("CREATE VIEW AS view3 MATCH p = (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.reputation > 5000 RETURN p");
-        cmdQ.add("CREATE VIEW AS view4 MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.reputation > 5000 RETURN po2");
-        cmdQ.add("CREATE VIEW AS view5 MATCH p = (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.reputation < 6000 RETURN p");
+        cmdQ.add("CREATE VIEW AS view3 MATCH p = (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.reputation > 50000 AND n.upvotes < 250 RETURN p");
+        cmdQ.add("CREATE VIEW AS view4 MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.reputation > 50000 AND n.upvotes < 250 RETURN po2");
+        cmdQ.add("CREATE VIEW AS view5 MATCH p = (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.reputation < 60000 AND n.upvotes > 4500 RETURN p");
 
 
         cmdQ.add("CG MATCH (n:User) RETURN n LIMIT 5");

@@ -94,7 +94,7 @@ public class ViewQueryListener extends ViewBaseListener {
     //
     // "MATCH (n)-[r]-(m) WHERE n IN view1" -> MATCH (n)-[r]-(m) WHERE id(n) IN [1, 2, ...]"
     // map would contain: key - n, value -view1
-    public Map<String, Set<String>> addWhereClause = new HashMap<String, Set<String>>();
+    public Map<String, Set<String>> addWhereClause = new ConcurrentHashMap<String, Set<String>>();
 
 
     private LinkedList<String> usedViews = new LinkedList<String>();
@@ -560,7 +560,7 @@ public class ViewQueryListener extends ViewBaseListener {
         pathName = "";
         returnType = retType.DEFAULT;
         symbolTable = new ConcurrentHashMap<String, Set<ViewParser.BoolexprContext>>();
-        addWhereClause = new HashMap<>();
+        addWhereClause = new ConcurrentHashMap<>();
 
         cg = false;
         changeGraphQuery = "";

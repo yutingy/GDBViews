@@ -89,6 +89,10 @@ public class MetaData {
         returnType = returntype; //path, nodes, etc
     }
 
+    public MetaData(){
+        //null constructor
+    }
+
     public void setLeftAtom(ViewParser.ViewatomContext context){
 
         Leftctx = context;

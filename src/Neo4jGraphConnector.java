@@ -54,7 +54,7 @@ public class Neo4jGraphConnector{
 
     public static Set<Relationship> pathQuery(String query){
 
-        System.out.println("Executing query: " + query);
+ //       System.out.println("Executing query: " + query);
 
         Set<Relationship> retset = new HashSet<>();
 
@@ -103,6 +103,8 @@ public class Neo4jGraphConnector{
         if(query.equals("")) return nodeids ;
 
         System.out.println("Executing query: " + query);
+
+        if(query.contains("REMOVE") || query.contains("SET")) return nodeids; //todo remove when testing
 
 //        if(!query.equals("")) return nodeids;
 
@@ -179,8 +181,12 @@ public class Neo4jGraphConnector{
 //        File dbHome = new File("C:/Users/yutin/.Neo4jDesktop/neo4jDatabases/database-8c7060ab-2ba4-41a9-bbf3-2ebd19f0f78d/installation-4.0.4/"); //stackoverflow
 
 
-//        File dbHome = new File("D:/.Neo4jDesktop/neo4jDatabases/database-563487f6-0f55-4991-a72e-4265092f97d3/installation-4.0.4/"); //large-stackoverflow
-        File dbHome = new File("D:/.Neo4jDesktop/neo4jDatabases/database-5f3da19a-6ab7-4c91-9ec6-41cd398c5153/installation-4.0.4/"); //medium stack-overflow
+//        File dbHome = new File("D:/.Neo4jDesktop/neo4jDatabases/database-5f3da19a-6ab7-4c91-9ec6-41cd398c5153/installation-4.0.4/"); //largest stack-overflow
+        File dbHome = new File("D:/.Neo4jDesktop/neo4jDatabases/database-6c69dad4-2894-4778-b828-384a407a99a1/installation-4.0.4/"); //second largest
+//        File dbHome = new File("D:/.Neo4jDesktop/neo4jDatabases/database-cc61c6ab-6015-407e-819d-99f764d172b2/installation-4.0.4/"); //second lsmallest
+//        File dbHome = new File("D:/.Neo4jDesktop/neo4jDatabases/database-b9300893-621c-4938-82bf-f414127c1e61/installation-4.0.4"); // smallest
+//        File dbHome = new File("D:/.Neo4jDesktop/neo4jDatabases/database-3df1f6eb-4605-45f0-bbc9-9d3c00ba3702/installation-4.0.4"); // movie example
+
 
 //        dbHome = new File("C:/Users/yutin/Downloads/neo4j-community-4.0.4-windows/neo4j-community-4.0.4/");
 

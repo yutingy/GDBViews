@@ -7,14 +7,21 @@ for the sake of having a valid parser I believe it's better to start off more ge
 
 /*
 TODO: (n:Person { attributes here } )
-
 */
+
 root : COMMAND NAME viewuse query |
-        'CG' query ;
+        'CG' query |
+        'CG' changegraph
+        ;
 
 query :  KEYWORD expr conditions returnstmt |
          KEYWORD path conditions returnstmt
         ;
+
+changegraph : KEYWORD expr conditions 'SET' boolexpr
+            | KEYWORD expr conditions 'REMOVE' NAME
+            | 'CREATE' viewatom
+;
 
 viewuse  : 'WITH VIEWS' usedviews | ;
 usedviews : NAME*;
@@ -51,10 +58,9 @@ boolexpr    :
 attribute   : NAME('.'NAME)? ;
 val         : VALUE | NAME | CONSTANTS;
 test : attribute COMPARISON attribute;
+
 /*
-
 Lexer rules
-
 */
 
 

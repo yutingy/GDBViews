@@ -1,4 +1,4 @@
-// Generated from C:/Users/yutin/IdeaProjects/GraphDBViews/src\View.g4 by ANTLR 4.8
+// Generated from C:/Users/Ting/Documents/GDBViews/src\View.g4 by ANTLR 4.8
 package gen;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -22,6 +22,12 @@ public interface ViewVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitQuery(ViewParser.QueryContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ViewParser#changegraph}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitChangegraph(ViewParser.ChangegraphContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ViewParser#viewuse}.
 	 * @param ctx the parse tree

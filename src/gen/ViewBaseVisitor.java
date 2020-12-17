@@ -1,4 +1,4 @@
-// Generated from C:/Users/yutin/IdeaProjects/GraphDBViews/src\View.g4 by ANTLR 4.8
+// Generated from C:/Users/Ting/Documents/GDBViews/src\View.g4 by ANTLR 4.8
 package gen;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
@@ -25,6 +25,13 @@ public class ViewBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements V
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitQuery(ViewParser.QueryContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitChangegraph(ViewParser.ChangegraphContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

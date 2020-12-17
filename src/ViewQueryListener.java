@@ -23,7 +23,22 @@ public class ViewQueryListener extends ViewBaseListener {
     //information to keep track of:
     //      conditions, return value, path.
     // Maybe keep track of the context itself
+
+    // Metadata table structure: key is the name of the view (which can be hidden!) and the value is the metadata object that holds the information.
+    // a metadata object is created whenever the parser encounters a viewatom as defined in View.g4. depending on whether the atom is a single named node or a relationship,
+    // the object contains the relevant contexts associated with the LHS, RHS, etc.
+    // The table is meant to be used during updates to the graph along with the viewTable, which maps [hidden]views to views that it depends on. the metadatatable and viewtables should be
+    // used together to track which changes affect which nodes.
+
     protected Map<String, MetaData> metaDataTable = new ConcurrentHashMap<String, MetaData>();
+
+
+    //changeMeta stores a list of metadata objects that must be true in order for the change to apply.
+    //it can be compared with all metadata entries in metadataTable to locate the views that must be updated as a result.
+    protected List<MetaData> changeMeta = new LinkedList<>();
+    private String setRemoveCGToken = ""; //local to exitChangeGraph, can be declared locally
+    public List<String> outdatedViews = new LinkedList<>();
+    private String setRemoveCGType = ""; //necessary for communication between View
 
     //View table - stores all views that return sets of nodes and the nodes that it should contain
     //key : view name. value : set of node identifiers
@@ -125,6 +140,7 @@ public class ViewQueryListener extends ViewBaseListener {
             Interval interval = new Interval(a,b);
             String viewSql = ctx.start.getInputStream().getText(interval);
 
+
             viewInstants.add(viewSql);
         }
         else if (name.equals("USE VIEW")) isViewUse = true;
@@ -140,6 +156,218 @@ public class ViewQueryListener extends ViewBaseListener {
         //System.out.println(name);
 
     }
+
+
+    @Override
+    public void exitRoot(ViewParser.RootContext ctx){
+
+        for (String view : thisQueryViews){
+
+//            System.out.println("For view " + view);
+
+            MetaData metaData = metaDataTable.get(view);
+
+            Set<ViewParser.BoolexprContext> toKeep = new HashSet<>();
+
+            for(ViewParser.BoolexprContext bctx : metaData.conditions) {
+
+                switch (metaData.metaType) {
+                    case NODETYPE:{
+                        if(bctx.getText().split("\\.")[0].contains(metaData.nodeName)) {
+                            toKeep.add(bctx);
+                        }
+                        break;
+                    }
+                    case RETURNSYMBOL:{
+                        //instead of handling it here, let this be handled during recursive dependencies later
+                        break;
+                    }
+                    case RELATIONSHIP1:{
+                        if(bctx.getText().contains(metaData.relationshipName)) toKeep.add(bctx);
+
+                        break;
+                    }
+                    case RELATIONSHIP2:{
+                        if(bctx.getText().contains(metaData.relationshipName)) toKeep.add(bctx);
+
+                        break;
+                    }
+                    case RELATIONSHIP3:{
+                        if(bctx.getText().contains(metaData.relationshipName)) toKeep.add(bctx);
+
+                        break;
+                    }
+                    case RELATIONSHIP4:{
+                        if(bctx.getText().contains(metaData.relationshipName)) toKeep.add(bctx);
+
+                        break;
+                    }
+                }
+            }
+
+
+            metaDataTable.get(view).conditions = toKeep;
+
+
+
+
+        }
+
+    }
+
+    @Override
+    public void exitChangegraph(ViewParser.ChangegraphContext ctx){
+
+
+
+        if(!ctx.getText().contains("CREATE")){
+
+            setRemoveCGToken = ctx.getChild(4).getText();
+            //the token in question, which we will compare against the entries in metachanges
+
+            // CG MATCH (n:User)-[:POSTED]-(m:Post) WHERE n.reputation < 10 REMOVE m
+            // -> matches m:Post metadata entry and recognizes that it is a nodeType which is being modified (:Post)
+
+
+            MetaData savedMeta = new MetaData(); //contains information for the change we are interested in.
+            //in the example, this saves the information m:Post WHERE n.reputation < 10. in other words, it contains the info that
+            //this changegraph wants to remove Post nodes whenever n.reputation<10.
+
+            for(MetaData metaData : changeMeta){
+
+                switch(metaData.metaType){
+
+                    case NODETYPE:{
+                        if(metaData.nodeName.equals(setRemoveCGToken)) {
+                            setRemoveCGType = metaData.nodeType;
+                            savedMeta = metaData;
+                        }
+                        break;
+                    }
+                    case RETURNSYMBOL:{
+                        //instead of handling it here, let this be handled during recursive dependencies later
+                        break;
+                    }
+                    case RELATIONSHIP1:{
+                        if(metaData.relationshipName.equals(setRemoveCGToken)) {
+                            setRemoveCGType = metaData.relationshipType;
+                            savedMeta = metaData;                        }
+                        break;
+                    }
+                    case RELATIONSHIP2:{
+                        if(metaData.relationshipName.equals(setRemoveCGToken)) {
+                            setRemoveCGType = metaData.relationshipType;
+                            savedMeta = metaData;                        }
+                        break;
+                    }
+                    case RELATIONSHIP3:{
+                        if(metaData.relationshipName.equals(setRemoveCGToken)) {
+                            setRemoveCGType = metaData.relationshipType;
+                            savedMeta = metaData;                        }
+                        break;
+                    }
+                    case RELATIONSHIP4:{
+                        if(metaData.relationshipName.equals(setRemoveCGToken)){
+                            setRemoveCGType = metaData.relationshipType;
+                            savedMeta = metaData;                        }
+                        break;
+                    }
+
+
+                }
+
+            }
+
+            //Now that we know what kind of node/edge is modified (:Post), check in metadatatable for all post-views
+            Iterator<String> it = metaDataTable.keySet().iterator();
+
+            LinkedList<String> updatesRequired = new LinkedList<>();
+
+            while(it.hasNext()){
+                String key = it.next();
+                MetaData metaData = metaDataTable.get(key);
+                if(savedMeta.metaType==metaData.metaType){
+
+//                    System.out.println(savedMeta.metaType);
+//                    System.out.println(metaData.conditions.size());
+//
+//                    System.out.println(savedMeta.conditions.size());
+
+                    for(ViewParser.BoolexprContext context : metaData.conditions){
+                        for(ViewParser.BoolexprContext savedContext : savedMeta.conditions){
+
+//                            System.out.println("type saved in metadata table: ");
+//                            System.out.println(context.getText());
+//                            System.out.println("type saved in cg command: ");
+//                            System.out.println(savedContext.getText());
+
+
+                            //todo comparisons would be done here if we have proper information on n's nodetype
+                            // since there is an issue about correctness (two different types of labels can share same
+                            // thing, such as "identifier" so we cannot only look at that... we'd have to classify on User-identifier and Post-identifier.
+                        }
+                    }
+
+                    //temporary: while above is not done, mark all matching parts in metaDatatable with "must-be-updated"
+                    switch(savedMeta.metaType) {
+                        case RETURNSYMBOL: break;
+                        case NODETYPE:{
+                            if (metaData.nodeType.equals(savedMeta.nodeType))  updatesRequired.add(key);
+                            break;
+                        }
+                        default:{
+                            if (metaData.relationshipType.equals(savedMeta.relationshipType)) updatesRequired.add(key);
+                        }
+
+
+                    }
+                }
+            }
+
+
+            //At this point, updatesRequired contains the set of all view NAMES that must be updated (user-defined views only)
+            //todo: does not yet consider views that rely on other views, eg. CREATE VIEW AS v2 WITH VIEWS v1 MATCH...
+            // easiest way to do include this dependency in viewTable (which I am not currently sure it contains)
+
+            System.out.println(updatesRequired + " ... " + recursiveUpdate(updatesRequired));
+
+            LinkedList<String> req = recursiveUpdate(updatesRequired);
+
+            for(String outdated : req) {
+                for (String query : viewInstants) {
+
+                    if (query.contains(outdated)) { //View.java will check outdatedViews and re-evaluate for each of these
+
+                        //todo: past hiddenviews that are no longer used are not removed yet (they should be!)
+                        outdatedViews.add(query);
+                    }
+                }
+            }
+
+
+
+
+
+
+
+            if(ctx.getText().contains("SET")){
+
+            }
+
+            if(ctx.getText().contains("REMOVE")){
+
+
+
+            }
+
+        }
+        else{
+            //it is only a create
+        }
+
+    }
+
+
 
     @Override
     public void enterQuery(ViewParser.QueryContext ctx){
@@ -298,7 +526,7 @@ public class ViewQueryListener extends ViewBaseListener {
     public void exitViewatom(ViewParser.ViewatomContext ctx){
 
 
-        if(cg) return;
+
 
         //Meta-data handling
         String thisViewName = ctx.id;
@@ -315,11 +543,15 @@ public class ViewQueryListener extends ViewBaseListener {
         //Could change if grammar changes
         if (ctx.NAME().size()==2){
 
+            // n:User
+
             String nodeName = ctx.NAME(0).getText();
             String nodeType = ctx.NAME(1).getText();
 
             MetaData metaData = new MetaData(nodeName, nodeType);
-            metaDataTable.put(thisViewName, metaData);
+
+            if(cg) changeMeta.add(metaData);
+            else metaDataTable.put(thisViewName, metaData);
 
             //System.out.println("woop" + ctx.getChild(1).getText() + ctx.getChild(3).getText());
 
@@ -354,7 +586,8 @@ public class ViewQueryListener extends ViewBaseListener {
                     entry.setLeftAtom((ViewParser.ViewatomContext)payload1);
                     entry.setRightAtom((ViewParser.ViewatomContext)payload3);
 
-                    metaDataTable.put(thisViewName, entry);
+                    if(cg) changeMeta.add(entry);
+                    else metaDataTable.put(thisViewName, entry);
 
 
                 }
@@ -372,7 +605,8 @@ public class ViewQueryListener extends ViewBaseListener {
                     MetaData entry = new MetaData(child1Name, varName, relationshipString, MetaData.MetaType.RELATIONSHIP2);
                     entry.setLeftAtom((ViewParser.ViewatomContext)payload1);
 
-                    metaDataTable.put(thisViewName, entry);
+                    if(cg) changeMeta.add(entry);
+                    else metaDataTable.put(thisViewName, entry);
 
 
 
@@ -397,7 +631,8 @@ public class ViewQueryListener extends ViewBaseListener {
                     MetaData entry = new MetaData(varName, childName, relationshipString, MetaData.MetaType.RELATIONSHIP3);
                     entry.setRightAtom((ViewParser.ViewatomContext)payload3);
 
-                    metaDataTable.put(thisViewName, entry);
+                    if(cg) changeMeta.add(entry);
+                    else metaDataTable.put(thisViewName, entry);
 
                 }
                 else if (payload3 instanceof ViewParser.VariableContext){
@@ -413,7 +648,8 @@ public class ViewQueryListener extends ViewBaseListener {
 
                     MetaData entry = new MetaData(varName1, varName2, relationshipString, MetaData.MetaType.RELATIONSHIP4);
 
-                    metaDataTable.put(thisViewName, entry);
+                    if(cg) changeMeta.add(entry);
+                    else metaDataTable.put(thisViewName, entry);
 
                 }
 
@@ -440,9 +676,12 @@ public class ViewQueryListener extends ViewBaseListener {
     @Override
     public void exitConditions(ViewParser.ConditionsContext ctx){
 
-        if(isViewUse || cg) return;
+        if(isViewUse|cg) return;
+
+
 
         //Using all symbols from symboltable (set-up from enterBoolexpr), attach these to meta-data table entries
+
 
         for (String view : thisQueryViews){
 
@@ -507,6 +746,12 @@ public class ViewQueryListener extends ViewBaseListener {
 
             }
 
+            if(cg){
+                for(MetaData md : changeMeta){
+                    md.conditions.add(ctx);
+                }
+            }
+
         }
 
 
@@ -562,6 +807,10 @@ public class ViewQueryListener extends ViewBaseListener {
         symbolTable = new ConcurrentHashMap<String, Set<ViewParser.BoolexprContext>>();
         addWhereClause = new ConcurrentHashMap<>();
 
+        changeMeta = new LinkedList<>();
+        setRemoveCGToken = "";
+        setRemoveCGType = "";
+
         cg = false;
         changeGraphQuery = "";
     }
@@ -569,13 +818,13 @@ public class ViewQueryListener extends ViewBaseListener {
     public void changeGraph(){
         clearAll();
 
-        viewTable = new ConcurrentHashMap<>();
-        metaDataTable = new ConcurrentHashMap<>();
+//        viewTable = new ConcurrentHashMap<>();
+//        metaDataTable = new ConcurrentHashMap<>();
 
     }
 
-    public void removeInstants(){
-        viewInstants = new HashSet<>();
+    public void removeOutdated(){
+        outdatedViews = new LinkedList<>();
     }
 
     public Set<String> getViewInstants(){
@@ -641,6 +890,61 @@ public class ViewQueryListener extends ViewBaseListener {
         }
 
     }
+
+    //Returns a set of strings corresponding to all non-hidden views which must be updated by re-evaluation
+    //example: this may decide that views v1 and v3 must be reevaluated but not v2, etc.
+    //input : a list of view names
+    public LinkedList<String> recursiveUpdate(LinkedList<String> list){
+
+        LinkedList<String> updatesRequired = new LinkedList<>();
+
+        boolean hasBeenUpdated = true;
+
+        while (hasBeenUpdated) {
+            hasBeenUpdated = false;
+            Iterator<String> it = viewTable.keySet().iterator();
+
+
+            LinkedList<String> toAdd = new LinkedList<>();
+
+            while(it.hasNext()){
+                String key = it.next();
+                Set<String> dependents = viewTable.get(key);
+
+                for(String viewname : list){
+                    if(dependents.contains(viewname) && !list.contains(key)){
+                        hasBeenUpdated = true;
+                        toAdd.add(key);
+
+                    }
+
+
+
+                }
+
+            }
+
+
+            for(String s : list){
+                if(!s.startsWith("hidden")) toAdd.add(s);
+            }
+
+            list = toAdd;
+
+        }
+
+        for(String s : list){
+            if(!s.startsWith("hidden")) updatesRequired.add(s);
+        }
+
+        return updatesRequired;
+
+
+
+
+    }
+
+
 
 
 }

@@ -1,4 +1,4 @@
-// Generated from C:/Users/yutin/IdeaProjects/GraphDBViews/src\View.g4 by ANTLR 4.8
+// Generated from C:/Users/Ting/Documents/GDBViews/src\View.g4 by ANTLR 4.8
 package gen;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -27,6 +27,16 @@ public interface ViewListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitQuery(ViewParser.QueryContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ViewParser#changegraph}.
+	 * @param ctx the parse tree
+	 */
+	void enterChangegraph(ViewParser.ChangegraphContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ViewParser#changegraph}.
+	 * @param ctx the parse tree
+	 */
+	void exitChangegraph(ViewParser.ChangegraphContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ViewParser#viewuse}.
 	 * @param ctx the parse tree

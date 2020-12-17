@@ -1,4 +1,4 @@
-// Generated from C:/Users/yutin/IdeaProjects/GraphDBViews/src\View.g4 by ANTLR 4.8
+// Generated from C:/Users/Ting/Documents/GDBViews/src\View.g4 by ANTLR 4.8
 package gen;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -35,6 +35,18 @@ public class ViewBaseListener implements ViewListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitQuery(ViewParser.QueryContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterChangegraph(ViewParser.ChangegraphContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitChangegraph(ViewParser.ChangegraphContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -50,7 +50,7 @@ public class GraphChange{
          */
         if(graphChangeType == changeType.DELETE){
 
-            String deletedVar = query.split("DELETE")[1].strip();
+//            String deletedVar = query.split("DELETE")[1].strip();
 
 
 

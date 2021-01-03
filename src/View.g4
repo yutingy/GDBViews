@@ -1,10 +1,6 @@
 grammar View;
 
 
-
-/* Could change to have stuff like... parser rules for each of the things we know. that would be easier but
-for the sake of having a valid parser I believe it's better to start off more general. */
-
 /*
 TODO: (n:Person { attributes here } )
 */
@@ -26,7 +22,7 @@ changegraph : KEYWORD expr conditions 'SET' boolexpr
 viewuse  : 'WITH VIEWS' usedviews | ;
 usedviews : NAME*;
 
-viewatom : '(' NAME ':' NAME ')' |
+viewatom : variable | // for early version, this line was '(' NAME ':' MNAME ')'
              viewatom '-[' relation ']-' viewatom |
              viewatom '-[' relation ']-' variable |
              variable '-[' relation ']-' viewatom |
@@ -38,7 +34,7 @@ retval : 'NODES(' NAME ')' |
          ;
 
 expr : viewatom | variable ;
-variable : nodeName | '('nodeName')' | '('nodeName':'type')';
+variable :  '('nodeName')' | '('nodeName':'type')'; // nodeName
 type    : NAME ;
 nodeName : NAME ;
 relation : relationValue?(':'type)? ;

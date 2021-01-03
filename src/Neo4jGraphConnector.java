@@ -182,9 +182,9 @@ public class Neo4jGraphConnector{
 
 
 //        File dbHome = new File("D:/.Neo4jDesktop/neo4jDatabases/database-5f3da19a-6ab7-4c91-9ec6-41cd398c5153/installation-4.0.4/"); //largest stack-overflow
-        File dbHome = new File("D:/.Neo4jDesktop/neo4jDatabases/database-6c69dad4-2894-4778-b828-384a407a99a1/installation-4.0.4/"); //second largest
+//        File dbHome = new File("D:/.Neo4jDesktop/neo4jDatabases/database-6c69dad4-2894-4778-b828-384a407a99a1/installation-4.0.4/"); //second largest
 //        File dbHome = new File("D:/.Neo4jDesktop/neo4jDatabases/database-cc61c6ab-6015-407e-819d-99f764d172b2/installation-4.0.4/"); //second lsmallest
-//        File dbHome = new File("D:/.Neo4jDesktop/neo4jDatabases/database-b9300893-621c-4938-82bf-f414127c1e61/installation-4.0.4"); // smallest
+        File dbHome = new File("D:/.Neo4jDesktop/neo4jDatabases/database-b9300893-621c-4938-82bf-f414127c1e61/installation-4.0.4"); // smallest
 //        File dbHome = new File("D:/.Neo4jDesktop/neo4jDatabases/database-3df1f6eb-4605-45f0-bbc9-9d3c00ba3702/installation-4.0.4"); // movie example
 
 

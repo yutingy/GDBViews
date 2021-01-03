@@ -22,6 +22,10 @@ public class DependencyTable extends Hashtable<String, TableEntry> {
         return result.isEmpty();
     }
 
+    public DependencyTable(){
+        super();
+    }
+
 
 
 

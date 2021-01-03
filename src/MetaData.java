@@ -18,7 +18,7 @@ public class MetaData {
 
     MetaType metaType;
     String returnSymbol;
-    ViewQueryListener.retType returnType;
+    QueryParser.retType returnType; //or ViewQueryListener.retType
 
     ViewParser.ViewatomContext Leftctx;
     ViewParser.ViewatomContext Rightctx;
@@ -82,7 +82,7 @@ public class MetaData {
         metaType = MetaType.NODETYPE;
     }
 
-    public MetaData(String returnsymbol, ViewQueryListener.retType returntype){
+    public MetaData(String returnsymbol, QueryParser.retType returntype){ //or ViewQueryListener.retType
 
         returnSymbol = returnsymbol; //symbol of return
         metaType = MetaType.RETURNSYMBOL; //type of metadata - return

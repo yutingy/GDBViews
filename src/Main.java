@@ -66,7 +66,7 @@ public class Main {
                     break;
                 }
                 else if (command.startsWith("printView")){
-                    vql.printViewTable();
+//                    vql.printViewTable();
                 }
                 else if (command.startsWith("printDependencies")){
                     vql.printDependencies();
@@ -293,6 +293,10 @@ public class Main {
         connector.executeQuery(fullQuery);
         // System.out.println(fullQuery); //todo uncomment
 
+    }
+
+    public static void changeGraph(String command){
+        //if this is called, then the change-graph has already walked through the parser
     }
 
 }

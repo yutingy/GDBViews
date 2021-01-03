@@ -13,7 +13,7 @@ public class QueryParser extends ViewBaseListener {
 
 
 
-    protected Map<String, Set<String>> viewTable = new ConcurrentHashMap<String,Set<String>>();
+    protected Set<String> viewsInSystem = new HashSet<>();
 
 
 
@@ -129,46 +129,60 @@ public class QueryParser extends ViewBaseListener {
     @Override
     public void enterRoot(ViewParser.RootContext ctx){
 
-        if(ctx.getChild(0).getText().equals("CG") || ctx.getText().contains("SET") ||
+        if(ctx.getChild(0).getText().contains("WITH VIEWS")){
+            //viewUse
+            isViewUse = true;
+
+
+            if (ctx.getText().contains("IN")) {
+                //global view usage todo use explicit global and local words in the lexer
+                viewScope = false; //set to global
+            }
+
+
+        }
+        else if(ctx.getChild(0).getText().equals("CG") || ctx.getText().contains("SET") ||
                 ctx.getText().contains("DELETE") || ctx.getChild(3).getText().contains("CREATE")){
+
+            //Change Graph
             cg = true;
 
             changeGraphQuery = ctx.getChild(1).getText();
             return;
         }
+        else {
+            //view init
 
-        TerminalNode node = ctx.COMMAND();
-        String name = node.getText();
-
-
-        if(name.equals("CREATE VIEW AS")) {
-            isViewInstant = true;
-
-            int a = ctx.start.getStartIndex();
-            int b = ctx.stop.getStopIndex();
-            Interval interval = new Interval(a,b);
-            String viewSql = ctx.start.getInputStream().getText(interval);
+            TerminalNode node = ctx.COMMAND();
+            String name = node.getText();
 
 
-            //Storing it in case we need to re-execute this view
-            viewInstants.add(viewSql);
+            if (name.equals("CREATE VIEW AS")) {
+                isViewInstant = true;
+
+                int a = ctx.start.getStartIndex();
+                int b = ctx.stop.getStopIndex();
+                Interval interval = new Interval(a, b);
+                String viewSql = ctx.start.getInputStream().getText(interval);
+
+
+                //Storing it in case we need to re-execute this view
+                viewInstants.add(viewSql);
+            }
+
+
+
+
+            viewName = ctx.NAME().getText();
+            usedViews.add(viewName);
+            viewsInSystem.add(viewName);
+
+
+            //Adding this View as an entry to the dependency table (this entry contains no conditions by itself.)
+            dependencyTable.put(viewName, new TableEntry(viewName));
+            dependents = new LinkedList<>();
+            dependents.add(viewName);
         }
-        else if (name.equals("USE VIEW")) isViewUse = true;
-
-        if (ctx.getText().contains("IN") && isViewUse) {
-            //global view usage
-            viewScope = false; //set to global
-        }
-
-        viewName = ctx.NAME().getText();
-        usedViews.add(viewName);
-
-
-        //Adding this View as an entry to the dependency table (this entry contains no conditions by itself.)
-        dependencyTable.put(viewName, new TableEntry(viewName));
-        dependents = new LinkedList<>();
-        dependents.add(viewName);
-
 
 
 
@@ -182,7 +196,6 @@ public class QueryParser extends ViewBaseListener {
     @Override
     public void exitRoot(ViewParser.RootContext ctx){
 
-        //(if view init) At the end, we need to add all EntryDatas for each TableEntry which is related to the view
 
 
     }
@@ -190,6 +203,7 @@ public class QueryParser extends ViewBaseListener {
     @Override
     public void exitChangegraph(ViewParser.ChangegraphContext ctx){
 
+        //At this point, all information should be ready for comparison.
 
 
     }
@@ -351,7 +365,7 @@ public class QueryParser extends ViewBaseListener {
     @Override
     public void enterUsedviews(ViewParser.UsedviewsContext ctx){
 
-        if(isViewUse || cg) return;
+        if(cg) return;
 
 
         List<TerminalNode> used = ctx.NAME();
@@ -406,9 +420,18 @@ public class QueryParser extends ViewBaseListener {
                 //so we compare ALL EntryData from this tableentry and see if one has EXACT same conditions..
 
                 if(dependencyTable.get(label).addSameDependents(conditionList, dependents)){
-                    System.out.println("Succ ess");
+                    //nothing to do here, it has been done in the method. probably should just write "if !..." for clarity
                 }
                 else{
+                    //as with above, then there is no existing entry so we add a new entry to the existing TableEntry
+
+                    EntryData entryData = new EntryData();
+                    entryData.setConditions(list);
+                    entryData.setDependents(dependents);
+
+
+                    dependencyTable.get(label).addEntry(entryData);
+
 
                 }
 
@@ -488,7 +511,28 @@ public class QueryParser extends ViewBaseListener {
         //intuitively they should be treated just like an AND ... but special attention can be given if we deem it necessary, later.
 
 
-        if(isViewUse || cg) {
+        if(isViewUse) {
+
+            //Using a view: this catches the case when we see "n IN v1"
+
+            if(ctx.getText().contains("IN") && !ctx.getText().contains("AND") && !ctx.getText().contains("OR")) {
+                String viewNodeName = ctx.NAME(0).getText(); //not necessarily node. can be path symbol too
+                String viewUsedName = ctx.NAME(1).getText();
+
+                assert viewsInSystem.contains(viewUsedName);
+                assert usedViews.contains(viewUsedName);
+
+                if (addWhereClause.containsKey(viewNodeName)) {
+                    addWhereClause.get(viewNodeName).add(viewUsedName);
+                } else {
+                    addWhereClause.put(viewNodeName, new HashSet<String>());
+                    addWhereClause.get(viewNodeName).add(viewUsedName);
+                }
+            }
+
+        }
+
+        else if(cg){
 
 
         }
@@ -541,6 +585,14 @@ public class QueryParser extends ViewBaseListener {
     }
 
     public void clearAll(){
+
+
+        /* first these three*/
+        labelsAffected = new LinkedList<>();
+        varConditions = new HashMap<>();
+        varLabels = new HashMap<>();
+
+
         //does not clear viewInstants; this should be called separately
 
         usedViews = new LinkedList<String>();
@@ -629,70 +681,61 @@ public class QueryParser extends ViewBaseListener {
         return returnType;
     }
 
-    public void printViewTable(){
-
-        Iterator<String> it = viewTable.keySet().iterator();
-
-        while(it.hasNext()){
-            String key = it.next();
-            System.out.println("Key: " + key + "\t"+viewTable.get(key).toString());
-        }
-    }
-
-
 
     //Returns a set of strings corresponding to all non-hidden views which must be updated by re-evaluation
     //example: this may decide that views v1 and v3 must be reevaluated but not v2, etc.
     //input : a list of view names
-    public LinkedList<String> recursiveUpdate(LinkedList<String> list){
+//    public LinkedList<String> recursiveUpdate(LinkedList<String> list){
 
-        LinkedList<String> updatesRequired = new LinkedList<>();
-
-        boolean hasBeenUpdated = true;
-
-        while (hasBeenUpdated) {
-            hasBeenUpdated = false;
-            Iterator<String> it = viewTable.keySet().iterator();
-
-
-            LinkedList<String> toAdd = new LinkedList<>();
-
-            while(it.hasNext()){
-                String key = it.next();
-                Set<String> dependents = viewTable.get(key);
-
-                for(String viewname : list){
-                    if(dependents.contains(viewname) && !list.contains(key)){
-                        hasBeenUpdated = true;
-                        toAdd.add(key);
-
-                    }
-
-
-
-                }
-
-            }
-
-
-            for(String s : list){
-                if(!s.startsWith("hidden")) toAdd.add(s);
-            }
-
-            list = toAdd;
-
-        }
-
-        for(String s : list){
-            if(!s.startsWith("hidden")) updatesRequired.add(s);
-        }
-
-        return updatesRequired;
-
-
-
-
-    }
+    //todo outdated; redo this code but with the dependency table
+//
+//        LinkedList<String> updatesRequired = new LinkedList<>();
+//
+//        boolean hasBeenUpdated = true;
+//
+//        while (hasBeenUpdated) {
+//            hasBeenUpdated = false;
+//            Iterator<String> it = viewTable.keySet().iterator();
+//
+//
+//            LinkedList<String> toAdd = new LinkedList<>();
+//
+//            while(it.hasNext()){
+//                String key = it.next();
+//                Set<String> dependents = viewTable.get(key);
+//
+//                for(String viewname : list){
+//                    if(dependents.contains(viewname) && !list.contains(key)){
+//                        hasBeenUpdated = true;
+//                        toAdd.add(key);
+//
+//                    }
+//
+//
+//
+//                }
+//
+//            }
+//
+//
+//            for(String s : list){
+//                if(!s.startsWith("hidden")) toAdd.add(s);
+//            }
+//
+//            list = toAdd;
+//
+//        }
+//
+//        for(String s : list){
+//            if(!s.startsWith("hidden")) updatesRequired.add(s);
+//        }
+//
+//        return updatesRequired;
+//
+//
+//
+//
+//    }
 
 
     public void printDependencies(){

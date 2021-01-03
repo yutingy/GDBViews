@@ -38,13 +38,13 @@ public class TableEntry {
         for(EntryData myED : entries){
 
 
-            System.out.println("Mine: ");
-            for(Condition c : myED.getConditions()) c.printCondition();
-            System.out.println("Compared with : ");
+//            System.out.println("Mine: ");
+//            for(Condition c : myED.getConditions()) c.printCondition();
+//            System.out.println("Compared with : ");
 
 
             Set<Condition> myConds = new HashSet<>(myED.getConditions());
-            for(Condition d : myConds) d.printCondition();
+//            for(Condition d : myConds) d.printCondition();
 
             if(myConds.equals(edConds)){
 

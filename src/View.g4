@@ -7,7 +7,8 @@ TODO: (n:Person { attributes here } )
 
 root : COMMAND NAME viewuse query |
         'CG' query |
-        'CG' changegraph
+        changegraph |
+        viewuse query
         ;
 
 query :  KEYWORD expr conditions returnstmt |
@@ -15,7 +16,9 @@ query :  KEYWORD expr conditions returnstmt |
         ;
 
 changegraph : KEYWORD expr conditions 'SET' boolexpr
-            | KEYWORD expr conditions 'REMOVE' NAME
+            | KEYWORD expr conditions 'DELETE' NAME
+            | KEYWORD expr conditions 'REMOVE' boolexpr
+            | KEYWORD expr conditions 'CREATE' expr
             | 'CREATE' viewatom
 ;
 
@@ -62,7 +65,7 @@ Lexer rules
 
 KEYWORD   : 'MATCH' | 'MERGE' ;
 RETURN  : 'RETURN' ;
-COMMAND : 'CREATE VIEW AS' | 'USE VIEW' ;
+COMMAND : 'CREATE VIEW AS';
 COMPARISON : '>' | '<' | '>=' |'<=' ;
 OPERATOR : 'CASE'|'CONTAINS'|'ELSE'|'END'|
            'ENDS WITH'|'IN'|'IS NOT NULL'|'IS NULL'|'NOT'|'STARTS WITH'|'THEN'|'WHEN'|'XOR';

@@ -18,8 +18,8 @@ query :  KEYWORD expr conditions returnstmt |
 changegraph : KEYWORD expr conditions 'SET' setattr
             | KEYWORD expr conditions 'DELETE' NAME
             | KEYWORD expr conditions 'REMOVE' attribute
-            | KEYWORD expr conditions 'CREATE' expr
-            | 'CREATE' viewatom
+            | KEYWORD expr conditions 'CREATE' insertion
+            | 'CREATE' insertion
 ;
 
 viewuse  : 'WITH VIEWS' usedviews | ;
@@ -36,7 +36,7 @@ retval : 'NODES(' NAME ')' |
          attribute
          ;
 
-expr : viewatom | variable ;
+expr : viewatom ;
 variable :  '('nodeName')' | '('nodeName':'type')'; // nodeName
 type    : NAME ;
 nodeName : NAME ;
@@ -59,6 +59,13 @@ val         : VALUE | NAME | CONSTANTS;
 test : attribute COMPARISON attribute;
 setattr:  attribute '=' attribute |
           attribute '=' val;
+
+
+insertion: variable |
+           insertion '-[' insertrelation ']-' insertion
+           ;
+
+insertrelation: relationValue?(':'type)? ;
 
 /*
 Lexer rules

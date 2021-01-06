@@ -83,6 +83,8 @@ public class TableEntry {
         return returnSet;
     }
 
+
+    //Used so FAR for DELETIONS and UPDATES
     public Set<EntryData> filterIrrelevantEntryData(Set<Condition> conditions){
 
         //Given the conditions as input, which EntryData will ABSOLUTELY not be affected by

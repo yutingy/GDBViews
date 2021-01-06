@@ -10,6 +10,7 @@ public class EntryData {
 
 
 
+    //Used for graph UPDATES
     public boolean containsConditionOnAttribute(String attributeName){
 
 

@@ -130,4 +130,10 @@ public interface ViewVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitTest(ViewParser.TestContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ViewParser#setattr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSetattr(ViewParser.SetattrContext ctx);
 }

@@ -15,7 +15,7 @@ query :  KEYWORD expr conditions returnstmt |
          KEYWORD path conditions returnstmt
         ;
 
-changegraph : KEYWORD expr conditions 'SET' boolexpr
+changegraph : KEYWORD expr conditions 'SET' setattr
             | KEYWORD expr conditions 'DELETE' NAME
             | KEYWORD expr conditions 'REMOVE' attribute
             | KEYWORD expr conditions 'CREATE' expr
@@ -57,6 +57,8 @@ boolexpr    :
 attribute   : NAME('.'NAME)? ;
 val         : VALUE | NAME | CONSTANTS;
 test : attribute COMPARISON attribute;
+setattr:  attribute '=' attribute |
+          attribute '=' val;
 
 /*
 Lexer rules

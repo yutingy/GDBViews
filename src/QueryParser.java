@@ -242,7 +242,7 @@ public class QueryParser extends ViewBaseListener {
         }
         if(queryText.contains("SET")){
             change = changeType.UPDATE;
-            parseUpdate((ViewParser.BoolexprContext) ctx.getChild(4));
+            parseUpdate((ViewParser.SetattrContext) ctx.getChild(4));
         }
         if(queryText.contains("REMOVE")) change = changeType.UPDATE;
 
@@ -759,7 +759,7 @@ public class QueryParser extends ViewBaseListener {
 
 
     //Helper method for UPDATE change-graphs that will keep track of the update
-    public void parseUpdate(ViewParser.BoolexprContext ctx){
+    public void parseUpdate(ViewParser.SetattrContext ctx){
         //ASSUMES THE FORMAT: a.x = b(.y)?
         //KEYWORD expr conditions 'SET' boolexpr
         /*

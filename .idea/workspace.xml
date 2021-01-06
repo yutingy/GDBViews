@@ -3,12 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="7eeeda74-54a8-4547-b697-c36e8a7aaa22" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Condition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Condition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EntryData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EntryData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/QueryParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/QueryParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TableEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TableEntry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/View.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gen/View.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/gen/View.interp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gen/ViewBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gen/ViewBaseListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gen/ViewBaseVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gen/ViewBaseVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gen/ViewListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gen/ViewListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gen/ViewParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gen/ViewParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gen/ViewVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gen/ViewVisitor.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -59,16 +61,16 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="g4" value="307" />
-          <entry key="java" value="32671" />
-          <entry key="txt" value="514" />
+          <entry key="g4" value="327" />
+          <entry key="java" value="32689" />
+          <entry key="txt" value="552" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="ANTLR v4 grammar file" value="307" />
-          <entry key="JAVA" value="32671" />
-          <entry key="PLAIN_TEXT" value="514" />
+          <entry key="ANTLR v4 grammar file" value="327" />
+          <entry key="JAVA" value="32689" />
+          <entry key="PLAIN_TEXT" value="552" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -182,8 +184,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/View.g4">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="238">
-                  <caret line="17" column="52" lean-forward="true" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="52" />
+                <state relative-caret-position="612">
+                  <caret line="60" column="28" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="28" />
                 </state>
               </provider>
             </entry>
@@ -191,8 +193,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/QueryParser.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="237">
-                  <caret line="295" column="58" selection-start-line="295" selection-start-column="58" selection-end-line="295" selection-end-column="58" />
+                <state relative-caret-position="146">
+                  <caret line="769" column="22" selection-start-line="769" selection-start-column="22" selection-end-line="769" selection-end-column="22" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#24956#24957#0" expanded="true" />
@@ -262,7 +264,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ViewQuery</find>
       <find>metaData</find>
       <find>ViewQueryListener</find>
       <find>viewName</find>
@@ -292,6 +293,7 @@
       <find>varLab</find>
       <find>finalAffectedViews</find>
       <find>&quot;SET&quot;</find>
+      <find>Boolexpr</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -326,11 +328,11 @@
         <option value="$PROJECT_DIR$/src/MetaData.java" />
         <option value="$PROJECT_DIR$/src/ViewQueryListener.java" />
         <option value="$PROJECT_DIR$/src/View.java" />
-        <option value="$PROJECT_DIR$/src/View.g4" />
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/Condition.java" />
         <option value="$PROJECT_DIR$/src/TableEntry.java" />
         <option value="$PROJECT_DIR$/src/EntryData.java" />
+        <option value="$PROJECT_DIR$/src/View.g4" />
         <option value="$PROJECT_DIR$/src/QueryParser.java" />
       </list>
     </option>
@@ -395,7 +397,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1609912381497" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1609912685076" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/jess.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -471,7 +473,7 @@
       <workItem from="1608141370246" duration="5834000" />
       <workItem from="1608213155195" duration="2324000" />
       <workItem from="1609618472253" duration="34758000" />
-      <workItem from="1609870178880" duration="11059000" />
+      <workItem from="1609870178880" duration="11323000" />
     </task>
     <task id="LOCAL-00001" summary="set-up for testing on varied size databases">
       <created>1594145223483</created>
@@ -515,11 +517,18 @@
       <option name="project" value="LOCAL" />
       <updated>1609714894659</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="done deletions and almost updates">
+      <created>1609912510950</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1609912510950</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="232611000" />
+    <option name="totallyTimeSpent" value="232875000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -532,6 +541,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49942726" visible="true" weight="0.16176471" />
       <window_info id="Structure" order="1" sideWeight="0.50057274" side_tool="true" weight="0.16057234" />
@@ -581,7 +591,8 @@
     <MESSAGE value="new architecture setup, prepare to change and new branch next" />
     <MESSAGE value="new files pertaining to updated architecture; view setup should be more or less complete (actually not fully). conditions are set up. lot of work left to do on the various cases." />
     <MESSAGE value="changed lexer and parser to better reflect syntax in chapter 3. whats left is the many cases for change-graphs. still contains todos for global/local usage" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed lexer and parser to better reflect syntax in chapter 3. whats left is the many cases for change-graphs. still contains todos for global/local usage" />
+    <MESSAGE value="done deletions and almost updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="done deletions and almost updates" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/out/production/GraphDBViews/gen/ViewParser.class">
@@ -778,15 +789,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/View.g4">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="17" column="52" lean-forward="true" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="52" />
+        <state relative-caret-position="612">
+          <caret line="60" column="28" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/QueryParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="295" column="58" selection-start-line="295" selection-start-column="58" selection-end-line="295" selection-end-column="58" />
+        <state relative-caret-position="146">
+          <caret line="769" column="22" selection-start-line="769" selection-start-column="22" selection-end-line="769" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#24956#24957#0" expanded="true" />

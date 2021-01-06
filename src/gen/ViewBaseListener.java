@@ -251,6 +251,18 @@ public class ViewBaseListener implements ViewListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitTest(ViewParser.TestContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSetattr(ViewParser.SetattrContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSetattr(ViewParser.SetattrContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

@@ -33,4 +33,8 @@ public class Condition {
     public int hashCode(){
         return conditionString.hashCode() + attribute.hashCode();
     }
+
+
+
+
 }

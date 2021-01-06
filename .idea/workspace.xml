@@ -3,16 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="7eeeda74-54a8-4547-b697-c36e8a7aaa22" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Condition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Condition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EntryData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EntryData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/QueryParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/QueryParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TableEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TableEntry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/View.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gen/View.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/gen/View.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gen/View.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/gen/View.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gen/ViewLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/gen/ViewLexer.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gen/ViewLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gen/ViewLexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gen/ViewLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/gen/ViewLexer.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gen/ViewParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gen/ViewParser.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,7 +18,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/GDBViews$Main.ic" NAME="Main Coverage Results" MODIFIED="1609651599174" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/GDBViews$Main.ic" NAME="Main Coverage Results" MODIFIED="1609881671394" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="-1163543441">
@@ -36,13 +32,14 @@
           <entry key="project.open.time.31" value="4" />
           <entry key="project.open.time.32" value="3" />
           <entry key="project.open.time.33" value="2" />
+          <entry key="project.open.time.36" value="1" />
           <entry key="project.open.time.368" value="1" />
           <entry key="project.open.time.38" value="1" />
           <entry key="project.open.time.39" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.45" value="1" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.opened" value="24" />
+          <entry key="project.opened" value="25" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -62,16 +59,16 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="g4" value="298" />
-          <entry key="java" value="24276" />
-          <entry key="txt" value="347" />
+          <entry key="g4" value="307" />
+          <entry key="java" value="32671" />
+          <entry key="txt" value="514" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="ANTLR v4 grammar file" value="298" />
-          <entry key="JAVA" value="24276" />
-          <entry key="PLAIN_TEXT" value="347" />
+          <entry key="ANTLR v4 grammar file" value="307" />
+          <entry key="JAVA" value="32671" />
+          <entry key="PLAIN_TEXT" value="514" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -88,11 +85,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.4057765">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Main.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="967">
-                  <caret line="298" column="88" selection-start-line="298" selection-start-column="88" selection-end-line="298" selection-end-column="88" />
+                <state relative-caret-position="-285">
+                  <caret line="112" column="45" selection-start-line="112" selection-start-column="45" selection-end-line="112" selection-end-column="45" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -103,7 +100,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/MetaData.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="814">
+                <state relative-caret-position="1377">
                   <caret line="84" column="88" selection-start-line="84" selection-start-column="79" selection-end-line="84" selection-end-column="88" />
                 </state>
               </provider>
@@ -112,12 +109,10 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/DependencyTable.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="459">
-                  <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+                <state relative-caret-position="408">
+                  <caret line="27" selection-start-line="27" selection-end-line="27" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#742#743#0" expanded="true" />
-                    <element signature="e#764#765#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -126,24 +121,20 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/TableEntry.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="544">
-                  <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+                <state relative-caret-position="3069">
+                  <caret line="254" column="17" lean-forward="true" selection-start-line="254" selection-start-column="17" selection-end-line="254" selection-end-column="17" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#384#385#0" expanded="true" />
-                    <element signature="e#414#415#0" expanded="true" />
-                    <element signature="e#457#458#0" expanded="true" />
-                    <element signature="e#487#488#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/EntryData.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="935">
-                  <caret line="55" column="32" selection-start-line="55" selection-start-column="32" selection-end-line="55" selection-end-column="32" />
+                <state relative-caret-position="301">
+                  <caret line="18" column="75" selection-start-line="18" selection-start-column="75" selection-end-line="18" selection-end-column="75" />
                   <folding>
                     <element signature="e#813#814#0" expanded="true" />
                     <element signature="e#857#858#0" expanded="true" />
@@ -151,8 +142,6 @@
                     <element signature="e#962#963#0" expanded="true" />
                     <element signature="e#1008#1009#0" expanded="true" />
                     <element signature="e#1041#1042#0" expanded="true" />
-                    <element signature="e#1095#1096#0" expanded="true" />
-                    <element signature="e#1133#1134#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -161,8 +150,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Condition.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="323">
-                  <caret line="19" column="33" lean-forward="true" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+                <state relative-caret-position="578">
+                  <caret line="36" selection-start-line="36" selection-end-line="36" />
                   <folding>
                     <element signature="e#140#141#0" expanded="true" />
                     <element signature="e#182#183#0" expanded="true" />
@@ -170,9 +159,8 @@
                     <element signature="e#298#299#0" expanded="true" />
                     <element signature="e#340#341#0" expanded="true" />
                     <element signature="e#378#379#0" expanded="true" />
-                    <element signature="e#452#453#0" expanded="true" />
-                    <element signature="e#728#729#0" expanded="true" />
-                    <element signature="e#799#800#0" expanded="true" />
+                    <element signature="e#413#414#0" expanded="true" />
+                    <element signature="e#464#465#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -181,8 +169,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/GraphChange.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="452">
-                  <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
+                <state relative-caret-position="867">
+                  <caret line="53" selection-start-line="53" selection-end-line="53" />
                 </state>
               </provider>
             </entry>
@@ -191,50 +179,52 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/View.g4">
               <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret line="9" column="8" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+                <state relative-caret-position="238">
+                  <caret line="17" column="52" lean-forward="true" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="52" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/QueryParser.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="377">
-                  <caret line="205" column="72" selection-start-line="205" selection-start-column="72" selection-end-line="205" selection-end-column="72" />
+                <state relative-caret-position="237">
+                  <caret line="295" column="58" selection-start-line="295" selection-start-column="58" selection-end-line="295" selection-end-column="58" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#18815#18816#0" expanded="true" />
-                    <element signature="e#18847#18848#0" expanded="true" />
-                    <element signature="e#19985#19986#0" expanded="true" />
-                    <element signature="e#20035#20036#0" expanded="true" />
-                    <element signature="e#20078#20079#0" expanded="true" />
-                    <element signature="e#20113#20114#0" expanded="true" />
-                    <element signature="e#20147#20148#0" expanded="true" />
-                    <element signature="e#20178#20179#0" expanded="true" />
-                    <element signature="e#20215#20216#0" expanded="true" />
-                    <element signature="e#20251#20252#0" expanded="true" />
-                    <element signature="e#20288#20289#0" expanded="true" />
-                    <element signature="e#20324#20325#0" expanded="true" />
-                    <element signature="e#20358#20359#0" expanded="true" />
-                    <element signature="e#20390#20391#0" expanded="true" />
-                    <element signature="e#20434#20435#0" expanded="true" />
-                    <element signature="e#20467#20468#0" expanded="true" />
-                    <element signature="e#20507#20508#0" expanded="true" />
-                    <element signature="e#20541#20542#0" expanded="true" />
-                    <element signature="e#20585#20586#0" expanded="true" />
-                    <element signature="e#20617#20618#0" expanded="true" />
-                    <element signature="e#20659#20660#0" expanded="true" />
-                    <element signature="e#20698#20699#0" expanded="true" />
-                    <element signature="e#20726#20727#0" expanded="true" />
-                    <element signature="e#20751#20752#0" expanded="true" />
-                    <element signature="e#20791#20792#0" expanded="true" />
-                    <element signature="e#20827#20828#0" expanded="true" />
-                    <element signature="e#20865#20866#0" expanded="true" />
-                    <element signature="e#20898#20899#0" expanded="true" />
+                    <element signature="e#24956#24957#0" expanded="true" />
+                    <element signature="e#24988#24989#0" expanded="true" />
+                    <element signature="e#26338#26339#0" expanded="true" />
+                    <element signature="e#26388#26389#0" expanded="true" />
+                    <element signature="e#26431#26432#0" expanded="true" />
+                    <element signature="e#26466#26467#0" expanded="true" />
+                    <element signature="e#26500#26501#0" expanded="true" />
+                    <element signature="e#26531#26532#0" expanded="true" />
+                    <element signature="e#26568#26569#0" expanded="true" />
+                    <element signature="e#26604#26605#0" expanded="true" />
+                    <element signature="e#26641#26642#0" expanded="true" />
+                    <element signature="e#26677#26678#0" expanded="true" />
+                    <element signature="e#26711#26712#0" expanded="true" />
+                    <element signature="e#26743#26744#0" expanded="true" />
+                    <element signature="e#26787#26788#0" expanded="true" />
+                    <element signature="e#26820#26821#0" expanded="true" />
+                    <element signature="e#26860#26861#0" expanded="true" />
+                    <element signature="e#26894#26895#0" expanded="true" />
+                    <element signature="e#26938#26939#0" expanded="true" />
+                    <element signature="e#26970#26971#0" expanded="true" />
+                    <element signature="e#27012#27013#0" expanded="true" />
+                    <element signature="e#27051#27052#0" expanded="true" />
+                    <element signature="e#27079#27080#0" expanded="true" />
+                    <element signature="e#27104#27105#0" expanded="true" />
+                    <element signature="e#27144#27145#0" expanded="true" />
+                    <element signature="e#27180#27181#0" expanded="true" />
+                    <element signature="e#27218#27219#0" expanded="true" />
+                    <element signature="e#27251#27252#0" expanded="true" />
+                    <element signature="e#27300#27301#0" expanded="true" />
+                    <element signature="e#27341#27342#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -243,7 +233,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/ViewQueryListener.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="264">
+                <state relative-caret-position="7582">
                   <caret line="446" column="23" selection-start-line="446" selection-start-column="14" selection-end-line="446" selection-end-column="23" />
                 </state>
               </provider>
@@ -252,8 +242,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Neo4jGraphConnector.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="534">
-                  <caret line="187" column="143" lean-forward="true" selection-start-line="187" selection-start-column="143" selection-end-line="187" selection-end-column="143" />
+                <state relative-caret-position="2771">
+                  <caret line="187" column="143" selection-start-line="187" selection-start-column="143" selection-end-line="187" selection-end-column="143" />
                 </state>
               </provider>
             </entry>
@@ -272,25 +262,11 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>CG</find>
-      <find>cg =</find>
-      <find>isViewInstant</find>
-      <find>isCg</find>
-      <find>cg</find>
-      <find>= false</find>
-      <find>enterBool</find>
-      <find>ViewQ</find>
-      <find>metaDataT</find>
-      <find>cg =</find>
-      <find>QueryParser</find>
-      <find>proce</find>
       <find>ViewQuery</find>
       <find>metaData</find>
       <find>ViewQueryListener</find>
       <find>viewName</find>
       <find>varLabel</find>
-      <find>varCond</find>
-      <find>debug</find>
       <find>setConditionStrin</find>
       <find>return</find>
       <find>addWhereCl</find>
@@ -302,6 +278,20 @@
       <find>viewScope</find>
       <find>relSymb</find>
       <find>nodeSym</find>
+      <find>varCond</find>
+      <find>debug</find>
+      <find>setRemoveCG</find>
+      <find>parseUp</find>
+      <find>affectedVar</find>
+      <find>containsWhere</find>
+      <find>NODESTARLABEL</find>
+      <find>if(isViewInst</find>
+      <find>isViewInst</find>
+      <find>varLabels</find>
+      <find>Here</find>
+      <find>varLab</find>
+      <find>finalAffectedViews</find>
+      <find>&quot;SET&quot;</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -336,11 +326,11 @@
         <option value="$PROJECT_DIR$/src/MetaData.java" />
         <option value="$PROJECT_DIR$/src/ViewQueryListener.java" />
         <option value="$PROJECT_DIR$/src/View.java" />
-        <option value="$PROJECT_DIR$/src/EntryData.java" />
-        <option value="$PROJECT_DIR$/src/Condition.java" />
-        <option value="$PROJECT_DIR$/src/TableEntry.java" />
         <option value="$PROJECT_DIR$/src/View.g4" />
         <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/Condition.java" />
+        <option value="$PROJECT_DIR$/src/TableEntry.java" />
+        <option value="$PROJECT_DIR$/src/EntryData.java" />
         <option value="$PROJECT_DIR$/src/QueryParser.java" />
       </list>
     </option>
@@ -371,6 +361,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -398,14 +390,12 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1609713334537" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1609912381497" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/jess.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -480,7 +470,8 @@
       <workItem from="1604431825534" duration="712000" />
       <workItem from="1608141370246" duration="5834000" />
       <workItem from="1608213155195" duration="2324000" />
-      <workItem from="1609618472253" duration="26952000" />
+      <workItem from="1609618472253" duration="34758000" />
+      <workItem from="1609870178880" duration="11059000" />
     </task>
     <task id="LOCAL-00001" summary="set-up for testing on varied size databases">
       <created>1594145223483</created>
@@ -517,11 +508,18 @@
       <option name="project" value="LOCAL" />
       <updated>1609655759211</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="changed lexer and parser to better reflect syntax in chapter 3. whats left is the many cases for change-graphs. still contains todos for global/local usage">
+      <created>1609714894659</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1609714894659</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="213746000" />
+    <option name="totallyTimeSpent" value="232611000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -534,9 +532,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49942726" visible="true" weight="0.16057234" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49942726" visible="true" weight="0.16176471" />
       <window_info id="Structure" order="1" sideWeight="0.50057274" side_tool="true" weight="0.16057234" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -558,7 +555,6 @@
       <window_info anchor="bottom" id="Version Control" order="12" weight="0.17553614" />
       <window_info anchor="bottom" id="Tool Output" order="13" weight="0.32962668" />
       <window_info anchor="bottom" id="ANTLR Preview" order="14" weight="0.32962668" />
-      <window_info anchor="right" id="Coverage" side_tool="true" weight="0.26510334" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -569,6 +565,7 @@
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info anchor="right" id="Bean Validation" order="9" />
+      <window_info anchor="right" id="Coverage" order="10" side_tool="true" weight="0.26510334" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -583,7 +580,8 @@
     <MESSAGE value="tests" />
     <MESSAGE value="new architecture setup, prepare to change and new branch next" />
     <MESSAGE value="new files pertaining to updated architecture; view setup should be more or less complete (actually not fully). conditions are set up. lot of work left to do on the various cases." />
-    <option name="LAST_COMMIT_MESSAGE" value="new files pertaining to updated architecture; view setup should be more or less complete (actually not fully). conditions are set up. lot of work left to do on the various cases." />
+    <MESSAGE value="changed lexer and parser to better reflect syntax in chapter 3. whats left is the many cases for change-graphs. still contains todos for global/local usage" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed lexer and parser to better reflect syntax in chapter 3. whats left is the many cases for change-graphs. still contains todos for global/local usage" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/out/production/GraphDBViews/gen/ViewParser.class">
@@ -674,85 +672,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GraphChange.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SetTuple.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MetaData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="814">
-          <caret line="84" column="88" selection-start-line="84" selection-start-column="79" selection-end-line="84" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Condition.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="33" lean-forward="true" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
-          <folding>
-            <element signature="e#140#141#0" expanded="true" />
-            <element signature="e#182#183#0" expanded="true" />
-            <element signature="e#244#245#0" expanded="true" />
-            <element signature="e#298#299#0" expanded="true" />
-            <element signature="e#340#341#0" expanded="true" />
-            <element signature="e#378#379#0" expanded="true" />
-            <element signature="e#452#453#0" expanded="true" />
-            <element signature="e#728#729#0" expanded="true" />
-            <element signature="e#799#800#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/EntryData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="55" column="32" selection-start-line="55" selection-start-column="32" selection-end-line="55" selection-end-column="32" />
-          <folding>
-            <element signature="e#813#814#0" expanded="true" />
-            <element signature="e#857#858#0" expanded="true" />
-            <element signature="e#918#919#0" expanded="true" />
-            <element signature="e#962#963#0" expanded="true" />
-            <element signature="e#1008#1009#0" expanded="true" />
-            <element signature="e#1041#1042#0" expanded="true" />
-            <element signature="e#1095#1096#0" expanded="true" />
-            <element signature="e#1133#1134#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TableEntry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#384#385#0" expanded="true" />
-            <element signature="e#414#415#0" expanded="true" />
-            <element signature="e#457#458#0" expanded="true" />
-            <element signature="e#487#488#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DependencyTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#742#743#0" expanded="true" />
-            <element signature="e#764#765#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -763,72 +686,140 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Neo4jGraphConnector.java">
+    <entry file="file://$PROJECT_DIR$/src/MetaData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="534">
-          <caret line="187" column="143" lean-forward="true" selection-start-line="187" selection-start-column="143" selection-end-line="187" selection-end-column="143" />
+        <state relative-caret-position="1377">
+          <caret line="84" column="88" selection-start-line="84" selection-start-column="79" selection-end-line="84" selection-end-column="88" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ViewQueryListener.java">
+    <entry file="file://$PROJECT_DIR$/src/DependencyTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="446" column="23" selection-start-line="446" selection-start-column="14" selection-end-line="446" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="967">
-          <caret line="298" column="88" selection-start-line="298" selection-start-column="88" selection-end-line="298" selection-end-column="88" />
+        <state relative-caret-position="408">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/QueryParser.java">
+    <entry file="file://$PROJECT_DIR$/src/GraphChange.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="205" column="72" selection-start-line="205" selection-start-column="72" selection-end-line="205" selection-end-column="72" />
+        <state relative-caret-position="867">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ViewQueryListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7582">
+          <caret line="446" column="23" selection-start-line="446" selection-start-column="14" selection-end-line="446" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Neo4jGraphConnector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2771">
+          <caret line="187" column="143" selection-start-line="187" selection-start-column="143" selection-end-line="187" selection-end-column="143" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-285">
+          <caret line="112" column="45" selection-start-line="112" selection-start-column="45" selection-end-line="112" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#18815#18816#0" expanded="true" />
-            <element signature="e#18847#18848#0" expanded="true" />
-            <element signature="e#19985#19986#0" expanded="true" />
-            <element signature="e#20035#20036#0" expanded="true" />
-            <element signature="e#20078#20079#0" expanded="true" />
-            <element signature="e#20113#20114#0" expanded="true" />
-            <element signature="e#20147#20148#0" expanded="true" />
-            <element signature="e#20178#20179#0" expanded="true" />
-            <element signature="e#20215#20216#0" expanded="true" />
-            <element signature="e#20251#20252#0" expanded="true" />
-            <element signature="e#20288#20289#0" expanded="true" />
-            <element signature="e#20324#20325#0" expanded="true" />
-            <element signature="e#20358#20359#0" expanded="true" />
-            <element signature="e#20390#20391#0" expanded="true" />
-            <element signature="e#20434#20435#0" expanded="true" />
-            <element signature="e#20467#20468#0" expanded="true" />
-            <element signature="e#20507#20508#0" expanded="true" />
-            <element signature="e#20541#20542#0" expanded="true" />
-            <element signature="e#20585#20586#0" expanded="true" />
-            <element signature="e#20617#20618#0" expanded="true" />
-            <element signature="e#20659#20660#0" expanded="true" />
-            <element signature="e#20698#20699#0" expanded="true" />
-            <element signature="e#20726#20727#0" expanded="true" />
-            <element signature="e#20751#20752#0" expanded="true" />
-            <element signature="e#20791#20792#0" expanded="true" />
-            <element signature="e#20827#20828#0" expanded="true" />
-            <element signature="e#20865#20866#0" expanded="true" />
-            <element signature="e#20898#20899#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TableEntry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3069">
+          <caret line="254" column="17" lean-forward="true" selection-start-line="254" selection-start-column="17" selection-end-line="254" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Condition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+          <folding>
+            <element signature="e#140#141#0" expanded="true" />
+            <element signature="e#182#183#0" expanded="true" />
+            <element signature="e#244#245#0" expanded="true" />
+            <element signature="e#298#299#0" expanded="true" />
+            <element signature="e#340#341#0" expanded="true" />
+            <element signature="e#378#379#0" expanded="true" />
+            <element signature="e#413#414#0" expanded="true" />
+            <element signature="e#464#465#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EntryData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="18" column="75" selection-start-line="18" selection-start-column="75" selection-end-line="18" selection-end-column="75" />
+          <folding>
+            <element signature="e#813#814#0" expanded="true" />
+            <element signature="e#857#858#0" expanded="true" />
+            <element signature="e#918#919#0" expanded="true" />
+            <element signature="e#962#963#0" expanded="true" />
+            <element signature="e#1008#1009#0" expanded="true" />
+            <element signature="e#1041#1042#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/View.g4">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="9" column="8" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+        <state relative-caret-position="238">
+          <caret line="17" column="52" lean-forward="true" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/QueryParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="295" column="58" selection-start-line="295" selection-start-column="58" selection-end-line="295" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#24956#24957#0" expanded="true" />
+            <element signature="e#24988#24989#0" expanded="true" />
+            <element signature="e#26338#26339#0" expanded="true" />
+            <element signature="e#26388#26389#0" expanded="true" />
+            <element signature="e#26431#26432#0" expanded="true" />
+            <element signature="e#26466#26467#0" expanded="true" />
+            <element signature="e#26500#26501#0" expanded="true" />
+            <element signature="e#26531#26532#0" expanded="true" />
+            <element signature="e#26568#26569#0" expanded="true" />
+            <element signature="e#26604#26605#0" expanded="true" />
+            <element signature="e#26641#26642#0" expanded="true" />
+            <element signature="e#26677#26678#0" expanded="true" />
+            <element signature="e#26711#26712#0" expanded="true" />
+            <element signature="e#26743#26744#0" expanded="true" />
+            <element signature="e#26787#26788#0" expanded="true" />
+            <element signature="e#26820#26821#0" expanded="true" />
+            <element signature="e#26860#26861#0" expanded="true" />
+            <element signature="e#26894#26895#0" expanded="true" />
+            <element signature="e#26938#26939#0" expanded="true" />
+            <element signature="e#26970#26971#0" expanded="true" />
+            <element signature="e#27012#27013#0" expanded="true" />
+            <element signature="e#27051#27052#0" expanded="true" />
+            <element signature="e#27079#27080#0" expanded="true" />
+            <element signature="e#27104#27105#0" expanded="true" />
+            <element signature="e#27144#27145#0" expanded="true" />
+            <element signature="e#27180#27181#0" expanded="true" />
+            <element signature="e#27218#27219#0" expanded="true" />
+            <element signature="e#27251#27252#0" expanded="true" />
+            <element signature="e#27300#27301#0" expanded="true" />
+            <element signature="e#27341#27342#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

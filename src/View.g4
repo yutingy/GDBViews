@@ -17,7 +17,7 @@ query :  KEYWORD expr conditions returnstmt |
 
 changegraph : KEYWORD expr conditions 'SET' boolexpr
             | KEYWORD expr conditions 'DELETE' NAME
-            | KEYWORD expr conditions 'REMOVE' boolexpr
+            | KEYWORD expr conditions 'REMOVE' attribute
             | KEYWORD expr conditions 'CREATE' expr
             | 'CREATE' viewatom
 ;

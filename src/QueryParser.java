@@ -4,6 +4,7 @@ import org.antlr.v4.runtime.misc.Interval;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -30,6 +31,7 @@ public class QueryParser extends ViewBaseListener {
     final String RELNONAME = "_ENTRY_SPECIAL_NO_REL_NAME_";
 
     //required during parsing to create associations between variable names and their label key for the depend.table
+    //the bottom two can ALSO be used for GRAPH UPDATES
     private Map<String, String> varLabels = new HashMap<>();
     private Map<String, Set<Condition>> varConditions = new HashMap<>(); //Stores variables and the set of conditions that are used.
 
@@ -37,11 +39,33 @@ public class QueryParser extends ViewBaseListener {
     protected List<String> dependents;
 
 /**
- * Second Section: All objects used for keeping track of the VIEW QUERY ITSELF
+ * Second Section: All objects used to track GRAPH UPDATES
  * **/
 
 
+    private Set<String> finalAffectedViews = new HashSet<>();
 
+    private changeType change = changeType.DEFAULT;
+
+    //First: Deletions
+    String deletedVar = "";
+
+
+    //Second: Updates
+    List<EntryData> potentialAffected = new LinkedList<>();
+    TableEntry affectedEntry = new TableEntry("");
+    String affectedVar = "";
+    String affectedAttribute = "";
+
+
+
+    //Third: Insertions
+
+
+
+    /**
+     * Third section, miscellaneous tracking objects
+     */
 
     //changeMeta stores a list of metadata objects that must be true in order for the change to apply.
     //it can be compared with all metadata entries in metadataTable to locate the views that must be updated as a result.
@@ -108,6 +132,13 @@ public class QueryParser extends ViewBaseListener {
         NODE
     }
 
+    enum changeType{
+        DELETION,
+        INSERTION,
+        UPDATE,
+        DEFAULT
+    }
+
     private retType returnType = retType.DEFAULT;
 
     private LinkedList<String> thisQueryViews = new LinkedList<String>();
@@ -147,7 +178,7 @@ public class QueryParser extends ViewBaseListener {
             //Change Graph
             cg = true;
 
-            changeGraphQuery = ctx.getChild(1).getText();
+            changeGraphQuery = ctx.getChild(0).getText();
             return;
         }
         else {
@@ -201,9 +232,145 @@ public class QueryParser extends ViewBaseListener {
     }
 
     @Override
+    public void enterChangegraph(ViewParser.ChangegraphContext ctx){
+
+        String queryText = ctx.getText();
+        if(queryText.contains("CREATE")) change = changeType.INSERTION;
+        if(queryText.contains("DELETE")) {
+            change = changeType.DELETION;
+            deletedVar = ctx.getChild(4).getText();
+        }
+        if(queryText.contains("SET")){
+            change = changeType.UPDATE;
+            parseUpdate((ViewParser.BoolexprContext) ctx.getChild(4));
+        }
+        if(queryText.contains("REMOVE")) change = changeType.UPDATE;
+
+
+    }
+
+    @Override
     public void exitChangegraph(ViewParser.ChangegraphContext ctx){
 
         //At this point, all information should be ready for comparison.
+        /*
+        * Here is a list of information we should have acquired by now:
+        *   1) Nodes/Relationships, and the labels associated with them in the changegraph
+        *   2) if delete, then the node being deleted
+        *   3) if creation, then the set of nodes/rels from the query and the set of nodes/rels in the creation
+        *   4) if update, then the node/rel, attribute, and new value
+        *
+        *
+        *
+        * */
+
+
+        switch(change){
+
+            case DEFAULT:{
+                System.out.println("Warning: graph change detected but not any of the possible changes");
+                break;
+            }
+
+            case DELETION:{
+                //In this case, we look at the token being deleted and associate it using varLabels and varConditions
+
+
+                //then varConditions and varLabels contain those in the query for the graph change.
+                //out of these, we only select the label that is in the delete (this part has been done by this step by the helper method @parseUpdate(Boolexprcontext)
+
+                affectedVar = deletedVar;
+                affectedEntry = dependencyTable.get(varLabels.get(affectedVar));
+
+
+
+                //The step should be done in one part only: since a delete will only be on a single node or rel, then
+                //it is safe to only consider the conditions attached to the deleted node/rel. Hence why we use affectedVar only.
+                //With the conditions attached to affectedVar, we look for the set of conditions in all EntryNodes to see which EntryNodes are affected.
+
+
+
+
+
+                System.out.println("Im here " + affectedEntry);
+//                System.out.println(affectedVar + ", " + varLabels.get(affectedVar));
+
+                if(affectedEntry == null){
+                    //no way it is affected.
+                    return;
+                }
+                System.out.println("now Im here");
+
+//                Otherwise we look for the conditions we have
+                Set<Condition> conditionList = varConditions.get(affectedVar);
+
+                Set<EntryData> affectedEntryDatas = affectedEntry.filterIrrelevantEntryData(conditionList);
+
+                for(EntryData d : affectedEntryDatas){
+                    finalAffectedViews.addAll(d.dependents);
+                }
+
+
+
+
+                break;
+            }
+
+            case UPDATE:{
+
+
+                affectedEntry = dependencyTable.get(varLabels.get(affectedVar));
+
+                System.out.println("Im here " + affectedEntry);
+                System.out.println(affectedVar + ", " + varLabels.get(affectedVar));
+
+                if(affectedEntry == null){
+                    //no way it is affected.
+                    return;
+                }
+                System.out.println("kokodayo");
+
+
+                //For an update, any view that contains a condition on the affected attribute must be updated - unless we find it to not be affected by
+                //the conditions in the query. For this part, we can use the same method (filterIrrelevantEntryData).
+
+                Set<Condition> conditionList = varConditions.get(affectedVar);
+                Set<EntryData> affectedEntryDatas = affectedEntry.filterIrrelevantEntryData(conditionList);
+
+                //Now that we have this, we only continue if the update itself applies to these EntryData
+
+                for(EntryData d : affectedEntryDatas){
+                    if(d.containsConditionOnAttribute(affectedAttribute)) finalAffectedViews.addAll(d.dependents);
+                }
+
+
+                break;
+            }
+
+            case INSERTION:{
+                break;
+            }
+
+        }
+
+
+        //For all nodestar and relstar entries, we have to re-evaluate.
+
+        if(dependencyTable.containsKey(NODESTARLABEL)){
+            TableEntry te = dependencyTable.get(NODESTARLABEL);
+            for(EntryData e : te.getEntries()){
+                finalAffectedViews.addAll(e.dependents);
+            }
+        }
+        if(dependencyTable.containsKey(RELSTARLABEL)){
+
+            TableEntry te = dependencyTable.get(RELSTARLABEL);
+            for(EntryData e : te.getEntries()){
+                finalAffectedViews.addAll(e.dependents);
+            }
+        }
+
+
 
 
     }
@@ -272,7 +439,7 @@ public class QueryParser extends ViewBaseListener {
 
         System.out.println("txt:" + ctx.getText() + ", " + ctx.getChildCount());
 
-        if(isViewInstant) {
+        if(isViewInstant || cg) {
 
             int numChildren = ctx.getChildCount();
             String nodeName = "";
@@ -318,6 +485,8 @@ public class QueryParser extends ViewBaseListener {
     @Override
     public void enterRelation(ViewParser.RelationContext ctx){
 
+        System.out.println(ctx.getChildCount());
+
         if(cg) return;
 
         if (ctx.getChildCount()==0) return;
@@ -331,22 +500,26 @@ public class QueryParser extends ViewBaseListener {
         String relLabel = "";
 
         if (ctx.getChildCount()==1){
-            //not used now but may be useful
-            if(ctx.getText().contains(":")){
-                relVar = RELNONAME;
-                relLabel = ctx.type().getText();
-            }
-            else{
+
+            if(!ctx.getText().contains(":")){ //correct
                 relVar = ctx.relationValue().getText();
                 relLabel = RELSTARLABEL;
             }
 
         }
-        else if (ctx.getChildCount()==3){
-            //not used now but may be useful
+        else if(ctx.getChildCount()==2){
+            if(ctx.getText().contains(":")){ //correct
+                relVar = RELNONAME;
+                relLabel = ctx.type().getText();
+            }
+        }
+        else if (ctx.getChildCount()==3){ //correct
             relVar = ctx.relationValue().getText();
             relLabel = ctx.type().getText();
         }
+
+
+//        System.out.println("relVar and relLabel:" + relVar + ", " + relLabel);
 
         varLabels.put(relVar, relLabel);
 
@@ -381,16 +554,30 @@ public class QueryParser extends ViewBaseListener {
     @Override
     public void exitConditions(ViewParser.ConditionsContext ctx){
 
-        if(isViewUse|cg) return;
+        if(isViewUse || cg) return;
+
+
+
+
+        //For deletions/updates, we handle parsing of conditions inside @enterBoolExpr.
+        //For deletions and updates, we create the set of affected views inside @exitChangegraph
+
+
+
+
 
         //at this point all conditions should be set up in the table varConditions. (if it is a creation)
+        //Below is code for handling view creation: this will add the relevant entries to the tables and structures used for the table later.
 
-        Set<String> keys = varConditions.keySet();
+        Set<String> keys = varConditions.keySet(); //we iterate now through the list for all nodes and relationships such that
+                                                    //they contain a condition
+
+        keys = varLabels.keySet();
         for(String key : keys){
 
             Set<Condition> conditionList = varConditions.get(key);
             List<Condition> list = new LinkedList<>();
-            list.addAll(conditionList);
+            if(conditionList!=null) list.addAll(conditionList);
 
             //just converting to a list from a set^
 
@@ -455,15 +642,9 @@ public class QueryParser extends ViewBaseListener {
 
 
             }
-
-
-
-
-
-
-
-
         }
+
+
 
 
 
@@ -532,12 +713,6 @@ public class QueryParser extends ViewBaseListener {
 
         }
 
-        else if(cg){
-
-
-        }
-
-
 
         //Keep LHS of each condition inside the symbolTable
         else {
@@ -580,6 +755,53 @@ public class QueryParser extends ViewBaseListener {
         }
     }
 
+
+
+
+    //Helper method for UPDATE change-graphs that will keep track of the update
+    public void parseUpdate(ViewParser.BoolexprContext ctx){
+        //ASSUMES THE FORMAT: a.x = b(.y)?
+        //KEYWORD expr conditions 'SET' boolexpr
+        /*
+        attribute '=' attribute |
+              attribute '=' val
+         */
+
+        assert ctx.getText().contains("=");
+
+        boolean doWeInvalidateOnSameAttribute = false;
+
+        String assignment = ctx.getText();
+
+        String LHS = assignment.split("=")[0];
+        String RHS = assignment.split("=")[1];
+
+        String varNameLHS = LHS.split("\\.")[0];
+        String attributeNameLHS = LHS.split("\\.")[1];
+
+        String varNameRHS = "";
+        String attributeNameRHS = "";
+
+        if(ctx.getChild(2).getPayload() instanceof ViewParser.AttributeContext) {
+            doWeInvalidateOnSameAttribute = true; //any attribute condition of a view on the same attribute will be flagged
+            varNameRHS = RHS.split("\\.")[0];
+            attributeNameRHS = RHS.split("\\.")[1];
+        }
+
+
+        String affected = varLabels.get(varNameLHS);
+        if(affected != null) affectedEntry = dependencyTable.get(affected); //todo what if affected == null
+
+        affectedVar = varNameLHS;
+        affectedAttribute = attributeNameLHS;
+
+
+
+    }
+
+
+
+
     public boolean getViewScope(){
         return viewScope;
     }
@@ -593,6 +815,14 @@ public class QueryParser extends ViewBaseListener {
         varLabels = new HashMap<>();
 
 
+        finalAffectedViews = new HashSet<>();
+        change = changeType.DEFAULT;
+        deletedVar = "";
+        affectedVar = "";
+
+
+        affectedEntry = new TableEntry("");
+        affectedAttribute = "";
         //does not clear viewInstants; this should be called separately
 
         usedViews = new LinkedList<String>();
@@ -619,6 +849,7 @@ public class QueryParser extends ViewBaseListener {
 
         cg = false;
         changeGraphQuery = "";
+        containsWhere = false;
     }
 
     public void changeGraph(){
@@ -681,6 +912,9 @@ public class QueryParser extends ViewBaseListener {
         return returnType;
     }
 
+    public Set<String> getFinalAffectedViews(){
+        return finalAffectedViews;
+    }
 
     //Returns a set of strings corresponding to all non-hidden views which must be updated by re-evaluation
     //example: this may decide that views v1 and v3 must be reevaluated but not v2, etc.
@@ -744,20 +978,23 @@ public class QueryParser extends ViewBaseListener {
 
         for( String key : keys){
 
-            System.out.println(key + ":");
+            System.out.println("---------" + key + ":" + "-----");
 
             TableEntry te = dependencyTable.get(key);
             int i = 1;
             for(EntryData ed : te.getEntries()){
-                System.out.print(i + ":");
+                System.out.print(i + ":\n");
                 System.out.print("Dependents: " + ed.dependents + "\nConditions: ");
                 for(Condition c : ed.getConditions()){
                     System.out.println(c.getConditionString());
                 }
+                System.out.println("\n-------------------\n\n");
                 i++;
             }
 
         }
+
+
 
     }
 

@@ -9,6 +9,22 @@ public class EntryData {
 
 
 
+
+    public boolean containsConditionOnAttribute(String attributeName){
+
+
+        for(Condition c : conditions){
+            if(c.attribute.equals(attributeName)) return true;
+            //todo technically can be more specific. eg view condition is "n.attribute = 1" and the change
+            //sets the value to attribute = 3. then it should return false.
+        }
+
+
+        return false;
+
+    }
+
+
     public boolean compareWithChange(List<Condition> graphChangeConditions, GraphChange graphChange){
         //Method used to compare this EntryData object (a graph change) with other EntryData objects (view!); each object contains a condition set and
         //depending on the type of graph change, we check differently

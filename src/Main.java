@@ -110,7 +110,7 @@ public class Main {
                     }
                     else if (vql.isCg()){
                         long now = System.currentTimeMillis();
-//                        changeGraph(command, materialized); //todo uncomment for test
+                        changeGraph(command);
                         long total = System.currentTimeMillis() - now;
                         System.out.println("Took " + total + "ms to change graph and update view(s)");
                     }
@@ -297,6 +297,7 @@ public class Main {
 
     public static void changeGraph(String command){
         //if this is called, then the change-graph has already walked through the parser
+        System.out.println(vql.getFinalAffectedViews());
     }
 
 }

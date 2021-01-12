@@ -83,6 +83,133 @@ public class TableEntry {
         return returnSet;
     }
 
+    //Used for INSERTIONS
+    public Set<EntryData> filterWithInsertion(Set<Condition> attributeKeyValuePairs){
+        //Given conditions as input, which EntryData will be NOT affected by an insertion of a node with these
+        //properties?
+        /**
+         * THREE CASES
+         *  FIRST CASE: Insertion includes an attribute for which this ED contains a condition on
+         *              >Use same logic for DELETION and UPDATE: only if it "overlaps" do we continue with update.
+         *  SECOND CASE: EntryData contains a condition on an attribute which is not defined upon insertion
+         *              >Immediately filter (i.e we do not re-evaluate, we do not return this ED)
+         *  THIRD CASE: EntryData contains no conditions
+         *              >Immediately continue (i.e we MUST re-evaluate, we MUST keep this in the returnSet)
+         *
+         *  SPECIAL CASE: If the inserted node has no attributes at all (say it is just a label) then
+         *                  all "no condition" EntryData must be marked - this is handled by case 3
+         *
+         */
+        Set<EntryData> returnSet = new HashSet<>();
+        returnSet.addAll(entries);
+
+
+
+        //for ease, build set of attribute names on the insertion and set of attribute names on view condition
+        Set<String> attributeNamesInserted = new HashSet<>();
+        for(Condition temp : attributeKeyValuePairs){
+            attributeNamesInserted.add(temp.attribute);
+        }
+
+
+
+
+        for (EntryData myED : entries) {
+
+            Set<Condition> myConds = new HashSet<>(myED.getConditions());
+
+            //Case 3
+            if (myConds.isEmpty()) continue;
+
+
+
+            Set<String> attributeNamesView = new HashSet<>();
+
+            for(Condition viewCondition : myConds){
+                attributeNamesView.add(viewCondition.attribute);
+            }
+
+            //Case 2
+            attributeNamesView.removeAll(attributeNamesInserted);
+            if(!attributeNamesView.isEmpty()) {
+//                System.out.println("continued and skipped...");
+                continue; //All attributes in the view are included in the insert
+            }
+
+            //else we should check for Case 1
+            boolean breakLoop = false;
+            for(Condition myCond : myConds){
+                if(breakLoop) break;
+                for(Condition insert : attributeKeyValuePairs){
+
+                    if(myCond.attribute.equals(insert.attribute)){
+                        //insert.conditionString always contains "="
+                        String valTheir = insert.conditionString.split("=")[1];
+
+                        if(myCond.conditionString.contains(">")){
+                            String valMine = myCond.conditionString.split(">")[1];
+                            //view: a.attribute > 10
+                            //view  {a:12}: then this is affected so we don't change anything.
+
+
+                            if(StringUtils.isNumeric(valMine) && StringUtils.isNumeric(valTheir)){
+                                if((Integer.parseInt(valMine) >= Integer.parseInt(valTheir))){
+                                    //Then WE FILTER THIS. Since this EntryData SHOULD NOT BE AFFECTED
+                                    returnSet.remove(myED);
+                                    breakLoop = true;
+                                    break;
+                                }
+                            }
+
+                        }
+                        if(myCond.conditionString.contains("<")){
+                            //view: a.attribute < 10
+                            //view  {a:3}: continue.
+                            String valMine = myCond.conditionString.split("<")[1];
+
+//                            System.out.println(valMine + ", " + valTheir);
+
+                            if(StringUtils.isNumeric(valMine) && StringUtils.isNumeric(valTheir)){
+                                if((Integer.parseInt(valMine) <= Integer.parseInt(valTheir))){
+                                    //Then WE FILTER THIS. Since this EntryData SHOULD NOT BE AFFECTED
+                                    returnSet.remove(myED);
+                                    breakLoop = true;
+                                    break;
+                                }
+                            }
+
+
+                        }
+                        if(myCond.conditionString.contains("=")){
+                            String valMine = myCond.conditionString.split("=")[1];
+                            if(!valMine.equals(valTheir)){
+                                returnSet.remove(myED);
+                                breakLoop = true;
+                                break;
+                            }
+
+                        }
+
+                    }
+
+
+                }
+            }
+
+
+
+        }
+
+//        System.out.println("returning " + returnSet);
+
+        return returnSet;
+
+
+
+
+
+    }
+
 
     //Used so FAR for DELETIONS and UPDATES
     public Set<EntryData> filterIrrelevantEntryData(Set<Condition> conditions){

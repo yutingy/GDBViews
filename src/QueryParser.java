@@ -35,6 +35,8 @@ public class QueryParser extends ViewBaseListener {
     private Map<String, String> varLabels = new HashMap<>();
     private Map<String, Set<Condition>> varConditions = new HashMap<>(); //Stores variables and the set of conditions that are used.
 
+    private Map<String, String> insertionVarLabels = new HashMap<>(); //The same as varLabels, but separate for insertion queries.
+
     //set of dependents for a view creation: this will always contain the view created and possibly more if the view refers to other views
     protected List<String> dependents;
 
@@ -56,6 +58,14 @@ public class QueryParser extends ViewBaseListener {
     TableEntry affectedEntry = new TableEntry("");
     String affectedVar = "";
     String affectedAttribute = "";
+
+
+    /**
+     * PART 2.5: GRAPH INSERTION DATA STRUCTURE: SIMILAR TO varConditions BUT THIS IS ONLY FOR THE NEWLY CREATED GRAPH OBJECTS
+     *
+     *
+     * */
+    private Map<String, Set<Condition>> insertedAttributes = new HashMap<>();
 
 
 
@@ -173,7 +183,8 @@ public class QueryParser extends ViewBaseListener {
 
         }
         else if(ctx.getChild(0).getText().equals("CG") || ctx.getText().contains("SET") ||
-                ctx.getText().contains("DELETE") || ctx.getChild(3).getText().contains("CREATE")){
+                ctx.getText().contains("DELETE") ||
+                (ctx.getText().contains("CREATE") && !ctx.getText().contains("VIEW AS"))){
 
             //Change Graph
             cg = true;
@@ -292,14 +303,14 @@ public class QueryParser extends ViewBaseListener {
 
 
 
-                System.out.println("Im here " + affectedEntry);
+//                System.out.println("Im here " + affectedEntry);
 //                System.out.println(affectedVar + ", " + varLabels.get(affectedVar));
 
                 if(affectedEntry == null){
                     //no way it is affected.
                     return;
                 }
-                System.out.println("now Im here");
+//                System.out.println("now Im here");
 
 //                Otherwise we look for the conditions we have
                 Set<Condition> conditionList = varConditions.get(affectedVar);
@@ -321,14 +332,13 @@ public class QueryParser extends ViewBaseListener {
 
                 affectedEntry = dependencyTable.get(varLabels.get(affectedVar));
 
-                System.out.println("Im here " + affectedEntry);
-                System.out.println(affectedVar + ", " + varLabels.get(affectedVar));
+//                System.out.println("Im here " + affectedEntry);
+//                System.out.println(affectedVar + ", " + varLabels.get(affectedVar));
 
                 if(affectedEntry == null){
                     //no way it is affected.
                     return;
                 }
-                System.out.println("kokodayo");
 
 
                 //For an update, any view that contains a condition on the affected attribute must be updated - unless we find it to not be affected by
@@ -348,6 +358,86 @@ public class QueryParser extends ViewBaseListener {
             }
 
             case INSERTION:{
+
+
+                /*
+                * Steps required:
+                *   1) All variables in the original query (found in varLabels as keys)
+                *   2) All variables in the inserted expression (found in insertedVarLabels as keys)
+                *   3) Set difference (2)-(1) for NEWLY CREATED EXPRESSIONS
+                *   4)      For all variables in (3), refer back to insertedVarLabels
+                *           Some of these will have certain attributes. Need a structure to contain these attributes
+                *   5) Match these against the TableEntry that are in the DependencyTable.
+                *   6) For all matches, see if an EntryData contains a condition on any attribute found in (4).
+                *   7) Invalidate all EntryData found in (6).
+                * */
+
+                //can optimize by converting these into HashSets for O(1) contains() complexity
+                Set<String> queryKeys = varLabels.keySet();
+//                System.out.println("Query vars: " + queryKeys);
+
+                Set<String> insertedKeys = insertionVarLabels.keySet();
+
+                insertedKeys.removeAll(queryKeys);
+
+//                System.out.println("All new vars: " + insertedKeys);
+
+
+
+                //Unlike deletions and updates, MULTIPLE vars are affected here, so we must repeat the process for all variables in insertedKeys
+                for(String var : insertedKeys){
+
+//                    System.out.println("The entries: " + insertionVarLabels.get(var));
+
+                    if(insertionVarLabels.get(var)==null || !dependencyTable.containsKey(insertionVarLabels.get(var))) continue;
+
+                    affectedEntry = dependencyTable.get(insertionVarLabels.get(var));
+
+//                    System.out.println("Im here " + affectedEntry);
+//                    System.out.println(var + ", " + insertionVarLabels.get(var));
+
+                    if(affectedEntry == null){
+                        //no way it is affected.
+                        continue;
+                    }
+
+
+                    //For an insertion, we have a slightly different criteria: We are interested in the values of the inserted attributes for each var
+                    //and we only mark all EntryDatas whose conditions contain ALL attributes (with SATisfaction) on these attributes (since we assume all
+                    //conditions are joined with an AND). (This is also because on an insertion we are assuming any non-specified attribute is NULL by default!)
+
+
+                    /**
+                     * Nevertheless we should be wary of these two cases
+                     *
+                     * CASE: The insertion does not include any attributes for which a view contains an attribute condition on.
+                     *
+                     *  For the second possibility, there are two sub-cases of possibilities.  First, the view may have zero
+                     *   attribute conditions for the EntryData - in this case, we treat it similarly to the node* entry and immediately invalidate it.
+                     *  Second, the view may contain other attribute conditions that are not on the
+                     *   same attributes that were included during the insertion - in this case, we may safely assume that the
+                     *  view in question does not require reevaluation.
+                     *
+                     * */
+
+
+                    //At this point, all attributes and their variable are in insertedAttributes
+
+
+                    Set<Condition> conditionList = insertedAttributes.get(var);
+                    Set<EntryData> affectedEntryDatas = affectedEntry.filterWithInsertion(conditionList);
+
+                    //Now that we have this, we must continue since these are marked
+
+                    for(EntryData d : affectedEntryDatas){
+                        finalAffectedViews.addAll(d.dependents);
+                    }
+
+
+                }
+
+
+
                 break;
             }
 
@@ -437,7 +527,7 @@ public class QueryParser extends ViewBaseListener {
         //Here we tag all variables with their labels (if any!). At the end of parsing, we can associate
         //each variable with their conditions as well.
 
-        System.out.println("txt:" + ctx.getText() + ", " + ctx.getChildCount());
+//        System.out.println("txt:" + ctx.getText() + ", " + ctx.getChildCount());
 
         if(isViewInstant || cg) {
 
@@ -464,7 +554,7 @@ public class QueryParser extends ViewBaseListener {
 
             varLabels.put(nodeName, nodeLabel); //at the end, we will have a bunch and then re-organize by labels.
 
-            System.out.println("Put into varLabels: " + nodeName + "," + nodeLabel);
+//            System.out.println("Put into varLabels: " + nodeName + "," + nodeLabel);
 
 
         }
@@ -485,9 +575,9 @@ public class QueryParser extends ViewBaseListener {
     @Override
     public void enterRelation(ViewParser.RelationContext ctx){
 
-        System.out.println(ctx.getChildCount());
+//        System.out.println(ctx.getChildCount());
 
-        if(cg) return;
+//        if(cg) return;
 
         if (ctx.getChildCount()==0) return;
 
@@ -585,7 +675,7 @@ public class QueryParser extends ViewBaseListener {
             //Check if there already exists an EntryData with the EXACT SAME CONDITIONS
             String label = varLabels.get(key); //this is the label used to search dependency table, for example :Person
 
-            System.out.println(key);
+//            System.out.println(key);
 
             if(dependencyTable.get(label)==null || dependencyTable.containsNoEntryData(label)){
                 //if we are here, then there is no previous entry for this label at all: we can safely populate table without makign it messy.
@@ -598,7 +688,7 @@ public class QueryParser extends ViewBaseListener {
                 }
                 dependencyTable.get(label).addEntry(newEntryData);
 
-                System.out.println("Here");
+//                System.out.println("Here");
 
             }
             else{
@@ -638,7 +728,7 @@ public class QueryParser extends ViewBaseListener {
 //
 //                }
 
-                System.out.println("Here2");
+//                System.out.println("Here2");
 
 
             }
@@ -728,7 +818,7 @@ public class QueryParser extends ViewBaseListener {
             //appears. todo.
 
             if (payload1 instanceof ViewParser.AttributeContext) {
-                System.out.println(((ViewParser.AttributeContext) payload1).getText());
+//                System.out.println(((ViewParser.AttributeContext) payload1).getText());
 
                 String keyname = ((ViewParser.AttributeContext) payload1).getText().split("\\.")[0];
                 String attributename = ((ViewParser.AttributeContext) payload1).getText().split("\\.")[1];
@@ -753,6 +843,119 @@ public class QueryParser extends ViewBaseListener {
 
             }
         }
+    }
+
+    @Override
+    public void enterInsertionVar(ViewParser.InsertionVarContext ctx){
+
+
+
+
+
+        /*
+TODO: (n:Person { attributes here } )
+need method to handle pairList and attach those as "conditions" for the insertion
+*/
+
+
+        if(cg) {
+
+            int numChildren = ctx.getChildCount();
+            String nodeName = "";
+            String nodeLabel = "";
+
+            if(numChildren == 3){
+                //then we only have nodeName
+                // view itself contains nodes not specified with label conditions (in which case, the view is expected to contain a large set of nodes).
+                //this falls under the special node* entry.
+                nodeName = ctx.getChild(1).getText();
+                nodeLabel = NODESTARLABEL;
+
+
+            }
+            if(numChildren == 5){
+                //we have a label associated with nodeName
+                nodeName = ctx.getChild(1).getText();
+                nodeLabel = ctx.getChild(3).getText();
+            }
+            if(numChildren == 8){
+                //attributes have been inserted
+                nodeName = ctx.getChild(1).getText();
+                if(ctx.getChild(2).getText().equals(":")){
+                    nodeLabel = ctx.getChild(3).getText();
+                }
+                handleInsertion(nodeName, (ViewParser.InsertAttributesContext) ctx.getChild(5).getPayload());
+            }
+
+
+//            if(!labelsAffected.contains(nodeLabel)) labelsAffected.add(nodeLabel);
+
+            insertionVarLabels.put(nodeName, nodeLabel); //at the end, we will have a bunch and then re-organize by labels.
+//            System.out.println("put into changes: " + nodeName + ", " + nodeLabel);
+
+        }
+
+
+//        if(cg){
+//            nodeSymbols.add(ctx.nodeName().getText());
+//        }
+
+    }
+
+    @Override
+    public void enterInsertrelation(ViewParser.InsertrelationContext ctx){
+
+
+        if(cg){
+
+
+            int numChildren = ctx.getChildCount();
+            String rName = "";
+            String rLabel = "";
+
+            if(numChildren == 1){
+                //then we only have rName
+                //if this is a changeGraph then either this is an unlabeled relationship (RELSTARLABEL) or it refers to a rel already in the query
+                //in case it is the first, we must mark it with RELSTARLABEL (and if it is not, then we will not end up using this mark)
+                rName = ctx.getChild(0).getText();
+                rLabel = RELSTARLABEL;
+            }
+            if(numChildren == 3){
+                //then we only have rName
+                //if this is a changeGraph then either this is an unlabeled relationship (RELSTARLABEL) or it refers to a rel already in the query
+                //in case it is the first, we must mark it with RELSTARLABEL (and if it is not, then we will not end up using this mark)
+                rName = ctx.getChild(0).getText();
+                rLabel = ctx.getChild(2).getText();
+            }
+            insertionVarLabels.put(rName, rLabel);
+        }
+
+
+    }
+
+
+    public void handleInsertion(String insertedVarName, ViewParser.InsertAttributesContext ctx){
+
+        //this is used to handle the inserted attributes. in particular we attach attribute key-value pairs to the variable "insertedVarName"
+        //this method is recursive (check if there are more) since ctx is technically a pointer containing pointers.
+        int numChildren = ctx.getChildCount();
+
+        if(!insertedAttributes.containsKey(insertedVarName)) insertedAttributes.put(insertedVarName, new HashSet<>());
+
+        String attributeName = ctx.NAME().getText();
+        String attributeValue = ctx.getChild(2).getText();
+
+        Condition newCondition = new Condition();
+        newCondition.setAttribute(attributeName);
+        newCondition.setConditionString(attributeName+"="+attributeValue);
+
+        insertedAttributes.get(insertedVarName).add(newCondition);
+
+
+        if(numChildren > 3){
+            handleInsertion(insertedVarName, (ViewParser.InsertAttributesContext)ctx.getChild(4));
+        }
+
     }
 
 
@@ -815,6 +1018,8 @@ public class QueryParser extends ViewBaseListener {
         varLabels = new HashMap<>();
 
 
+        insertionVarLabels = new HashMap<>();
+
         finalAffectedViews = new HashSet<>();
         change = changeType.DEFAULT;
         deletedVar = "";
@@ -824,6 +1029,9 @@ public class QueryParser extends ViewBaseListener {
         affectedEntry = new TableEntry("");
         affectedAttribute = "";
         //does not clear viewInstants; this should be called separately
+
+        insertedAttributes = new HashMap<>();
+
 
         usedViews = new LinkedList<String>();
         thisQueryViews = new LinkedList<String>();

@@ -61,11 +61,16 @@ setattr:  attribute '=' attribute |
           attribute '=' val;
 
 
-insertion: variable |
+insertion: insertionVar |
            insertion '-[' insertrelation ']-' insertion
            ;
 
 insertrelation: relationValue?(':'type)? ;
+insertionVar: '('nodeName')' | '('nodeName':'type')'|
+                '('nodeName':'type ('{'insertAttributes'}')? ')'
+            ;
+insertAttributes:  NAME':'val (',' insertAttributes)*;
+
 
 /*
 Lexer rules

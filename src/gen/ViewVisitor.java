@@ -136,4 +136,28 @@ public interface ViewVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitSetattr(ViewParser.SetattrContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ViewParser#insertion}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInsertion(ViewParser.InsertionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ViewParser#insertrelation}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInsertrelation(ViewParser.InsertrelationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ViewParser#insertionVar}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInsertionVar(ViewParser.InsertionVarContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ViewParser#insertAttributes}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInsertAttributes(ViewParser.InsertAttributesContext ctx);
 }

@@ -217,4 +217,44 @@ public interface ViewListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSetattr(ViewParser.SetattrContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ViewParser#insertion}.
+	 * @param ctx the parse tree
+	 */
+	void enterInsertion(ViewParser.InsertionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ViewParser#insertion}.
+	 * @param ctx the parse tree
+	 */
+	void exitInsertion(ViewParser.InsertionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ViewParser#insertrelation}.
+	 * @param ctx the parse tree
+	 */
+	void enterInsertrelation(ViewParser.InsertrelationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ViewParser#insertrelation}.
+	 * @param ctx the parse tree
+	 */
+	void exitInsertrelation(ViewParser.InsertrelationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ViewParser#insertionVar}.
+	 * @param ctx the parse tree
+	 */
+	void enterInsertionVar(ViewParser.InsertionVarContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ViewParser#insertionVar}.
+	 * @param ctx the parse tree
+	 */
+	void exitInsertionVar(ViewParser.InsertionVarContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ViewParser#insertAttributes}.
+	 * @param ctx the parse tree
+	 */
+	void enterInsertAttributes(ViewParser.InsertAttributesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ViewParser#insertAttributes}.
+	 * @param ctx the parse tree
+	 */
+	void exitInsertAttributes(ViewParser.InsertAttributesContext ctx);
 }

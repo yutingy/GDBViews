@@ -1,18 +1,15 @@
 grammar View;
 
 
-/*
-TODO: (n:Person { attributes here } )
-*/
-
-root : COMMAND NAME viewuse query |
+root : COMMAND NAME viewuse scope query |
         'CG' query |
         changegraph |
-        viewuse query
+        viewuse scope query
         ;
+scope: 'LOCAL' | 'GLOBAL' |;
 
-query :  KEYWORD expr conditions returnstmt |
-         KEYWORD path conditions returnstmt
+query :  KEYWORD expr conditions pipeline? returnstmt |
+         KEYWORD path conditions pipeline? returnstmt
         ;
 
 changegraph : KEYWORD expr conditions 'SET' setattr
@@ -21,6 +18,41 @@ changegraph : KEYWORD expr conditions 'SET' setattr
             | KEYWORD expr conditions 'CREATE' insertion
             | 'CREATE' insertion
 ;
+
+pipeline    : 'WITH' replacements pipeconditions | 'WITH' replacements pipeconditions pipeline
+;
+
+replacements : NAME as NAME (',' replacements) |
+               function as NAME (',' replacements) |
+               NAME (',' replacements) |NAME as NAME | function as NAME | NAME |
+               iteration as NAME (',' replacements) | iteration as NAME
+;
+
+iteration : '[' NAME 'IN' range '(' validVal ',' validVal ')' '|'  iterationCase ']'
+;
+
+validVal : size '(' NAME ')' | validVal arithmetic validVal | VALUE | 'NULL' | indexing;
+
+iterationCase : 'CASE WHEN' pipeexpr 'THEN' validVal 'ELSE' validVal 'END';
+
+size: 'SIZE' | 'size';
+
+
+range: 'RANGE' | 'range';
+pipeconditions  : 'WHERE' pipeexpr |
+;
+
+pipeexpr    : attribute COMPARISON attribute |
+              attribute COMPARISON val |
+              attribute '=' attribute |
+              attribute '=' val |
+              function COMPARISON attribute |
+              function COMPARISON val |
+              function '=' attribute |
+              function '=' val
+;
+
+function : 'COLLECT(' NAME ')' | 'UNWIND' NAME | 'COUNT(' NAME ')' | 'COUNT(*)' | 'MAX('NAME')';
 
 viewuse  : 'WITH VIEWS' usedviews | ;
 usedviews : NAME*;
@@ -31,7 +63,7 @@ viewatom : variable | // for early version, this line was '(' NAME ':' MNAME ')'
              variable '-[' relation ']-' viewatom |
              variable '-[' relation ']-' variable
              ;
-returnstmt : RETURN retval;
+returnstmt : RETURN retval (',' retval)*;
 retval : 'NODES(' NAME ')' |
          attribute
          ;
@@ -54,12 +86,17 @@ boolexpr    :
               VALUE OPERATOR attribute | //not supported
               NAME 'IN' NAME | //viewUse
               '(' boolexpr ')' ;
-attribute   : NAME('.'NAME)? ;
+attribute   : NAME('.'NAME)?  | val arithmetic attribute | attribute arithmetic val | indexing;
 val         : VALUE | NAME | CONSTANTS;
-test : attribute COMPARISON attribute;
+
+indexing : NAME'['VALUE']' | NAME '[' NAME ']'
+;
+
 setattr:  attribute '=' attribute |
           attribute '=' val;
 
+arithmetic: '*' | '+' | '-' | '/'
+;
 
 insertion: insertionVar |
            insertion '-[' insertrelation ']-' insertion
@@ -71,6 +108,7 @@ insertionVar: '('nodeName')' | '('nodeName':'type')'|
             ;
 insertAttributes:  NAME':'val (',' insertAttributes)*;
 
+as : 'AS' | 'as';
 
 /*
 Lexer rules
@@ -86,9 +124,7 @@ OPERATOR : 'CASE'|'CONTAINS'|'ELSE'|'END'|
 CONSTANTS : 'true' | 'false' | 'null';
 
 VALUE   : [0]|[1-9][0-9]* | [0]'.'[0-9]*[1-9]
-            | '"'[a-zA-Z_ ]+[0-9]*'"';
+            | '"'[a-zA-Z_ ]+[0-9]*'"'| '\''[a-zA-Z_ ]+[0-9]*'\'';
 NAME    : [a-zA-Z_]+[0-9]* ;
 WHITESPACE : ' '-> skip ;
 ANY     : . ;
-
-

@@ -103,6 +103,20 @@ public class TableEntry {
         Set<EntryData> returnSet = new HashSet<>();
         returnSet.addAll(entries);
 
+        // EDGE CASE: insertion has no conditions, in which case input is null
+        if(attributeKeyValuePairs == null){
+            //check for each entry if they also have no conditions
+            for (EntryData myED : entries){
+                Set<Condition> myConds = new HashSet<>(myED.getConditions());
+                if(myConds.isEmpty()){
+                    returnSet.remove(myED);
+                }
+            }
+
+            //return
+            return returnSet;
+        }
+
 
 
         //for ease, build set of attribute names on the insertion and set of attribute names on view condition
@@ -130,9 +144,9 @@ public class TableEntry {
             }
 
             //Case 2
-            attributeNamesView.removeAll(attributeNamesInserted);
-            if(!attributeNamesView.isEmpty()) {
+            if(!attributeNamesInserted.containsAll(attributeNamesView)) {
 //                System.out.println("continued and skipped...");
+                returnSet.remove(myED);
                 continue; //All attributes in the view are included in the insert
             }
 
@@ -297,8 +311,8 @@ public class TableEntry {
                                 //view: a<3. change: a>4. filter.
                                 //view: a<3. change: a>2. don't filter.
 
-                                String valMine = cMine.conditionString.split(">")[1];
-                                String valTheir = cTheir.conditionString.split("<")[1];
+                                String valMine = cMine.conditionString.split("<")[1];
+                                String valTheir = cTheir.conditionString.split(">")[1];
 
                                 if(StringUtils.isNumeric(valMine) && StringUtils.isNumeric(valTheir)){
                                     if((Integer.parseInt(valMine) <= Integer.parseInt(valTheir))){
@@ -314,7 +328,7 @@ public class TableEntry {
                                 //view: a<3. change: a>4. filter.
                                 //view: a<3. change: a>2. don't filter.
 
-                                String valMine = cMine.conditionString.split(">")[1];
+                                String valMine = cMine.conditionString.split("<")[1];
                                 String valTheir = cTheir.conditionString.split("=")[1];
 
                                 if(StringUtils.isNumeric(valMine) && StringUtils.isNumeric(valTheir)){

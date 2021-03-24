@@ -102,13 +102,14 @@ public class Neo4jGraphConnector{
 
         if(query.equals("")) return nodeids ;
 
-        System.out.println("Executing query: " + query);
+        //System.out.println("Executing query: " + query);
 
         if(query.contains("REMOVE") || query.contains("SET")) return nodeids; //todo remove when testing
 
 //        if(!query.equals("")) return nodeids;
 
         String rows = "";
+        int numResults = 0;
 
 
         if(query.contains("RETURN DISTINCT ID(")){
@@ -130,11 +131,33 @@ public class Neo4jGraphConnector{
 
         }
 
+        else if(query.contains("RETURN COUNT")){
+            try (Transaction tx = db.beginTx()) {
+                Result result = tx.execute(query);
+
+                while(result.hasNext()){
+                    Map<String, Object> row = result.next();
+                    for (Map.Entry<String, Object> column : row.entrySet()) {
+                        rows += column.getKey() + ": " + column.getValue() + "; ";
+                    }
+                }
+                System.out.println(rows);
+
+//                List<String> columns = result.columns();
+//                Iterator<Long> counts = result.columnAs("c");
+//                counts.forEachRemaining(val -> System.out.println(val));
+////                System.out.println(counts);
+
+
+            }
+        }
+
         else {
             try (Transaction tx = db.beginTx()) {
                 Result result = tx.execute(query);
                 while (result.hasNext()) {
                     Map<String, Object> row = result.next();
+                    numResults++;
                     for (Map.Entry<String, Object> column : row.entrySet()) {
 
 
@@ -150,8 +173,23 @@ public class Neo4jGraphConnector{
             }
         }
         System.out.println("Execution done");
+
+
         return nodeids;
 
+    }
+
+    public static void counts(String q){
+
+        try (Transaction tx = db.beginTx()) {
+            Result result = tx.execute(q);
+
+            List<String> columns = result.columns();
+            Iterator<Long> counts = result.columnAs("c");
+            System.out.println(counts.next());
+
+
+        }
     }
 
 
@@ -182,9 +220,9 @@ public class Neo4jGraphConnector{
 
 
 //        File dbHome = new File("D:/.Neo4jDesktop/neo4jDatabases/database-5f3da19a-6ab7-4c91-9ec6-41cd398c5153/installation-4.0.4/"); //largest stack-overflow
-//        File dbHome = new File("D:/.Neo4jDesktop/neo4jDatabases/database-6c69dad4-2894-4778-b828-384a407a99a1/installation-4.0.4/"); //second largest
+        File dbHome = new File("D:/.Neo4jDesktop/neo4jDatabases/database-6c69dad4-2894-4778-b828-384a407a99a1/installation-4.0.4/"); //second largest
 //        File dbHome = new File("D:/.Neo4jDesktop/neo4jDatabases/database-cc61c6ab-6015-407e-819d-99f764d172b2/installation-4.0.4/"); //second lsmallest
-        File dbHome = new File("D:/.Neo4jDesktop/neo4jDatabases/database-b9300893-621c-4938-82bf-f414127c1e61/installation-4.0.4"); // smallest
+//        File dbHome = new File("D:/.Neo4jDesktop/neo4jDatabases/database-b9300893-621c-4938-82bf-f414127c1e61/installation-4.0.4"); // smallest
 //        File dbHome = new File("D:/.Neo4jDesktop/neo4jDatabases/database-3df1f6eb-4605-45f0-bbc9-9d3c00ba3702/installation-4.0.4"); // movie example
 
 

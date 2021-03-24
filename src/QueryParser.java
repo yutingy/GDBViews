@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-
+//todo minTags might be broken (not in parsing but in storing)
 
 public class QueryParser extends ViewBaseListener {
 
@@ -71,6 +71,10 @@ public class QueryParser extends ViewBaseListener {
 
     //Third: Insertions
 
+
+    //Fourth: in the case of comparisons we have a list similar to varLabels and insertionVarLabels, except we use it to determine which types of views (upon init) MUST always
+    //be reevaluated.
+    private Map<String, Set<String>> alwaysReevaluate = new HashMap<>(); //
 
 
     /**
@@ -175,8 +179,7 @@ public class QueryParser extends ViewBaseListener {
             isViewUse = true;
 
 
-            if (ctx.getText().contains("IN")) {
-                //global view usage todo use explicit global and local words in the lexer
+            if (ctx.getText().contains("GLOBAL")) {
                 viewScope = false; //set to global
             }
 
@@ -184,6 +187,7 @@ public class QueryParser extends ViewBaseListener {
         }
         else if(ctx.getChild(0).getText().equals("CG") || ctx.getText().contains("SET") ||
                 ctx.getText().contains("DELETE") ||
+                ctx.getText().contains("REMOVE") ||
                 (ctx.getText().contains("CREATE") && !ctx.getText().contains("VIEW AS"))){
 
             //Change Graph
@@ -255,7 +259,10 @@ public class QueryParser extends ViewBaseListener {
             change = changeType.UPDATE;
             parseUpdate((ViewParser.SetattrContext) ctx.getChild(4));
         }
-        if(queryText.contains("REMOVE")) change = changeType.UPDATE;
+        if(queryText.contains("REMOVE")) {
+            change = changeType.UPDATE;
+            parseRemove((ViewParser.AttributeContext)ctx.getChild(4));
+        }
 
 
     }
@@ -460,12 +467,50 @@ public class QueryParser extends ViewBaseListener {
             }
         }
 
+        for(String affected : finalAffectedViews) {
+            for (String query : viewInstants) {
+                if (query.contains("CREATE VIEW AS " +affected)){
+                    outdatedViews.add(query);
+                }
+            }
+        }
+
+
 
 
 
     }
 
 
+
+    @Override
+    public void enterRetval(ViewParser.RetvalContext ctx){
+        if(isViewUse || cg) return;
+
+        if(ctx.getText().contains("NODES(")){
+            returnType = retType.PATHNODES;
+        }
+        else if (!ctx.attribute().isEmpty()){
+
+            if(varLabels.containsKey(ctx.attribute().getText())) {
+                if (!returnValExpr.equals("")) returnValExpr += ",";
+                returnValExpr += ctx.attribute().getText();
+                returnType = retType.NODE;
+            }
+        }
+        else{
+            if(varLabels.containsKey(ctx.attribute().getText())) {
+                if (!returnValExpr.equals("")) returnValExpr += ",";
+                if (varLabels.containsKey(ctx.attribute().getText())) returnValExpr += ctx.NAME().getText();
+                returnType = retType.NODE;
+            }
+        }
+
+//        System.out.println(returnValExpr);
+
+
+
+    }
 
     @Override
     public void enterQuery(ViewParser.QueryContext ctx){
@@ -476,18 +521,20 @@ public class QueryParser extends ViewBaseListener {
         if(isViewUse || cg) return;
 
         ViewParser.ReturnstmtContext returnContext = ctx.returnstmt();
-        if(returnContext.retval().getText().contains("NODES(")){
-            returnType = retType.PATHNODES;
 
-        }
-        else if (!returnContext.retval().attribute().isEmpty()){
-            returnValExpr = returnContext.retval().attribute().getText();
-            returnType = retType.NODE;
-        }
-        else{
-            returnValExpr = returnContext.retval().NAME().getText();
-            returnType = retType.NODE;
-        }
+
+//        if(returnContext.retval().getText().contains("NODES(")){
+//            returnType = retType.PATHNODES;
+//
+//        }
+//        else if (!returnContext.retval().attribute().isEmpty()){
+//            returnValExpr = returnContext.retval().attribute().getText();
+//            returnType = retType.NODE;
+//        }
+//        else{
+//            returnValExpr = returnContext.retval().NAME().getText();
+//            returnType = retType.NODE;
+//        }
 
         if (ctx.getChild(1) instanceof ViewParser.PathContext) {
             pathName = ctx.path().NAME().getText();
@@ -497,7 +544,7 @@ public class QueryParser extends ViewBaseListener {
             //no pathname
         }
 
-        System.out.println(returnType);
+//        System.out.println(returnType);
 
 //        System.out.println(returnValExpr + pathName);
 
@@ -779,7 +826,7 @@ public class QueryParser extends ViewBaseListener {
 
 
         //todo have not yet decided how to handle VIEWS that contain OR clauses:
-        //intuitively they should be treated just like an AND ... but special attention can be given if we deem it necessary, later.
+        //just re-evaluate
 
 
         if(isViewUse) {
@@ -820,8 +867,13 @@ public class QueryParser extends ViewBaseListener {
             if (payload1 instanceof ViewParser.AttributeContext) {
 //                System.out.println(((ViewParser.AttributeContext) payload1).getText());
 
-                String keyname = ((ViewParser.AttributeContext) payload1).getText().split("\\.")[0];
-                String attributename = ((ViewParser.AttributeContext) payload1).getText().split("\\.")[1];
+
+
+                ViewParser.AttributeContext aactx = ((ViewParser.AttributeContext) payload1);
+
+                String keyname = attributeParse(aactx).split("\\.")[0];
+                String attributename = "";
+                if(attributeParse(aactx).contains(".")) attributename = attributeParse(aactx).split("\\.")[1];
 
 
                 if (payload2 instanceof ViewParser.ValContext){
@@ -832,11 +884,35 @@ public class QueryParser extends ViewBaseListener {
                     condition.setConditionString(attributename + ctx.getChild(1).getText()+rhsVal);
 
 
-                    System.out.println(condition.getConditionString());
+//                    System.out.println(condition.getConditionString());
 
                     if(!varConditions.containsKey(keyname)) varConditions.put(keyname, new HashSet<Condition>());
                     varConditions.get(keyname).add(condition);
 
+
+                }
+
+                if (payload2 instanceof ViewParser.AttributeContext){
+
+                    ViewParser.AttributeContext actx = ((ViewParser.AttributeContext)payload2);
+
+                    String attributeInvolved = attributeParse(actx);
+
+                    String rhsKey = attributeInvolved.split("\\.")[0];
+                    String rhsAttribute = attributeInvolved.split("\\.")[1];
+
+                    //a.name = b.bio
+                    //x.name > y.name
+                    //hold a separate structure ; whenever name, bio, name, name for labels related to a,b,x,y are involved, then re-evaluate.
+
+                    if(!alwaysReevaluate.containsKey(varLabels.get(keyname))) alwaysReevaluate.put(varLabels.get(keyname), new HashSet<>());
+                    if(!alwaysReevaluate.containsKey(varLabels.get(rhsKey))) alwaysReevaluate.put(varLabels.get(rhsKey), new HashSet<>());
+
+                    if(!alwaysReevaluate.get(varLabels.get(keyname)).contains(attributename)) alwaysReevaluate.get(varLabels.get(keyname)).add(attributename);
+                    if(!alwaysReevaluate.get(varLabels.get(rhsKey)).contains(rhsAttribute)) alwaysReevaluate.get(varLabels.get(rhsKey)).add(rhsAttribute);
+
+
+                    System.out.println(varLabels.get(keyname) + ", " + attributename + "\n" + varLabels.get(rhsKey) + ", " + rhsAttribute);
 
                 }
 
@@ -1002,6 +1078,42 @@ need method to handle pairList and attach those as "conditions" for the insertio
 
     }
 
+    public String attributeParse(ViewParser.AttributeContext ctx){
+
+        if(ctx.getChildCount()==1){
+            return ctx.getText();
+        }
+        if(ctx.getChild(1).getText().equals(".")){
+            //NAME . NAME
+            return ctx.getText();
+        }
+        if(ctx.getChildCount()==3){
+
+            if (ctx.getChild(0).getPayload() instanceof ViewParser.AttributeContext){
+                return attributeParse((ViewParser.AttributeContext)ctx.getChild(0).getPayload());
+            }
+            if(ctx.getChild(2).getPayload() instanceof ViewParser.AttributeContext){
+                return attributeParse((ViewParser.AttributeContext)ctx.getChild(2).getPayload());
+            }
+
+        }
+        return "ERROR";
+
+    }
+
+    //HELPER METHOD for REMOVE update graph changes
+    public void parseRemove(ViewParser.AttributeContext ctx){
+        //assumes format REMOVE x.attr
+
+        assert ctx.getText().contains(".");
+        String varName = ctx.getText().split("\\.")[0];
+        String attrName = ctx.getText().split("\\.")[1];
+
+        affectedVar = varName;
+        affectedAttribute = attrName;
+
+    }
+
 
 
 
@@ -1058,6 +1170,9 @@ need method to handle pairList and attach those as "conditions" for the insertio
         cg = false;
         changeGraphQuery = "";
         containsWhere = false;
+
+
+        removeOutdated();
     }
 
     public void changeGraph(){
@@ -1129,7 +1244,7 @@ need method to handle pairList and attach those as "conditions" for the insertio
     //input : a list of view names
 //    public LinkedList<String> recursiveUpdate(LinkedList<String> list){
 
-    //todo outdated; redo this code but with the dependency table
+
 //
 //        LinkedList<String> updatesRequired = new LinkedList<>();
 //

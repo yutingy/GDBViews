@@ -34,7 +34,9 @@ public class Condition {
         return conditionString.hashCode() + attribute.hashCode();
     }
 
-
+    public String toString(){
+        return conditionString;
+    }
 
 
 }

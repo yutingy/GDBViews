@@ -387,4 +387,14 @@ public interface ViewListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAs(ViewParser.AsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ViewParser#exists}.
+	 * @param ctx the parse tree
+	 */
+	void enterExists(ViewParser.ExistsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ViewParser#exists}.
+	 * @param ctx the parse tree
+	 */
+	void exitExists(ViewParser.ExistsContext ctx);
 }

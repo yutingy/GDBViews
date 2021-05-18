@@ -39,15 +39,17 @@ public class Main {
 
         try {
 
-            String size = "Large";
+            String size = "Small";
 
 
 
 
             connector = new Neo4jGraphConnector();
 
+//            testUses(size);
+
             loadTablesFromFiles(size);
-            createMetaInfoFromQueries();
+            createMetaInfoFromQueries("./test/ReturnVSize.txt");
 
 //            countQuery("MATCH (n:User)-[:POSTED]-(p:Post)-[:PARENT_OF]-(m:Post) WHERE n.upvotes > 1000 AND m.score > 100 AND m.score < 600 AND n.reputation > 2*p.score OR n.downvotes < p.score RETURN COUNT(DISTINCT n) as c"); //12
 //            countQuery("MATCH (n:User) WHERE n.upvotes > 1000 WITH COLLECT(ID(n)) AS v1 " +
@@ -60,10 +62,12 @@ public class Main {
 
             terminal();
 
+//            connector.pathQuery("MATCH p = (n:User)-[:POSTED]-(po:Post) WHERE n.reputation < 50000 RETURN p");
 //            initFile("./test/ViewInits.txt", size);
+//            initFile2("./test/ReturnVSize.txt", size);
+
 //            validateReturn(size);
 
-//            testUses(size); //uncomment for standard use with middleware
 
 //            terminal();
 
@@ -83,6 +87,38 @@ public class Main {
 //            textBasedSmart("MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post)-[:HAS_TAG]-(t:Tag)-[:HAS_TAG]-(p2:Post)-[:POSTED]-(m:User) WHERE n.upvotes > 800 AND po.comments > 10 AND m.reputation < 500 RETURN t"); //11 probably wont terminate..
 
 
+
+            /*
+            * text based, rewrite with large DB u13-u21  in order (non natural)
+            * */
+//            textBasedSmart("MATCH (n:User)-[:POSTED]-(p1:Post)-[:PARENT_OF]-(p2:Post)-[:POSTED]-(m:User) WHERE n.userId<50 WITH COLLECT(ID(m)) AS V14 MATCH (n) WHERE ID(n) IN V14 RETURN n");
+//            textBasedSmart("MATCH (p2:Post)-[:HAS_TAG]-(t) WHERE t.tagId='html' WITH COLLECT(ID(p2)) AS V15 MATCH (n) WHERE ID(n) IN V15 RETURN n");
+//            textBasedSmart("MATCH p = (n:User)-[:POSTED]-(po:Post) WHERE n.reputation < 50000 UNWIND NODES(p) AS pathViewN UNWIND RELATIONSHIPS(p) AS pathViewR WITH DISTINCT pathViewN, pathViewR WITH COLLECT(ID(pathViewN)) as pathViewNid, COLLECT(ID(pathViewR)) as pathViewRid MATCH (n) WHERE ID(n) IN pathViewNid RETURN n");
+//            textBasedSmart("MATCH (n:User)-[:POSTED]-(p1:Post)-[:PARENT_OF]-(p2:Post)-[:POSTED]-(m:User) WHERE n.userId<m.userId AND n.reputation>m.reputation WITH COLLECT(ID(m)) AS V17 MATCH (n) WHERE ID(n) IN V17 RETURN n");
+//            textBasedSmart("MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.upvotes > 0 AND po.comments > 10 AND po2.comments<10  WITH COLLECT(ID(po2)) AS V18 MATCH (n) WHERE ID(n) IN V18 RETURN n");
+//            textBasedSmart("MATCH (n:Post)-[:PARENT_OF]-(m:Post) WHERE n.score =15 AND m.score = 50 WITH COLLECT(ID(n)) AS V19 MATCH (n) WHERE n IN V19 RETURN n");
+//            textBasedSmart("MATCH (n:Post)-[:HAS_TAG]-(t) WHERE n.postId = '1065111' WITH COLLECT(ID(t)) AS V20 MATCH (n) WHERE n IN V20 RETURN n");
+//            textBasedSmart("MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.upvotes > 0 AND po.comments > 10 AND po2.comments<10  WITH COLLECT(ID(po2)) AS V18 MATCH (n:Post)-[:PARENT_OF]-(m:Post) WHERE n.score =15 AND m.score = 50 WITH V18, COLLECT(ID(n)) AS V19 MATCH (n) WHERE n IN V18 AND n IN V19 RETURN n");
+//            textBasedSmart("MATCH (n:Post)-[:HAS_TAG]-(t) WHERE n.postId = '1065111' WITH COLLECT(ID(t)) AS V20 MATCH (n)-[:HAS_TAG]-(p:Post) WHERE n IN V20 RETURN p");
+//            textBasedSmart("MATCH (n:Tag) WHERE n.tagId = 'java' OR n.tagId = 'html' WITH COLLECT(ID(n)) AS V5 MATCH (n)-[:HAS_TAG]-(p:Post) WHERE ID(n) IN V5 RETURN p");
+//            textBasedSmart("MATCH (p2:Post)-[:HAS_TAG]-(t) WHERE t.tagId='html' WITH COLLECT(ID(p2)) AS V15 MATCH (m:User)-[:POSTED]-(n) WHERE ID(n) IN V15 RETURN m");
+
+
+            /*
+            * text based natural queries u13-u21
+            * */
+
+//            textBasedSmart("MATCH (n:User)-[:POSTED]-(p1:Post)-[:PARENT_OF]-(p2:Post)-[:POSTED]-(m:User) WHERE n.userId<50 RETURN m");
+//            textBasedSmart("MATCH (p2:Post)-[:HAS_TAG]-(t) WHERE t.tagId='html' RETURN p2");
+//            textBasedSmart("MATCH p = (n:User)-[:POSTED]-(po:Post) WHERE n.reputation < 50000 RETURN p");
+//            textBasedSmart("MATCH (n:User)-[:POSTED]-(p1:Post)-[:PARENT_OF]-(p2:Post)-[:POSTED]-(m:User) WHERE n.userId<m.userId AND n.reputation>m.reputation RETURN m");
+//            textBasedSmart("MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.upvotes > 0 AND po.comments > 10 AND po2.comments<10  RETURN po2");
+//            textBasedSmart("MATCH (n:Post)-[:PARENT_OF]-(m:Post) WHERE n.score =15 AND m.score = 50 RETURN n");
+//            textBasedSmart("MATCH (n:Post)-[:HAS_TAG]-(t) WHERE n.postId = '1065111' RETURN t");
+//            textBasedSmart("MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.upvotes > 0 AND po.comments > 10 AND po2.comments<10 WITH po2 MATCH (po2)-[:PARENT_OF]-(m:Post) WHERE po2.score=15 AND m.score=50 RETURN po2");
+//            textBasedSmart("MATCH (n:Tag)-[:HAS_TAG]-(p:Post) WHERE n.postId = '1065111' WITH n MATCH (n)-[:HAS_TAG]-(p:Post) RETURN p");
+//            textBasedSmart("MATCH (n:Tag)-[:HAS_TAG]-(p:Post) WHERE n.tagId = 'java' OR n.tagId = 'html' RETURN p");
+//            textBasedSmart("MATCH (m:User)-[:POSTED]-(p2:Post)-[:HAS_TAG]-(t) WHERE t.tagId='html' RETURN m");
 
 
 
@@ -126,6 +162,9 @@ public class Main {
 
 
         }
+        catch(Exception e){
+            e.printStackTrace();
+        }
         finally{
             connector.shutdown();
         }
@@ -149,8 +188,9 @@ public class Main {
                 if (command.startsWith("quit")) {
                     break;
                 }
-                else if (command.startsWith("printView")){
+                else if (command.startsWith("printOrView")){
 //                    vql.printViewTable();
+                    vql.printOrClauseViews();
                 }
                 else if (command.startsWith("printDependencies")){
                     vql.printDependencies();
@@ -472,10 +512,10 @@ public class Main {
         }
 
         System.out.println(fullQuery.length());
-        if(fullQuery.length()>25000000){
-            System.out.println("Length too long, skipped");
-            return -10;
-        }
+//        if(fullQuery.length()>25000000){
+//            System.out.println("Length too long, skipped");
+//            return -10;
+//        }
 
         File logger = new File("./test/log.txt");
         try{
@@ -484,6 +524,7 @@ public class Main {
         }
         catch(Exception e) {e.printStackTrace();}
 
+//        System.out.println(fullQuery);
         connector.executeQuery(fullQuery);
 
         return System.currentTimeMillis()-now;
@@ -503,7 +544,7 @@ public class Main {
 
             instantiations.add(cmd);
 
-            System.out.println("cmd: " + cmd);
+//            System.out.println("cmd: " + cmd);
 
 //
 //            vql.viewInstants.remove(cmd);
@@ -529,7 +570,7 @@ public class Main {
             CommonTokenStream tokens = new CommonTokenStream(VL);
             ViewParser parser = new ViewParser(tokens);
 
-            System.out.println(cmd);
+//            System.out.println(cmd);
 
 
             ParseTree tree = parser.root();
@@ -545,6 +586,8 @@ public class Main {
 
         System.out.println("TOTAL TIME FOR ALL: " + totalTime);
         totalTime = 0;
+
+        vql.resetAfterGraphUpdate();
 
     }
 
@@ -986,7 +1029,7 @@ public class Main {
 
     public static void loadTablesFromFiles(String size){
 
-        File directory = new File("./test2/"+size);
+        File directory = new File("./test3/"+size);
 
         try {
             for (File fileEntry : directory.listFiles()) {
@@ -996,7 +1039,7 @@ public class Main {
                 System.out.println(name);
                 String viewName = "";
                 if (name.endsWith("Node.txt")) {
-                    viewName = name.split("Node.txt")[0];
+                    viewName = name.split("Node\\.txt")[0];
 
                     Scanner myReader = new Scanner(fileEntry);
                     if(!myReader.hasNextLine()) continue;
@@ -1018,7 +1061,7 @@ public class Main {
 
                 }
                 if (name.endsWith("Rel.txt")) {
-                    viewName = name.split("Rel.txt")[0];
+                    viewName = name.split("Rel\\.txt")[0];
 
                     Scanner myReader = new Scanner(fileEntry);
                     if(!myReader.hasNextLine()) continue;
@@ -1050,9 +1093,9 @@ public class Main {
     }
 
 
-    public static void createMetaInfoFromQueries(){
+    public static void createMetaInfoFromQueries(String viewPath){
 
-        File file = new File("./test/ViewInits.txt");
+        File file = new File(viewPath);
         try {
             Scanner myReader = new Scanner(file);
 
@@ -1090,13 +1133,14 @@ public class Main {
     public static void testUses(String size){
 
         loadTablesFromFiles(size); //load first
-        //second, fill the meta data tables in vql
+        //second, fill the meta data tables in vql, needed for the changegraph tests
         try {
-            createMetaInfoFromQueries();
+            createMetaInfoFromQueries("./test/ViewInits.txt"); //todo when doing changegraph, also include those in ReturnVSize.txt
+            createMetaInfoFromQueries("./test/ReturnVSize.txt");
 
             System.out.println("Done populating all tables - moving on to each use");
 
-            File uses = new File("./test/ViewUses2.txt");
+            File uses = new File("./test/ViewUses.txt");
             Scanner useReader = new Scanner(uses);
 
 
@@ -1116,7 +1160,7 @@ public class Main {
             }
 
             Set<String> queries = durations.keySet();
-            for(int i=0; i<2; i++) {
+            for(int i=0; i<1; i++) {
                 for (String q : queries) {
 
                     durations.put(q, noGuiTest(q, false) + durations.get(q));
@@ -1126,10 +1170,10 @@ public class Main {
             }
 
 
-            for(String q : queries){
-                durations.put(q, (durations.get(q))/2);
-                System.out.println("Query:\n"+q+"\nAvg:\t"+durations.get(q));
-            }
+//            for(String q : queries){
+//                durations.put(q, (durations.get(q))/2);
+//                System.out.println("Query:\n"+q+"\nAvg:\t"+durations.get(q));
+//            }
 
 
         }
@@ -1176,7 +1220,7 @@ public class Main {
 
                     noGuiTest(q, false);
 
-//                    if(i==0) toFile(size, q.split("AS")[1].trim().split(" ")[0].trim());
+                    if(i==0) toFile(size, q.split("AS")[1].trim().split(" ")[0].trim());
 
                     long after = System.currentTimeMillis();
 
@@ -1219,59 +1263,80 @@ public class Main {
 
 
 
-        countQuery("MATCH (n:Post) WHERE n.score > 350 RETURN COUNT(n) as c"); //1
-        countQuery("MATCH (n:Post) WHERE n.score > 350 WITH COLLECT(ID(n)) AS v MATCH (n) WHERE ID(n) IN v RETURN COUNT(n) as c"); // U1
+//        countQuery("MATCH (n:Post) WHERE n.score > 350 RETURN COUNT(n) as c"); //1
+//        countQuery("MATCH (n:Post) WHERE n.score > 350 WITH COLLECT(ID(n)) AS v MATCH (n) WHERE ID(n) IN v RETURN COUNT(n) as c"); // U1
 
-        countQuery("MATCH (n:Post) WHERE n.score < 800 AND n.score > 350 RETURN COUNT(n) as c"); //2
-        countQuery("MATCH (n:Post) WHERE n.score < 800 AND n.score > 350 WITH COLLECT(ID(n)) AS v MATCH (n) WHERE ID(n) IN v RETURN COUNT(n) as c"); //U2
+//        countQuery("MATCH (n:Post) WHERE n.score < 800 AND n.score > 350 RETURN COUNT(n) as c"); //2
+//        countQuery("MATCH (n:Post) WHERE n.score < 800 AND n.score > 350 WITH COLLECT(ID(n)) AS v MATCH (n) WHERE ID(n) IN v RETURN COUNT(n) as c"); //U2
 
-        countQuery("MATCH (n:User) WHERE n.upvotes > 1000 RETURN COUNT(n) as c"); //3
-        countQuery("MATCH (n:User) WHERE n.upvotes > 1000 WITH COLLECT(ID(n)) AS v MATCH (n) WHERE ID(n) IN v RETURN COUNT(n) as c"); //U3
+//        countQuery("MATCH (n:User) WHERE n.upvotes > 1000 RETURN COUNT(n) as c"); //3
+//        countQuery("MATCH (n:User) WHERE n.upvotes > 1000 WITH COLLECT(ID(n)) AS v MATCH (n) WHERE ID(n) IN v RETURN COUNT(n) as c"); //U3
 
-        countQuery("MATCH (n:User) WHERE n.reputation > 90000 RETURN COUNT(n) as c"); //4
-        countQuery("MATCH (n:User) WHERE n.reputation > 90000 WITH COLLECT(ID(n)) AS v MATCH (n) WHERE ID(n) IN v RETURN COUNT(n) as c"); //U4
+//        countQuery("MATCH (n:User) WHERE n.reputation > 90000 RETURN COUNT(n) as c"); //4
+//        countQuery("MATCH (n:User) WHERE n.reputation > 90000 WITH COLLECT(ID(n)) AS v MATCH (n) WHERE ID(n) IN v RETURN COUNT(n) as c"); //U4
 
 
-        countQuery("MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.upvotes > 800 AND po.comments > 10  RETURN COUNT(po2) as c"); //6
-        countQuery("MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.upvotes > 800 AND po.comments > 10 WITH COLLECT(ID(po2)) AS v MATCH (n) WHERE ID(n) IN v RETURN COUNT(n) as c"); //6
+//        countQuery("MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.upvotes > 800 AND po.comments > 10  RETURN COUNT(po2) as c"); //6
+//        countQuery("MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.upvotes > 800 AND po.comments > 10 WITH COLLECT(ID(po2)) AS v MATCH (n) WHERE ID(n) IN v RETURN COUNT(n) as c"); //6
 
-        countQuery("MATCH (n:Post)-[:PARENT_OF]-(m:Post) WHERE m.score > 100 AND m.score < 600 RETURN COUNT(n) as c"); //7
-        countQuery("MATCH (n:Post)-[:PARENT_OF]-(m:Post) WHERE m.score > 100 AND m.score < 600 WITH COLLECT(ID(n)) AS v MATCH (n) WHERE ID(n) IN v RETURN COUNT(n) as c"); //7
+//        countQuery("MATCH (n:Post)-[:PARENT_OF]-(m:Post) WHERE m.score > 100 AND m.score < 600 RETURN COUNT(n) as c"); //7
+//        countQuery("MATCH (n:Post)-[:PARENT_OF]-(m:Post) WHERE m.score > 100 AND m.score < 600 WITH COLLECT(ID(n)) AS v MATCH (n) WHERE ID(n) IN v RETURN COUNT(n) as c"); //7
 
-        countQuery("MATCH (n:Tag) WHERE n.tagId = 'java' OR n.tagId = 'html' RETURN COUNT(n) as c"); //8
-        countQuery("MATCH (n:Tag) WHERE n.tagId = 'java' OR n.tagId = 'html'  WITH COLLECT(ID(n)) AS v MATCH (n) WHERE ID(n) IN v RETURN COUNT(n) as c"); // u8
+//        countQuery("MATCH (n:Tag) WHERE n.tagId = 'java' OR n.tagId = 'html' RETURN COUNT(n) as c"); //8
+//        countQuery("MATCH (n:Tag) WHERE n.tagId = 'java' OR n.tagId = 'html'  WITH COLLECT(ID(n)) AS v MATCH (n) WHERE ID(n) IN v RETURN COUNT(n) as c"); // u8
 
-        countQuery("MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.upvotes > 800 AND po.comments > 10 AND po2.score > 350 RETURN COUNT(n) as c"); // use 9
+//        countQuery("MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.upvotes > 800 AND po.comments > 10 AND po2.score > 350 RETURN COUNT(n) as c"); // use 9
         //not smart, actually stupid
-        countQuery("MATCH (n:Post) \n" +
-                "    WHERE n.score > 350 \n" +
-                "    WITH COLLECT(ID(n)) as V1\n" +
-                "    \n" +
-                "    MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) \n" +
-                "    WHERE n.upvotes > 800 AND po.comments > 10  \n" +
-                "    WITH V1, COLLECT(ID(po2)) as V8\n" +
-                "    \n" +
-                "    MATCH (n) WHERE ID(n) IN V1 AND ID(n) IN V8\n" +
-                "    RETURN COUNT(n) as c"); //U9
+//        countQuery("MATCH (n:Post) \n" +
+//                "    WHERE n.score > 350 \n" +
+//                "    WITH COLLECT(ID(n)) as V1\n" +
+//                "    \n" +
+//                "    MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) \n" +
+//                "    WHERE n.upvotes > 800 AND po.comments > 10  \n" +
+//                "    WITH V1, COLLECT(ID(po2)) as V8\n" +
+//                "    \n" +
+//                "    MATCH (n) WHERE ID(n) IN V1 AND ID(n) IN V8\n" +
+//                "    RETURN COUNT(n) as c"); //U9
 
-        countQuery("MATCH (n:User)-[:POSTED]-(p:Post) WHERE n.upvotes > 1000 RETURN COUNT(DISTINCT p) as c"); //u 10
-        countQuery("MATCH (n:User) WHERE n.upvotes > 1000 WITH COLLECT(ID(n)) AS v MATCH (n)-[:POSTED]-(p:Post) WHERE ID(n) IN v RETURN COUNT(DISTINCT p) as c"); //u10
+//        countQuery("MATCH (n:User)-[:POSTED]-(p:Post) WHERE n.upvotes > 1000 RETURN COUNT(DISTINCT p) as c"); //u 10
+//        countQuery("MATCH (n:User) WHERE n.upvotes > 1000 WITH COLLECT(ID(n)) AS v MATCH (n)-[:POSTED]-(p:Post) WHERE ID(n) IN v RETURN COUNT(DISTINCT p) as c"); //u10
 
-        countQuery("MATCH (n:User)-[:POSTED]-(p:Post)-[:PARENT_OF]-(m:Post) WHERE n.upvotes > 1000 AND m.score > 100 AND m.score < 600 AND n.reputation > 2*p.score OR n.downvotes < p.score RETURN COUNT(n) as c"); //12
-        countQuery("MATCH (n:User) WHERE n.upvotes > 1000 WITH COLLECT(ID(n)) AS v1 " +
-                    "MATCH (n:Post)-[:PARENT_OF]-(m:Post) WHERE m.score > 100 AND m.score < 600 " +
-                            " WITH v1, COLLECT(ID(n)) AS v2 " +
-                            " MATCH (n)-[:POSTED]-(p:Post) WHERE ID(n) IN v1 AND ID(p) IN v2 " +
-                            "AND n.reputation > 2*p.score OR n.downvotes<p.score RETURN COUNT(n) as c"); //u12
-
-
+//        countQuery("MATCH (n:User)-[:POSTED]-(p:Post)-[:PARENT_OF]-(m:Post) WHERE n.upvotes > 1000 AND m.score > 100 AND m.score < 600 AND n.reputation > 2*p.score OR n.downvotes < p.score RETURN COUNT(n) as c"); //12
+//        countQuery("MATCH (n:User) WHERE n.upvotes > 1000 WITH COLLECT(ID(n)) AS v1 " +
+//                    "MATCH (n:Post)-[:PARENT_OF]-(m:Post) WHERE m.score > 100 AND m.score < 600 " +
+//                            " WITH v1, COLLECT(ID(n)) AS v2 " +
+//                            " MATCH (n)-[:POSTED]-(p:Post) WHERE ID(n) IN v1 AND ID(p) IN v2 " +
+//                            "AND n.reputation > 2*p.score OR n.downvotes<p.score RETURN COUNT(n) as c"); //u12
 
 
 
+//        countQuery("MATCH (n:Post) WHERE n.score > 350 RETURN COUNT(n) as c"); // v1
+//        countQuery("MATCH (n:Post) WHERE n.score < 800 AND n.score > 350 RETURN COUNT(n) as c"); //v2
+//        countQuery("MATCH (n:User) WHERE n.upvotes>1000 RETURN COUNT(n) as c"); //v3
+//        countQuery("MATCH (n:User) WHERE n.reputation > 90000 RETURN COUNT(n) as c"); //U4
+//        countQuery("MATCH p = (n:User)-[:POSTED]-(po:Post) WHERE n.reputation < 500 RETURN COUNT(n) as c"); //5 nodes
+//        countQuery("MATCH p = (n:User)-[:POSTED]-(po:Post) WHERE n.reputation < 500 RETURN COUNT(p) as c"); //5 paths
+//        countQuery("MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.upvotes > 800 AND po.comments > 10  RETURN COUNT(po2) as c"); //6
+//        countQuery("MATCH (n:Post)-[:PARENT_OF]-(m:Post) WHERE m.score > 100 AND m.score < 600 RETURN COUNT(n) as c"); //7
+//        countQuery("MATCH (n:User)-[:POSTED]-(p:Post) WHERE n.userId = 19 RETURN COUNT(p) as c"); // u8
+//        countQuery("MATCH (n:Tag) WHERE n.tagId = 'java' OR n.tagId = 'html' RETURN COUNT(n) as c"); //U9
+//        countQuery("MATCH (n:User)-[:POSTED]-(p:Post) WHERE n.upvotes > 1000 OR p.score > 350 RETURN COUNT(p) as c"); //u10
+//        countQuery("MATCH (betterPost:Post)-[:PARENT_OF]-(worstPost:Post) WHERE worstPost.score < 10 AND betterPost.score > worstPost.score * 10 RETURN COUNT(betterPost) as c"); //u11
+//        System.out.print("12 result:");
+//        countQuery("MATCH (p1:Post)-[:HAS_TAG]-(t:Tag) WITH p1, COUNT(t) as numberOfTags WHERE numberOfTags > 20 RETURN numberOfTags as c"); //12 result
+//        countQuery("MATCH (p1:Post)-[:HAS_TAG]-(t:Tag) RETURN COUNT(p1) as c"); //12 paths
+//        countQuery("MATCH (p1:Post)-[:HAS_TAG]-(t:Tag) WITH p1, COUNT(t) as numberOfTags WHERE numberOfTags > 20 RETURN COUNT(p1) as c");
+
+//        countQuery("MATCH (n:User)-[:POSTED]-(p:Post)-[:HAS_TAG]-(t:Tag) RETURN COUNT(n) as c"); //13 paths
+//        countQuery("MATCH (n:User)-[:POSTED]-(p:Post)-[:HAS_TAG]-(t:Tag) WITH n,t, COUNT(*) as numberOfPosts WITH n,COLLECT(t) as tags, COLLECT(numberOfPosts) as counts, MAX(numberOfPosts) as highestTagCount WITH n,highestTagCount, [i IN range(0, size(counts)-1) | CASE WHEN counts[i] = highestTagCount THEN tags[i] ELSE NULL END] AS finalVal RETURN COUNT(n) as c");
 
 
 
     }
+
+
+
+
 
 
     public static void countQuery(String q){

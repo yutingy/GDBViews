@@ -84,7 +84,7 @@ public class TableEntry {
     }
 
     //Used for INSERTIONS
-    public Set<EntryData> filterWithInsertion(Set<Condition> attributeKeyValuePairs){
+    public Set<EntryData> filterWithInsertion(Set<Condition> attributeKeyValuePairs, Set<String> viewsWithOr, Set<String> extraOrViews){
         //Given conditions as input, which EntryData will be NOT affected by an insertion of a node with these
         //properties?
         /**
@@ -95,6 +95,8 @@ public class TableEntry {
          *              >Immediately filter (i.e we do not re-evaluate, we do not return this ED)
          *  THIRD CASE: EntryData contains no conditions
          *              >Immediately continue (i.e we MUST re-evaluate, we MUST keep this in the returnSet)
+         *
+         *  FOURTH CASE: A dependent found in this TableEntry has an OR clause. So if ANYTHING matches then IMMEDIATELY CONTINUE
          *
          *  SPECIAL CASE: If the inserted node has no attributes at all (say it is just a label) then
          *                  all "no condition" EntryData must be marked - this is handled by case 3
@@ -108,7 +110,9 @@ public class TableEntry {
             //check for each entry if they also have no conditions
             for (EntryData myED : entries){
                 Set<Condition> myConds = new HashSet<>(myED.getConditions());
-                if(myConds.isEmpty()){
+                if(!myConds.isEmpty()){
+                    //todo there is a bug where condition in BetterParentPost2 is apparently empty, so it is not being removed in this case..
+//                    System.out.println(myKey + ", " + myED.getConditions().toString());
                     returnSet.remove(myED);
                 }
             }
@@ -214,6 +218,31 @@ public class TableEntry {
 
         }
 
+
+        //FOURTH CASE
+        for(String orView : viewsWithOr){
+            for(EntryData myED : entries){
+
+                Set<Condition> myConds = new HashSet<>(myED.getConditions());
+
+                Set<String> attributeNamesView = new HashSet<>();
+
+                for(Condition viewCondition : myConds){
+                    attributeNamesView.add(viewCondition.attribute);
+                }
+
+                if(!Collections.disjoint(attributeNamesInserted,(attributeNamesView))) { //disjoint returns false if they have any elements in common
+//                System.out.println("continued and skipped...");
+                    if(!extraOrViews.contains(orView)) {
+                        extraOrViews.add(orView);
+                    }
+
+                }
+            }
+        }
+
+
+
 //        System.out.println("returning " + returnSet);
 
         return returnSet;
@@ -226,7 +255,7 @@ public class TableEntry {
 
 
     //Used so FAR for DELETIONS and UPDATES
-    public Set<EntryData> filterIrrelevantEntryData(Set<Condition> conditions){
+    public Set<EntryData> filterIrrelevantEntryData(Set<Condition> conditions, Set<String> viewsWithOr, Set<String> extraOrViews){
 
         //Given the conditions as input, which EntryData will ABSOLUTELY not be affected by
         //purely these conditions? ASSUMING all condition sets are joined by AND clauses.
@@ -240,6 +269,7 @@ public class TableEntry {
         //              DONE since DEFAULT is ENTIRE SET and in case of disjoint sets LOOP WILL DO NOTHING
         //Third thing to check: what if we don't have any conditions in our EntryData?
         //      if so then we must be safe an re-evaluate (DONE since DEFAULT IS THE ENTIRE SET)
+        //Final thing to check: if the view contains an OR clause then ANY match -> re-evaluate (keep in set)
 
         Set<EntryData> returnSet = new HashSet<>();
         returnSet.addAll(entries);
@@ -272,6 +302,9 @@ public class TableEntry {
                                 //should be affected, don't filter it out
                             }
                             if(cTheir.conditionString.contains("<")){
+
+                                System.out.println(cTheir.conditionString + ", " + cMine.conditionString);
+
                                 //view: a>3. change: a<2. filter.
                                 //view: a>3. change: a<4. don't filter.
 
@@ -279,9 +312,13 @@ public class TableEntry {
                                 String valTheir = cTheir.conditionString.split("<")[1];
 
                                 if(StringUtils.isNumeric(valMine) && StringUtils.isNumeric(valTheir)){
+                                   System.out.println(Integer.parseInt(valMine) >= Integer.parseInt(valTheir));
+
                                     if((Integer.parseInt(valMine) >= Integer.parseInt(valTheir))){
+
                                         //Then WE FILTER THIS. Since this EntryData SHOULD NOT BE AFFECTED
                                         returnSet.remove(myED);
+                                        System.out.println("Removing the ED would result in removing the following: " + myED.dependents);
                                         breakLoop = true;
                                         break;
                                     }
@@ -395,6 +432,36 @@ public class TableEntry {
                             }
                         }
                     }
+                }
+            }
+        }
+
+        //for ease, build set of attribute names on the deletion and set of attribute names on view condition
+        Set<String> attributeNamesInserted = new HashSet<>();
+        for(Condition temp : conditions){
+            attributeNamesInserted.add(temp.attribute);
+        }
+
+        for(String orView : viewsWithOr){
+            for(EntryData myED : entries){
+
+                Set<Condition> myConds = new HashSet<>(myED.getConditions());
+
+                Set<String> attributeNamesView = new HashSet<>();
+
+                for(Condition viewCondition : myConds){
+                    attributeNamesView.add(viewCondition.attribute);
+                }
+
+                //Case 2
+                if(!Collections.disjoint(attributeNamesInserted,(attributeNamesView))) { //disjoint returns false if they have any elements in common
+//                System.out.println("continued and skipped...");
+                    if(myED.dependents.contains(orView)){
+                        if(!extraOrViews.contains(orView)) {
+                            extraOrViews.add(orView);
+                        }
+                    }
+
                 }
             }
         }

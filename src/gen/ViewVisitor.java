@@ -238,4 +238,10 @@ public interface ViewVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitAs(ViewParser.AsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ViewParser#exists}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExists(ViewParser.ExistsContext ctx);
 }

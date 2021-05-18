@@ -277,4 +277,11 @@ public class ViewBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements V
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitAs(ViewParser.AsContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitExists(ViewParser.ExistsContext ctx) { return visitChildren(ctx); }
 }

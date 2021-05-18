@@ -85,7 +85,9 @@ boolexpr    :
               boolexpr 'OR' boolexpr |
               VALUE OPERATOR attribute | //not supported
               NAME 'IN' NAME | //viewUse
-              '(' boolexpr ')' ;
+              '(' boolexpr ')' |
+              'not' boolexpr |
+              exists '(' attribute ')';
 attribute   : NAME('.'NAME)?  | val arithmetic attribute | attribute arithmetic val | indexing;
 val         : VALUE | NAME | CONSTANTS;
 
@@ -109,7 +111,7 @@ insertionVar: '('nodeName')' | '('nodeName':'type')'|
 insertAttributes:  NAME':'val (',' insertAttributes)*;
 
 as : 'AS' | 'as';
-
+exists : 'EXISTS' | 'exists';
 /*
 Lexer rules
 */
@@ -124,7 +126,7 @@ OPERATOR : 'CASE'|'CONTAINS'|'ELSE'|'END'|
 CONSTANTS : 'true' | 'false' | 'null';
 
 VALUE   : [0]|[1-9][0-9]* | [0]'.'[0-9]*[1-9]
-            | '"'[a-zA-Z_ ]+[0-9]*'"'| '\''[a-zA-Z_ ]+[0-9]*'\'';
+            | '"'[a-zA-Z_ 0-9]+'"'| '\''[a-zA-Z_ 0-9]+'\'';
 NAME    : [a-zA-Z_]+[0-9]* ;
 WHITESPACE : ' '-> skip ;
 ANY     : . ;

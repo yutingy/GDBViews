@@ -74,7 +74,7 @@ public class QueryParser extends ViewBaseListener {
 
     //Fourth: in the case of comparisons we have a list similar to varLabels and insertionVarLabels, except we use it to determine which types of views (upon init) MUST always
     //be reevaluated.
-    private Map<String, Set<String>> alwaysReevaluate = new HashMap<>(); //
+    private Map<String, SetTuple<String, HashSet<String>>> alwaysReevaluate = new HashMap<>(); //
 
 
     /**
@@ -92,6 +92,8 @@ public class QueryParser extends ViewBaseListener {
     //key : view name. value : set of node identifiers
 
     public Set<String> viewInstants = new HashSet<>();
+
+    public Set<String> orClauseViews = new HashSet<>();
 
 
     private String viewName;
@@ -192,6 +194,7 @@ public class QueryParser extends ViewBaseListener {
 
             //Change Graph
             cg = true;
+            System.out.println("Set cg to true");
 
             changeGraphQuery = ctx.getChild(0).getText();
             return;
@@ -232,7 +235,6 @@ public class QueryParser extends ViewBaseListener {
 
 
 
-        System.out.println(cg);
 
         //System.out.println(name);
 
@@ -241,6 +243,8 @@ public class QueryParser extends ViewBaseListener {
 
     @Override
     public void exitRoot(ViewParser.RootContext ctx){
+
+        System.out.println(returnType);
 
 
 
@@ -320,13 +324,38 @@ public class QueryParser extends ViewBaseListener {
 //                System.out.println("now Im here");
 
 //                Otherwise we look for the conditions we have
+
+                Set<String> referencedViews = new HashSet<>();
+
                 Set<Condition> conditionList = varConditions.get(affectedVar);
 
-                Set<EntryData> affectedEntryDatas = affectedEntry.filterIrrelevantEntryData(conditionList);
+                Set<EntryData> affectedEntryDatas = affectedEntry.filterIrrelevantEntryData(conditionList, orClauseViews, referencedViews);
+
+                finalAffectedViews.addAll(referencedViews);
 
                 for(EntryData d : affectedEntryDatas){
                     finalAffectedViews.addAll(d.dependents);
                 }
+
+
+
+
+                //final part to handle views that we almost always re-evaluate due to tough conditions ("a.attr1 > b.attr2")
+                if(alwaysReevaluate.containsKey(varLabels.get(affectedVar))){
+
+                    SetTuple<String, HashSet<String>> viewAndConditions = alwaysReevaluate.get(varLabels.get(affectedVar));
+                    Set<String> listOfAttr = viewAndConditions.y;
+
+                    for(Condition c : conditionList){
+                        for(String s : listOfAttr){
+                            if(c.attribute.equals(s)){
+                                //reevaluate
+                                if(!finalAffectedViews.contains(viewAndConditions.x)) finalAffectedViews.add(viewAndConditions.x);
+                            }
+                        }
+                    }
+                }
+
 
 
 
@@ -337,10 +366,11 @@ public class QueryParser extends ViewBaseListener {
             case UPDATE:{
 
 
+
+                //affectedVar should be already set by @parseUpdate earlier.
                 affectedEntry = dependencyTable.get(varLabels.get(affectedVar));
 
-//                System.out.println("Im here " + affectedEntry);
-//                System.out.println(affectedVar + ", " + varLabels.get(affectedVar));
+
 
                 if(affectedEntry == null){
                     //no way it is affected.
@@ -351,13 +381,52 @@ public class QueryParser extends ViewBaseListener {
                 //For an update, any view that contains a condition on the affected attribute must be updated - unless we find it to not be affected by
                 //the conditions in the query. For this part, we can use the same method (filterIrrelevantEntryData).
 
+                Set<String> referencedViews = new HashSet<>();
+
                 Set<Condition> conditionList = varConditions.get(affectedVar);
-                Set<EntryData> affectedEntryDatas = affectedEntry.filterIrrelevantEntryData(conditionList);
+                Set<EntryData> affectedEntryDatas = affectedEntry.filterIrrelevantEntryData(conditionList, orClauseViews, referencedViews);
+
+                //filterIrrelevantEntryData will fill referencedViews with views that must be updated due to the OR conditions.
+                finalAffectedViews.addAll(referencedViews);
 
                 //Now that we have this, we only continue if the update itself applies to these EntryData
 
                 for(EntryData d : affectedEntryDatas){
-                    if(d.containsConditionOnAttribute(affectedAttribute)) finalAffectedViews.addAll(d.dependents);
+                    if(d.containsConditionOnAttribute(affectedAttribute)) {
+                        finalAffectedViews.addAll(d.dependents);
+                        System.out.println("added to dependents: " + d.dependents);
+                    }
+                }
+
+                //final part to handle views that we almost always re-evaluate due to tough conditions ("a.attr1 > b.attr2")
+
+                if(alwaysReevaluate.containsKey(varLabels.get(affectedVar))){
+
+                    SetTuple<String, HashSet<String>> viewAndConditions = alwaysReevaluate.get(varLabels.get(affectedVar));
+                    Set<String> listOfAttr = viewAndConditions.y; // example: [userid, reputation, ... ]
+
+                    //if the graph change has no conditions on the removed attribute, then below will be null. In this case, then we have to
+                    //re-evaluate as long as any view had a condition on the removed attribute.
+                    if(conditionList == null){
+                        for(String s : listOfAttr){
+                            if(s.equals(affectedAttribute)){
+                                if(!finalAffectedViews.contains(viewAndConditions.x)) finalAffectedViews.add(viewAndConditions.x);
+                            }
+                        }
+                    }
+                    else {
+                        //below: conditionList helps filter out for those that do not match condition.
+                        //todo there is some funky logic: MATCH (n:User) WHERE n.userId = 19 SET n.upvotes = 1 + n.upvotes should not cause V17 to reevaluate but it does
+                        for (Condition c : conditionList) {
+                            for (String s : listOfAttr) {
+                                if (c.attribute.equals(s)) {
+                                    //reevaluate
+                                    if (!finalAffectedViews.contains(viewAndConditions.x))
+                                        finalAffectedViews.add(viewAndConditions.x);
+                                }
+                            }
+                        }
+                    }
                 }
 
 
@@ -429,15 +498,39 @@ public class QueryParser extends ViewBaseListener {
 
 
                     //At this point, all attributes and their variable are in insertedAttributes
+                    Set<String> referencedViews = new HashSet<>();
 
 
                     Set<Condition> conditionList = insertedAttributes.get(var);
-                    Set<EntryData> affectedEntryDatas = affectedEntry.filterWithInsertion(conditionList);
+                    Set<EntryData> affectedEntryDatas = affectedEntry.filterWithInsertion(conditionList, orClauseViews, referencedViews);
+
+                    finalAffectedViews.addAll(referencedViews);
 
                     //Now that we have this, we must continue since these are marked
 
                     for(EntryData d : affectedEntryDatas){
                         finalAffectedViews.addAll(d.dependents);
+                    }
+
+
+
+                    //final part to handle views that we almost always re-evaluate due to tough conditions ("a.attr1 > b.attr2")
+                    if(alwaysReevaluate.containsKey(varLabels.get(affectedVar))){
+
+                        SetTuple<String, HashSet<String>> viewAndConditions = alwaysReevaluate.get(varLabels.get(affectedVar));
+                        Set<String> listOfAttr = viewAndConditions.y;
+
+                        for(Condition c : conditionList){
+                            for(String s : listOfAttr){
+                                if(c.attribute.equals(s)){
+                                    //reevaluate
+                                    if(!finalAffectedViews.contains(viewAndConditions.x)) {
+                                        finalAffectedViews.add(viewAndConditions.x);
+                                        System.out.println("inv");
+                                    }
+                                }
+                            }
+                        }
                     }
 
 
@@ -455,15 +548,37 @@ public class QueryParser extends ViewBaseListener {
 
         if(dependencyTable.containsKey(NODESTARLABEL)){
             TableEntry te = dependencyTable.get(NODESTARLABEL);
-            for(EntryData e : te.getEntries()){
-                finalAffectedViews.addAll(e.dependents);
+
+
+            //this contains NODESTAR entries (i.e, nodes or rels that contain no label info). Deletions and Insertions MUST
+            //trigger an always-reevaluate, but an update may not necessarily do so. TODO put this in writing
+
+            if(change == changeType.UPDATE){
+                //Don't check for conditions on the change; we should probably do this too.
+                //Then check for all the entryData related to the tableentry if conditions match.
+                for (EntryData e : te.getEntries()){
+                    if(e.containsConditionOnAttribute(affectedAttribute)){
+                        finalAffectedViews.addAll(e.dependents);
+                    }
+                }
+            }
+            else {
+                for (EntryData e : te.getEntries()) {
+                    finalAffectedViews.addAll(e.dependents);
+                }
             }
         }
         if(dependencyTable.containsKey(RELSTARLABEL)){
 
             TableEntry te = dependencyTable.get(RELSTARLABEL);
-            for(EntryData e : te.getEntries()){
-                finalAffectedViews.addAll(e.dependents);
+
+            if(change == changeType.UPDATE){
+//todo is this the same as for nodestarlabel idk
+            }
+            else {
+                for (EntryData e : te.getEntries()) {
+                    finalAffectedViews.addAll(e.dependents);
+                }
             }
         }
 
@@ -497,6 +612,11 @@ public class QueryParser extends ViewBaseListener {
                 returnValExpr += ctx.attribute().getText();
                 returnType = retType.NODE;
             }
+            else{ //if its not a node or relationship, its gotta be the path
+                returnValExpr = ctx.attribute().getText();
+                returnType = retType.PATH;
+
+            }
         }
         else{
             if(varLabels.containsKey(ctx.attribute().getText())) {
@@ -506,7 +626,7 @@ public class QueryParser extends ViewBaseListener {
             }
         }
 
-//        System.out.println(returnValExpr);
+//        System.out.println("retvalexpr:" + returnValExpr);
 
 
 
@@ -537,7 +657,10 @@ public class QueryParser extends ViewBaseListener {
 //        }
 
         if (ctx.getChild(1) instanceof ViewParser.PathContext) {
+
             pathName = ctx.path().NAME().getText();
+//            System.out.println(pathName);
+//            System.out.println(returnValExpr);
             if(pathName.equals(returnValExpr)) returnType = retType.PATH;
         }
         else{
@@ -825,10 +948,6 @@ public class QueryParser extends ViewBaseListener {
     public void enterBoolexpr(ViewParser.BoolexprContext ctx){
 
 
-        //todo have not yet decided how to handle VIEWS that contain OR clauses:
-        //just re-evaluate
-
-
         if(isViewUse) {
 
             //Using a view: this catches the case when we see "n IN v1"
@@ -853,6 +972,19 @@ public class QueryParser extends ViewBaseListener {
 
         //Keep LHS of each condition inside the symbolTable
         else {
+            //OR clause
+            if(ctx.getText().contains("OR") && isViewInstant){
+                if(!orClauseViews.contains(viewName)) orClauseViews.add(viewName);
+            }
+
+            //handling the exist cases
+            if(ctx.getText().toLowerCase().contains("exists(")){
+                return;
+            }
+
+            //ignoring the "not ctx" cases
+            if(ctx.getText().toLowerCase().startsWith("not ")) return;
+
 
             ParseTree child1 = ctx.getChild(0);
             ParseTree child2 = ctx.getChild(2);
@@ -905,14 +1037,15 @@ public class QueryParser extends ViewBaseListener {
                     //x.name > y.name
                     //hold a separate structure ; whenever name, bio, name, name for labels related to a,b,x,y are involved, then re-evaluate.
 
-                    if(!alwaysReevaluate.containsKey(varLabels.get(keyname))) alwaysReevaluate.put(varLabels.get(keyname), new HashSet<>());
-                    if(!alwaysReevaluate.containsKey(varLabels.get(rhsKey))) alwaysReevaluate.put(varLabels.get(rhsKey), new HashSet<>());
-
-                    if(!alwaysReevaluate.get(varLabels.get(keyname)).contains(attributename)) alwaysReevaluate.get(varLabels.get(keyname)).add(attributename);
-                    if(!alwaysReevaluate.get(varLabels.get(rhsKey)).contains(rhsAttribute)) alwaysReevaluate.get(varLabels.get(rhsKey)).add(rhsAttribute);
+                    if(!alwaysReevaluate.containsKey(varLabels.get(keyname))) alwaysReevaluate.put(varLabels.get(keyname), new SetTuple<>(viewName,new HashSet<>()));
+                    if(!alwaysReevaluate.containsKey(varLabels.get(rhsKey))) alwaysReevaluate.put(varLabels.get(rhsKey), new SetTuple<>(viewName,new HashSet<>()));
 
 
-                    System.out.println(varLabels.get(keyname) + ", " + attributename + "\n" + varLabels.get(rhsKey) + ", " + rhsAttribute);
+                    if(!alwaysReevaluate.get(varLabels.get(keyname)).y.contains(attributename)) alwaysReevaluate.get(varLabels.get(keyname)).y.add(attributename);
+                    if(!alwaysReevaluate.get(varLabels.get(rhsKey)).y.contains(rhsAttribute)) alwaysReevaluate.get(varLabels.get(rhsKey)).y.add(rhsAttribute);
+
+
+                    System.out.println("ckqpt" + varLabels.get(keyname) + ", " + attributename + "\n" + varLabels.get(rhsKey) + ", " + rhsAttribute);
 
                 }
 
@@ -1112,6 +1245,8 @@ need method to handle pairList and attach those as "conditions" for the insertio
         affectedVar = varName;
         affectedAttribute = attrName;
 
+        System.out.println(affectedVar + ",:"+affectedAttribute);
+
     }
 
 
@@ -1239,6 +1374,16 @@ need method to handle pairList and attach those as "conditions" for the insertio
         return finalAffectedViews;
     }
 
+    public void resetAfterGraphUpdate(){
+        //todo there is a bug that one graph update will cause other graph updates to update more views than necessary
+        finalAffectedViews = new HashSet<>();
+        change = changeType.DEFAULT;
+        deletedVar = "";
+        affectedAttribute = "";
+        affectedVar = "";
+        affectedEntry = new TableEntry("");
+    }
+
     //Returns a set of strings corresponding to all non-hidden views which must be updated by re-evaluation
     //example: this may decide that views v1 and v3 must be reevaluated but not v2, etc.
     //input : a list of view names
@@ -1319,6 +1464,12 @@ need method to handle pairList and attach those as "conditions" for the insertio
 
 
 
+    }
+
+    public void printOrClauseViews(){
+        for (String s : orClauseViews){
+            System.out.println(s);
+        }
     }
 
 

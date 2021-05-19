@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-//todo minTags might be broken (not in parsing but in storing)
+
 
 public class QueryParser extends ViewBaseListener {
 
@@ -160,7 +160,7 @@ public class QueryParser extends ViewBaseListener {
     private LinkedList<String> thisQueryViews = new LinkedList<String>();
 
     //Below: Used for view use. Mainly to re-write the node queries
-    //Maps node identifiers to a set of views (todo more efficient would be mapping view to nodes since node-view is 1:1 but view-node is 1:many)
+    //Maps node identifiers to a set of views
     //
     // "MATCH (n)-[r]-(m) WHERE n IN view1" -> MATCH (n)-[r]-(m) WHERE id(n) IN [1, 2, ...]"
     // map would contain: key - n, value -view1
@@ -416,7 +416,6 @@ public class QueryParser extends ViewBaseListener {
                     }
                     else {
                         //below: conditionList helps filter out for those that do not match condition.
-                        //todo there is some funky logic: MATCH (n:User) WHERE n.userId = 19 SET n.upvotes = 1 + n.upvotes should not cause V17 to reevaluate but it does
                         for (Condition c : conditionList) {
                             for (String s : listOfAttr) {
                                 if (c.attribute.equals(s)) {
@@ -1202,7 +1201,7 @@ need method to handle pairList and attach those as "conditions" for the insertio
 
 
         String affected = varLabels.get(varNameLHS);
-        if(affected != null) affectedEntry = dependencyTable.get(affected); //todo what if affected == null
+        if(affected != null) affectedEntry = dependencyTable.get(affected);
 
         affectedVar = varNameLHS;
         affectedAttribute = attributeNameLHS;

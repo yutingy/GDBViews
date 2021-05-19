@@ -20,15 +20,6 @@ public class Main {
     protected static Map<String, Set<Relationship>> pathTable = new ConcurrentHashMap<>();
     protected static Map<String, Set<String>> edgeTable = new ConcurrentHashMap<>();
 
-//    protected Map<String,Set<SubPredTuple<String,GraphPredicate>>> viewTable;
-
-
-
-//    protected Map<String, Set<String>> inDegreeTable; // <value+Label,[subIds]>
-//    protected Map<String,Set<String>> outDegreeTable;
-//    protected Map<String,Set<SubPredTuple<String,GraphPredicate>>>commonFriendTable;
-//    protected Set<String> nodeProperty; // extra info?
-//    protected static SimpleBooleanTest  parserNeo4j = new SimpleBooleanTest("");
 
     public static ParseTreeWalker walker = new ParseTreeWalker();
     public static QueryParser vql = new QueryParser();
@@ -49,7 +40,7 @@ public class Main {
 //            testUses(size);
 
             loadTablesFromFiles(size);
-            createMetaInfoFromQueries("./test/ReturnVSize.txt");
+            createMetaInfoFromQueries("./test/initFileExample.txt");
 
 //            countQuery("MATCH (n:User)-[:POSTED]-(p:Post)-[:PARENT_OF]-(m:Post) WHERE n.upvotes > 1000 AND m.score > 100 AND m.score < 600 AND n.reputation > 2*p.score OR n.downvotes < p.score RETURN COUNT(DISTINCT n) as c"); //12
 //            countQuery("MATCH (n:User) WHERE n.upvotes > 1000 WITH COLLECT(ID(n)) AS v1 " +
@@ -64,7 +55,7 @@ public class Main {
 
 //            connector.pathQuery("MATCH p = (n:User)-[:POSTED]-(po:Post) WHERE n.reputation < 50000 RETURN p");
 //            initFile("./test/ViewInits.txt", size);
-//            initFile2("./test/ReturnVSize.txt", size);
+//            initFile2("./test/initFileExample.txt", size);
 
 //            validateReturn(size);
 
@@ -654,80 +645,6 @@ public class Main {
      *
      * */
 
-    public static long graphChangeTest() {
-
-        String test = "CREATE VIEW AS view1 MATCH (n:Post) WHERE n.score > 350 RETURN n";
-        String test2 = "CREATE VIEW AS view2 MATCH (n:User) WHERE n.upvotes>1000 RETURN n";
-        String test3 = "CREATE VIEW AS view3 MATCH p = (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.reputation > 90000 AND po2.score>100 RETURN p";
-        String test4 = "CREATE VIEW AS view4 MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.upvotes > 800 AND po.comments > 10  RETURN po2";
-        String test5 = "CREATE VIEW AS view5 MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.upvotes > 800 AND po2.score < 0 RETURN po2";
-
-        noGuiTest(test, false);
-        noGuiTest(test2, false);
-        noGuiTest(test3, false);
-        noGuiTest(test4, false);
-        noGuiTest(test5, false);
-
-        String change1 = "MATCH (n:Post) WHERE n.score > 350 SET n.score=200 "; //UPDATE
-        String ret2 = "MATCH (n:User) WHERE n.upvotes > 20000 DELETE n"; //DELETE
-        String ret3 = "MATCH (n:User) WHERE n.userId = 30 CREATE (n)-[p:POSTED]-(m:Post{comments:15})"; //INSERT
-
-
-        String ret4 = "CREATE (n:User{upvotes:250})"; //control that should not reevaluate
-        String ret5 = "MATCH (n:User) WHERE n.userId = 1 SET n.upvotes = 600"; //control that should not reevaluate
-
-        long ret1time = 0;
-        for (int i = 0; i < 5; i++) {
-            long now = System.currentTimeMillis();
-            noGuiTest(change1, false);
-            ret1time += System.currentTimeMillis() - now;
-
-        }
-        ret1time /= 5;
-
-        long ret2time = 0;
-        for (int i = 0; i < 5; i++) {
-            long now = System.currentTimeMillis();
-            noGuiTest(ret2, false);
-            ret2time += System.currentTimeMillis() - now;
-
-        }
-        ret2time /= 5;
-
-        long ret3time = 0;
-        for (int i = 0; i < 5; i++) {
-            long now = System.currentTimeMillis();
-            noGuiTest(ret3, false);
-            ret3time += System.currentTimeMillis() - now;
-
-        }
-        ret3time /= 5;
-
-        long ret4time = 0;
-        for (int i = 0; i < 5; i++) {
-            long now = System.currentTimeMillis();
-            noGuiTest(ret4, false);
-            ret4time += System.currentTimeMillis() - now;
-
-        }
-        ret4time /= 5;
-
-        long ret5time = 0;
-        for (int i = 0; i < 5; i++) {
-            long now = System.currentTimeMillis();
-            noGuiTest(ret5, false);
-            ret5time += System.currentTimeMillis() - now;
-
-        }
-        ret5time /= 5;
-
-
-        System.out.println("Times: " + ret1time + ", " + ret2time + ", " + ret3time + ", " + ret4time + ", " + ret5time);
-
-        return ret1time;
-
-    }
-
 
 
         public static long noGuiTest(String command, boolean materialized) {
@@ -854,150 +771,6 @@ public class Main {
 
     }
 
-    public static void initTest(){
-
-        String test = "CREATE VIEW AS view1 MATCH (n:Post) WHERE n.score > 350 RETURN n";
-        String test2 = "CREATE VIEW AS view2 MATCH (n:User) WHERE n.upvotes>1000 RETURN n";
-        String test3 = "CREATE VIEW AS view3 MATCH p = (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.reputation > 90000 AND po2.score>100 RETURN p";
-        String test4 = "CREATE VIEW AS view4 MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.upvotes > 800 AND po.comments > 10  RETURN po2";
-        String test5 = "CREATE VIEW AS view5 MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.upvotes > 800 AND po2.score < 0 RETURN po2";
-
-
-        noGuiTest(test, false);
-
-        long ret1time = 0;
-        for (int i = 0; i < 5; i++) {
-            long now = System.currentTimeMillis();
-            noGuiTest(test, false);
-            System.out.println((System.currentTimeMillis() - now) + " INDIVID");
-
-            ret1time += System.currentTimeMillis() - now;
-
-
-        }
-        ret1time /= 5;
-
-
-        noGuiTest(test2, false);
-
-
-        long ret2time = 0;
-        for (int i = 0; i < 5; i++) {
-            long now = System.currentTimeMillis();
-            noGuiTest(test2, false);
-
-            ret2time += System.currentTimeMillis() - now;
-            System.out.println((System.currentTimeMillis() - now) + " INDIVID");
-
-
-        }
-        ret2time /= 5;
-        System.out.println(ret2time + "LOOK HERE");
-
-        noGuiTest(test3, false);
-
-        long ret3time = 0;
-        for (int i = 0; i < 5; i++) {
-            long now = System.currentTimeMillis();
-            noGuiTest(test3, false);
-
-            ret3time += System.currentTimeMillis() - now;
-            System.out.println((System.currentTimeMillis() - now) + " INDIVID");
-
-
-        }
-        ret3time /= 5;
-        System.out.println(ret3time + "LOOK HERE");
-
-        noGuiTest(test4, false);
-
-        long ret4time = 0;
-        for (int i = 0; i < 5; i++) {
-            long now = System.currentTimeMillis();
-            noGuiTest(test4, false);
-             ret4time += System.currentTimeMillis() - now;
-            System.out.println((System.currentTimeMillis() - now) + " INDIVID");
-
-
-        }
-        ret4time /= 5;
-        System.out.println(ret4time + "LOOK HERE");
-
-
-        noGuiTest(test5, false);
-
-        long ret5time = 0;
-        for (int i = 0; i < 5; i++) {
-            long now = System.currentTimeMillis();
-            noGuiTest(test5, false);
-            ret5time += System.currentTimeMillis() - now;
-            System.out.println((System.currentTimeMillis() - now) + " INDIVID");
-
-
-        }
-        ret5time /= 5;
-
-
-        System.out.println("Times: " + ret1time + ", " + ret2time + ", " + ret3time + ", " + ret4time + ", " + ret5time);
-
-
-
-    }
-
-    public static void initFile(String fileName, String size){
-
-        File file = new File(fileName);
-
-        try {
-            Scanner myReader = new Scanner(file);
-
-            while(myReader.hasNextLine()){
-
-                String line = myReader.nextLine();
-                if(line.startsWith("*") || line.startsWith(" ") || line.startsWith("\n")) continue;
-                String query = "CREATE VIEW AS " + line.split(";")[0] + " " + line.split(";")[1];
-
-                String viewName = line.split(";")[0];
-
-                System.out.println(query);
-                noGuiTest(query, false);
-                toFile(size, viewName);
-
-
-                long now = System.currentTimeMillis();
-//                noGuiTest(query, false);
-//                noGuiTest(query, false);
-//                noGuiTest(query, false);
-//                System.out.println("Time taken avg: " + ((System.currentTimeMillis()-now)/3));
-
-
-
-//                long ret5time = 0;
-//                for (int i = 0; i < 3; i++) {
-//                    long now = System.currentTimeMillis();
-//                    noGuiTest(query, false);
-//                    ret5time += System.currentTimeMillis() - now;
-//                    System.out.println(query + " time taken: " + (System.currentTimeMillis() - now));
-//
-//
-//                }
-//                ret5time /= 3;
-//                System.out.println(query+" average " + ret5time);
-
-            }
-
-
-
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-
-    }
-
-    public static void useFile(String fileName){
-
-    }
 
 
 
@@ -1135,8 +908,8 @@ public class Main {
         loadTablesFromFiles(size); //load first
         //second, fill the meta data tables in vql, needed for the changegraph tests
         try {
-            createMetaInfoFromQueries("./test/ViewInits.txt"); //todo when doing changegraph, also include those in ReturnVSize.txt
-            createMetaInfoFromQueries("./test/ReturnVSize.txt");
+            createMetaInfoFromQueries("./test/ViewInits.txt");
+            createMetaInfoFromQueries("./test/initFileExample.txt");
 
             System.out.println("Done populating all tables - moving on to each use");
 
@@ -1187,6 +960,7 @@ public class Main {
 
 
 
+    //To test and validate initialization times for views, where view definition queries are stored in fileName under the example format..
     public static void initFile2(String fileName, String size){
 
         File file = new File(fileName);
@@ -1214,7 +988,7 @@ public class Main {
 
             Set<String> queries = durations.keySet();
 
-            for(int i=0; i<2; i++) {
+            for(int i=0; i<10; i++) {
                 for (String q : queries) {
                     long now = System.currentTimeMillis();
 
@@ -1230,10 +1004,17 @@ public class Main {
             }
 
 
+            String finalLine = "";
             for(String q : queries){
-                durations.put(q, (durations.get(q))/2);
-                System.out.println("Query:\n"+q+"\nAvg:\t"+durations.get(q));
+                durations.put(q, (durations.get(q))/10);
+                finalLine += "Query:\n"+q+"\nAvg:\t"+durations.get(q)+"\n";
+//                System.out.println("Query:\n"+q+"\nAvg:\t"+durations.get(q));
             }
+
+            FileWriter toInit = new FileWriter(new File("./test/inits"+size));
+            toInit.write(finalLine);
+            toInit.flush();
+            toInit.close();
 
 
 

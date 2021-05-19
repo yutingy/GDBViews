@@ -5,25 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7eeeda74-54a8-4547-b697-c36e8a7aaa22" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test/ReturnVSize.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Condition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Condition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GraphChange.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GraphChange.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Neo4jGraphConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Neo4jGraphConnector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/QueryParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/QueryParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TableEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TableEntry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/View.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gen/View.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/gen/View.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gen/View.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/gen/View.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gen/ViewBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gen/ViewBaseListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gen/ViewBaseVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gen/ViewBaseVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gen/ViewLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/gen/ViewLexer.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gen/ViewLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gen/ViewLexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gen/ViewLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/gen/ViewLexer.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gen/ViewListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gen/ViewListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gen/ViewParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gen/ViewParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gen/ViewVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gen/ViewVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/ViewUses2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/ViewUses2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SetTuple.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SetTuple.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/ReturnVSize.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/initFileExample.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,12 +30,12 @@
     <session id="-1163543441">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="39" />
+          <entry key="project.closed" value="40" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.28" value="1" />
           <entry key="project.open.time.29" value="2" />
           <entry key="project.open.time.30" value="11" />
-          <entry key="project.open.time.31" value="9" />
+          <entry key="project.open.time.31" value="10" />
           <entry key="project.open.time.32" value="8" />
           <entry key="project.open.time.33" value="8" />
           <entry key="project.open.time.34" value="4" />
@@ -57,38 +48,43 @@
           <entry key="project.open.time.45" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.63" value="1" />
-          <entry key="project.opened" value="53" />
+          <entry key="project.opened" value="54" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="README" value="1" />
           <entry key="ReturnVSize" value="1" />
           <entry key="class" value="1" />
+          <entry key="config" value="1" />
           <entry key="g4" value="6" />
-          <entry key="java" value="56" />
-          <entry key="txt" value="111" />
+          <entry key="gitignore" value="1" />
+          <entry key="java" value="62" />
+          <entry key="txt" value="114" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="ANTLR v4 grammar file" value="5" />
           <entry key="CLASS" value="1" />
-          <entry key="JAVA" value="56" />
-          <entry key="PLAIN_TEXT" value="113" />
+          <entry key="JAVA" value="62" />
+          <entry key="PLAIN_TEXT" value="119" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+          <entry key="config" value="21" />
           <entry key="g4" value="1944" />
-          <entry key="java" value="59368" />
-          <entry key="txt" value="2320" />
+          <entry key="gitignore" value="157" />
+          <entry key="java" value="60101" />
+          <entry key="txt" value="2403" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="ANTLR v4 grammar file" value="1944" />
-          <entry key="JAVA" value="59368" />
-          <entry key="PLAIN_TEXT" value="2320" />
+          <entry key="JAVA" value="60101" />
+          <entry key="PLAIN_TEXT" value="2581" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -102,7 +98,7 @@
     <favorites_list name="GDBViews" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.49955037">
+    <splitter split-orientation="horizontal" split-proportion="0.4571686">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -117,20 +113,59 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Main.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3094">
-                  <caret line="192" column="45" selection-start-line="192" selection-start-column="45" selection-end-line="192" selection-end-column="45" />
+                <state relative-caret-position="561">
+                  <caret line="57" column="47" selection-start-line="57" selection-start-column="47" selection-end-line="57" selection-end-column="47" />
                   <folding>
                     <element signature="imports" expanded="true" />
+                    <element signature="method#loadTablesFromFiles#0;class#Main#0" />
+                    <element signature="method#createMetaInfoFromQueries#0;class#Main#0" />
+                    <element signature="method#testUses#0;class#Main#0" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/test/ReturnVSize.txt">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test/ViewUses.txt">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="340">
-                  <caret line="20" selection-start-line="20" selection-end-line="20" />
+                <state>
+                  <caret column="2" selection-start-column="2" selection-end-column="2" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/.gitignore">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="860">
+                  <caret line="79" column="12" selection-start-line="79" selection-start-column="12" selection-end-line="79" selection-end-column="12" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test/config">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="34">
+                  <caret line="2" column="72" selection-start-line="2" selection-start-column="72" selection-end-line="2" selection-end-column="72" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test/ViewUses2.txt">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="119">
+                  <caret line="7" column="19" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="19" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test/initFileExample.txt">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="323">
+                  <caret line="19" column="69" selection-end-line="19" selection-end-column="69" />
                 </state>
               </provider>
             </entry>
@@ -139,7 +174,7 @@
             <entry file="file://$PROJECT_DIR$/test/ViewInits.txt">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="510">
-                  <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="353" />
+                  <caret line="30" column="36" selection-start-line="30" selection-start-column="36" selection-end-line="30" selection-end-column="36" />
                 </state>
               </provider>
             </entry>
@@ -148,32 +183,47 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/QueryParser.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="493">
-                  <caret line="418" column="169" selection-start-line="418" selection-start-column="169" selection-end-line="418" selection-end-column="169" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
+                <state relative-caret-position="68">
+                  <caret line="4" column="45" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/TableEntry.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1343">
-                  <caret line="86" column="134" selection-start-line="86" selection-start-column="134" selection-end-line="86" selection-end-column="134" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/EntryData.java">
+            <entry file="file://$PROJECT_DIR$/src/NodeList.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="34">
-                  <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+                  <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/NodeEnum.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state>
+                  <caret column="12" selection-start-column="12" selection-end-column="12" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ViewQueryListener.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1088">
+                  <caret line="335" column="33" selection-start-line="335" selection-start-column="25" selection-end-line="335" selection-end-column="33" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/GraphChange.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="595">
+                  <caret line="37" column="73" selection-start-line="37" selection-start-column="73" selection-end-line="37" selection-end-column="73" />
                 </state>
               </provider>
             </entry>
@@ -181,8 +231,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/SetTuple.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="85">
-                  <caret line="5" selection-start-line="5" selection-end-line="5" />
+                <state>
+                  <caret column="22" selection-start-column="22" selection-end-column="22" />
                 </state>
               </provider>
             </entry>
@@ -200,20 +250,20 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Neo4jGraphConnector.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3434">
-                  <caret line="226" column="144" selection-start-line="226" selection-start-column="144" selection-end-line="226" selection-end-column="144" />
+                <state relative-caret-position="85">
+                  <caret line="25" selection-start-line="25" selection-end-line="25" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/mainTests.java">
+            <entry file="file://$PROJECT_DIR$/src/MetaData.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="51">
-                  <caret line="3" selection-start-line="3" selection-end-line="3" />
+                <state relative-caret-position="34">
+                  <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
                 </state>
               </provider>
             </entry>
@@ -232,11 +282,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>loadT</find>
-      <find>initFi</find>
-      <find>System.out.print</find>
-      <find>orClau</find>
-      <find>upvotes</find>
       <find>isView</find>
       <find>System.out.prin</find>
       <find>90000</find>
@@ -247,7 +292,6 @@
       <find>deletedVar</find>
       <find>cg =</find>
       <find>cg</find>
-      <find>todo</find>
       <find>dependencyTable</find>
       <find>parseUpdate</find>
       <find>NODESTARLABEL</find>
@@ -262,6 +306,12 @@
       <find>System.out.println</find>
       <find>Im here</find>
       <find>alwaysReev</find>
+      <find>initFile</find>
+      <find>todo</find>
+      <find>MetaData</find>
+      <find>changeMeta</find>
+      <find>GraphChan</find>
+      <find>NodeEnum</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -291,7 +341,6 @@
         <option value="$PROJECT_DIR$/src/gen/ViewParser.java" />
         <option value="$PROJECT_DIR$/src/ChangeType.java" />
         <option value="$PROJECT_DIR$/src/DependencyTable.java" />
-        <option value="$PROJECT_DIR$/src/GraphChange.java" />
         <option value="$PROJECT_DIR$/src/MetaData.java" />
         <option value="$PROJECT_DIR$/src/ViewQueryListener.java" />
         <option value="$PROJECT_DIR$/src/View.java" />
@@ -304,11 +353,15 @@
         <option value="$PROJECT_DIR$/test/ViewUses2.txt" />
         <option value="$PROJECT_DIR$/src/View.g4" />
         <option value="$PROJECT_DIR$/test/ViewUses.txt" />
-        <option value="$PROJECT_DIR$/src/Neo4jGraphConnector.java" />
-        <option value="$PROJECT_DIR$/test/ReturnVSize.txt" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/TableEntry.java" />
         <option value="$PROJECT_DIR$/src/QueryParser.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/test/ReturnVSize.txt" />
+        <option value="$PROJECT_DIR$/test/config" />
+        <option value="$PROJECT_DIR$/src/GraphChange.java" />
+        <option value="$PROJECT_DIR$/src/SetTuple.java" />
+        <option value="$PROJECT_DIR$/src/Neo4jGraphConnector.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -348,11 +401,6 @@
             <path>
               <item name="GDBViews" type="b2602c69:ProjectViewProjectNode" />
               <item name="GDBViews" type="462c0819:PsiDirectoryNode" />
-              <item name="jess" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GDBViews" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GDBViews" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -360,42 +408,19 @@
               <item name="GDBViews" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="GDBViews" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GDBViews" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="Largest" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GDBViews" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GDBViews" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="Small" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GDBViews" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GDBViews" type="462c0819:PsiDirectoryNode" />
-              <item name="test3" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GDBViews" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GDBViews" type="462c0819:PsiDirectoryNode" />
-              <item name="test3" type="462c0819:PsiDirectoryNode" />
-              <item name="Small" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/Ting/Documents/GDBViews/src/Neo4jGraphConnector.java" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1618978054772" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1621399045210" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/jess.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -504,7 +529,8 @@
       <workItem from="1618946526131" duration="18575000" />
       <workItem from="1619015437576" duration="1412000" />
       <workItem from="1620089106513" duration="5857000" />
-      <workItem from="1621356722071" duration="600000" />
+      <workItem from="1621356722071" duration="4658000" />
+      <workItem from="1621452617655" duration="812000" />
     </task>
     <task id="LOCAL-00001" summary="set-up for testing on varied size databases">
       <created>1594145223483</created>
@@ -583,11 +609,18 @@
       <option name="project" value="LOCAL" />
       <updated>1616552645326</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="done, needs documentation. 2 bugs remain in todo">
+      <created>1621358331230</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1621358331230</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="588613000" />
+    <option name="totallyTimeSpent" value="593483000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -602,7 +635,7 @@
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49942726" visible="true" weight="0.11844197" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49942726" visible="true" weight="0.11923689" />
       <window_info id="Structure" order="1" sideWeight="0.50057274" side_tool="true" weight="0.16057234" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -621,7 +654,7 @@
       <window_info anchor="bottom" id="Messages" order="9" weight="0.32962668" />
       <window_info anchor="bottom" id="Java Enterprise" order="10" weight="0.32962668" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="12" weight="0.17553614" />
+      <window_info anchor="bottom" id="Version Control" order="12" visible="true" weight="0.17553614" />
       <window_info anchor="bottom" id="Tool Output" order="13" weight="0.32962668" />
       <window_info anchor="bottom" id="ANTLR Preview" order="14" weight="0.32803813" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -655,21 +688,10 @@
     <MESSAGE value="grammar update for insertion" />
     <MESSAGE value="finished insertions" />
     <MESSAGE value="changed I have not committed for a while: TableEntry updated and QueryParser updated. Test cases also updated. added test files too. cleanup needed." />
-    <option name="LAST_COMMIT_MESSAGE" value="changed I have not committed for a while: TableEntry updated and QueryParser updated. Test cases also updated. added test files too. cleanup needed." />
+    <MESSAGE value="done, needs documentation. 2 bugs remain in todo" />
+    <option name="LAST_COMMIT_MESSAGE" value="done, needs documentation. 2 bugs remain in todo" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test/Medium/basicPostScoreRangeFilterNode.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/Medium/pathQueryTwoConditions2Node.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/Medium/UserPostingOneConditionNode.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/Large/basicPostScoreRangeFilterNode.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/Small/UserPostingOneConditionNode.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -777,107 +799,10 @@
     <entry file="file://$PROJECT_DIR$/test/Largest/allUserPostsAllFiltersRel.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/singleTest.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="96" selection-start-column="96" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/ViewUses2.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="19" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/ViewUses.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="40" selection-start-column="40" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/DependencyTable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GraphChange.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-499">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GraphEngine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-272">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MetaData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1190">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/NodeEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="12" selection-start-column="12" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ViewQueryListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="877">
-          <caret line="335" column="33" selection-start-line="335" selection-start-column="25" selection-end-line="335" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/View.g4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1207">
-          <caret line="71" column="8" selection-start-line="71" selection-end-line="71" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3094">
-          <caret line="192" column="45" selection-start-line="192" selection-start-column="45" selection-end-line="192" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/ViewInits.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="353" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/ReturnVSize.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/QueryParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="418" column="169" selection-start-line="418" selection-start-column="169" selection-end-line="418" selection-end-column="169" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -895,10 +820,96 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README" />
+    <entry file="file://$PROJECT_DIR$/src/mainTests.java" />
+    <entry file="file://$PROJECT_DIR$/src/GraphEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1071">
+          <caret line="75" column="43" selection-start-line="75" selection-start-column="35" selection-end-line="75" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1207">
+          <caret line="71" column="8" selection-start-line="71" selection-end-line="71" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/ViewUses.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="2" selection-start-column="2" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/ViewUses2.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="19" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/initFileExample.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="69" selection-end-line="19" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/ViewInits.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="36" selection-start-line="30" selection-start-column="36" selection-end-line="30" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/QueryParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="45" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/NodeList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/NodeEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="12" selection-start-column="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MetaData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ViewQueryListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1088">
+          <caret line="335" column="33" selection-start-line="335" selection-start-column="25" selection-end-line="335" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GraphChange.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="37" column="73" selection-start-line="37" selection-start-column="73" selection-end-line="37" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/SetTuple.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        <state>
+          <caret column="22" selection-start-column="22" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -915,15 +926,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Neo4jGraphConnector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3434">
-          <caret line="226" column="144" selection-start-line="226" selection-start-column="144" selection-end-line="226" selection-end-column="144" />
+        <state relative-caret-position="85">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainTests.java">
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="561">
+          <caret line="57" column="47" selection-start-line="57" selection-start-column="47" selection-end-line="57" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#loadTablesFromFiles#0;class#Main#0" />
+            <element signature="method#createMetaInfoFromQueries#0;class#Main#0" />
+            <element signature="method#testUses#0;class#Main#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/singleTest.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="96" selection-start-column="96" selection-end-column="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="72" selection-start-line="2" selection-start-column="72" selection-end-line="2" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="860">
+          <caret line="79" column="12" selection-start-line="79" selection-start-column="12" selection-end-line="79" selection-end-column="12" />
         </state>
       </provider>
     </entry>

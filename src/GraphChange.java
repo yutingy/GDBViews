@@ -37,28 +37,6 @@ public class GraphChange{
         if(query.contains("DELETE")) graphChangeType = changeType.DELETE;
         if(query.contains("CREATE")) graphChangeType = changeType.INSERT;
 
-        //all work for figuring out the above variables are here.
-        //or maybe it should be in the parser..the parser makes more sense, to be honest since it can directly check the
-        //modified values and look for their labels that should have been in the search
-
-        /*
-
-        MATCH ....
-
-        DELETE n
-
-         */
-        if(graphChangeType == changeType.DELETE){
-
-//            String deletedVar = query.split("DELETE")[1].strip();
-
-
-
-
-        }
-
-
-
     }
 
 

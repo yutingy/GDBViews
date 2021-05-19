@@ -24,23 +24,9 @@ public class Neo4jGraphConnector{
 
     //NEO4J using enterprise edition 4.0.4 JARS (community will not work for multi databases)
 
-
-    public static String DB_PATH="";
-    public  String propertiesFile = "./etc/neo4j/db.properties";
     public static GraphDatabaseService db;
     public static long startTime;
     public static long endTime;
-
-    //begins variables for demo
-    //TODO remove later on if changes are loaded from a different part EP
-    public static int nextChange = 0;
-    HashMap<Integer,String> newLinks;
-    public static String FILE_PATH_NEW_LINKS="";
-
-
-
-
-    // ends variables for demo
 
 
     DatabaseManagementService databaseManagementService;
@@ -215,20 +201,10 @@ public class Neo4jGraphConnector{
     }
 
     public Neo4jGraphConnector() {
-//        File dbHome = new File("C:/Users/yutin/.Neo4jDesktop/neo4jDatabases/database-65f02676-ca76-4513-8b2b-c6580bc2cf38/installation-4.0.4/"); //small example - now empty
-//        File dbHome = new File("C:/Users/yutin/.Neo4jDesktop/neo4jDatabases/database-53cdba25-ce01-41d1-9e6e-cb75ee2a0825/installation-4.0.4/"); //twitter
-//        File dbHome = new File("C:/Users/yutin/.Neo4jDesktop/neo4jDatabases/database-8c7060ab-2ba4-41a9-bbf3-2ebd19f0f78d/installation-4.0.4/"); //stackoverflow
 
-
-//        File dbHome = new File("D:/.Neo4jDesktop/neo4jDatabases/database-5f3da19a-6ab7-4c91-9ec6-41cd398c5153/installation-4.0.4/"); //largest stack-overflow
-//        File dbHome = new File("D:/.Neo4jDesktop/neo4jDatabases/database-6c69dad4-2894-4778-b828-384a407a99a1/installation-4.0.4/"); //second largest
-//        File dbHome = new File("D:/.Neo4jDesktop/neo4jDatabases/database-cc61c6ab-6015-407e-819d-99f764d172b2/installation-4.0.4/"); //second lsmallest
-        File dbHome = new File("D:/.Neo4jDesktop/neo4jDatabases/database-b9300893-621c-4938-82bf-f414127c1e61/installation-4.0.4/"); // smallest
-//        File dbHome = new File("D:/.Neo4jDesktop/neo4jDatabases/database-3df1f6eb-4605-45f0-bbc9-9d3c00ba3702/installation-4.0.4"); // movie example
-
-
-//        dbHome = new File("C:/Users/yutin/Downloads/neo4j-community-4.0.4-windows/neo4j-community-4.0.4/");
-
+        String size = "small";
+        String path = getDbPath(size);
+        File dbHome = new File(path);
 
         databaseManagementService = new DatabaseManagementServiceBuilder(dbHome)
                 .setConfig(GraphDatabaseSettings.default_database, "neo4j")
@@ -239,6 +215,25 @@ public class Neo4jGraphConnector{
         System.out.println("neo4j graph connector set-up done.");
 
     }
+
+
+    public String getDbPath(String size){
+        String configPath = "/test/config";
+        try {
+            Scanner sc = new Scanner(new File(configPath));
+            while(sc.hasNextLine()){
+                String line = sc.nextLine();
+                if(line.startsWith(size.toLowerCase())){
+                    return line.split("=")[1];
+                }
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return "";
+    }
+
 
 
     //for the Jess side...
@@ -467,45 +462,11 @@ public class Neo4jGraphConnector{
 
         test("MATCH(n:User) where n.reputation>100 return n");
 
-//        Set<String> ahihi = connector.executeQuery("MATCH (n:User) RETURN DISTINCT ID(n)");
 
-//        System.out.println(ahihi);
-//        System.out.println(connector.executeQuery("MATCH (n) RETURN n.name, n.views"));
 
         connector.shutdown();
 
 
-        //        registerShutDownHook(databaseManagementService);
-
-
-
-        //System.out.println(new String("hola =val"));
-
-        //test.satEdgeNodeConds("username=n_00", "username=n_01", "labels={FRIEND}", "labels={User} & age > 0", "labels={User} & age>1");
-
-        //test.satNodeProperty("username=n_11", "labels={User} & age > 67");
-
-        //test.getDegreeLabel("username=n_11","empty","labels={FRIEND}" );
-        //test.outDegree(3, "labels={FRIEND}", "empty");
-        //test.commonFriend("username=1", "username=2", "labels={FRIEND}", "labels={FRIEND}","empty");
-
-        //test.reverseNeighbors("username=n_11","labels={FRIEND}","labels={User}");
-
-        //test.shortestPath("username=20", "username=4578", "labels={FRIEND}", "empty");
-
-        //test.customQuery("Match (n:User)-[r:FRIEND]->(m) return n,m");
-
-        //test.findNeighbors("username=1", 2, "labels={FRIEND}", "labels={User}");
-        //test.nodeProperty("username=n_00");
-
-		/*
-		Set<SimpleNode> res = test.shortestPath("'node_00'", "'node_22'", "FRIEND", "empty");
-
-		for(SimpleNode node : res)
-			System.out.println(node.getId() +", label=" + node.getLabel() );
-		*/
-        //System.out.println(array.length+ "," + array[0]+","+ array[1]);
-        //System.out.println(test.buildQuery("3", "label=hola, label2=perro", "username=2"));
 
 
     }

@@ -200,9 +200,8 @@ public class Neo4jGraphConnector{
         return nodeids;
     }
 
-    public Neo4jGraphConnector() {
+    public Neo4jGraphConnector(String size) {
 
-        String size = "small";
         String path = getDbPath(size);
         File dbHome = new File(path);
 
@@ -453,8 +452,9 @@ public class Neo4jGraphConnector{
 
     public static void main(String[] args){
 
+        //main method not used, only for testing purposes
 
-        Neo4jGraphConnector connector  = new Neo4jGraphConnector();
+        Neo4jGraphConnector connector  = new Neo4jGraphConnector("small");
 
 //        connector.executeQuery("MATCH path = (n)-[]-(m)\n" +
 //                "FOREACH(pathnode in nodes(path) | SET(CASE WHEN NOT EXISTS(pathnode.views) THEN pathnode END).views = [] SET pathnode.views = (CASE WHEN \"hiddenview1\" IN pathnode.views THEN [] ELSE [\"hiddenview1\"] END) + pathnode.views)\n" +

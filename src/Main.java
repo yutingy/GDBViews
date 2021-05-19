@@ -32,124 +32,13 @@ public class Main {
 
             String size = "Small";
 
+            connector = new Neo4jGraphConnector(size);
 
 
-
-            connector = new Neo4jGraphConnector();
-
-//            testUses(size);
-
-            loadTablesFromFiles(size);
-            createMetaInfoFromQueries("./test/initFileExample.txt");
-
-//            countQuery("MATCH (n:User)-[:POSTED]-(p:Post)-[:PARENT_OF]-(m:Post) WHERE n.upvotes > 1000 AND m.score > 100 AND m.score < 600 AND n.reputation > 2*p.score OR n.downvotes < p.score RETURN COUNT(DISTINCT n) as c"); //12
-//            countQuery("MATCH (n:User) WHERE n.upvotes > 1000 WITH COLLECT(ID(n)) AS v1 " +
-//                    "MATCH (n:Post)-[:PARENT_OF]-(m:Post) WHERE m.score > 100 AND m.score < 600 " +
-//                    " WITH v1, COLLECT(ID(n)) AS v2 " +
-//                    " MATCH (n)-[:POSTED]-(p:Post) WHERE ID(n) IN v1 AND ID(p) IN v2 " +
-//                    "AND n.reputation > 2*p.score OR n.downvotes<p.score RETURN COUNT(DISTINCT n) as c"); //u12
-
-
+//            loadTablesFromFiles(size);
+//            createMetaInfoFromQueries("./test/initFileExample.txt");
 
             terminal();
-
-//            connector.pathQuery("MATCH p = (n:User)-[:POSTED]-(po:Post) WHERE n.reputation < 50000 RETURN p");
-//            initFile("./test/ViewInits.txt", size);
-//            initFile2("./test/initFileExample.txt", size);
-
-//            validateReturn(size);
-
-
-//            terminal();
-
-
-//            textBasedSmart("MATCH (n:Post) WHERE n.score > 350 RETURN n"); //1
-//            textBasedSmart("MATCH (n:Post) WHERE n.score < 800 AND n.score > 350 RETURN n"); //2
-//            textBasedSmart("MATCH (n:User) WHERE n.upvotes > 1000 RETURN n"); //3
-//            textBasedSmart("MATCH (n:User) WHERE n.reputation > 90000 RETURN n"); //4
-//            textBasedSmart("MATCH p = (n:User)-[:POSTED]-(po:Post) WHERE n.reputation < 500 RETURN nodes(p)"); //5
-//            textBasedSmart("MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.upvotes > 800 AND po.comments > 10  RETURN po2"); //6
-//            textBasedSmart("MATCH (n:Post)-[:PARENT_OF]-(m:Post) WHERE m.score > 100 AND m.score < 600 RETURN n"); //7
-//            textBasedSmart("MATCH (n:Tag) WHERE n.tagId = 'java' OR n.tagId = 'html' RETURN n"); //8
-//            textBasedSmart("MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.upvotes > 800 AND po.comments > 10 AND po2.score > 350 RETURN n"); // use 9
-//            textBasedSmart("MATCH (n:User)-[:POSTED]-(p:Post) WHERE n.upvotes > 1000 RETURN p"); //u 10
-//            textBasedSmart("MATCH (n:User)-[:POSTED]-(p:Post)-[:PARENT_OF]-(m:Post) WHERE n.upvotes > 1000 AND m.score > 100 AND m.score < 600 AND n.reputation > 2*p.score OR n.downvotes < p.score RETURN n"); //12
-//
-//            textBasedSmart("MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post)-[:HAS_TAG]-(t:Tag)-[:HAS_TAG]-(p2:Post)-[:POSTED]-(m:User) WHERE n.upvotes > 800 AND po.comments > 10 AND m.reputation < 500 RETURN t"); //11 probably wont terminate..
-
-
-
-            /*
-            * text based, rewrite with large DB u13-u21  in order (non natural)
-            * */
-//            textBasedSmart("MATCH (n:User)-[:POSTED]-(p1:Post)-[:PARENT_OF]-(p2:Post)-[:POSTED]-(m:User) WHERE n.userId<50 WITH COLLECT(ID(m)) AS V14 MATCH (n) WHERE ID(n) IN V14 RETURN n");
-//            textBasedSmart("MATCH (p2:Post)-[:HAS_TAG]-(t) WHERE t.tagId='html' WITH COLLECT(ID(p2)) AS V15 MATCH (n) WHERE ID(n) IN V15 RETURN n");
-//            textBasedSmart("MATCH p = (n:User)-[:POSTED]-(po:Post) WHERE n.reputation < 50000 UNWIND NODES(p) AS pathViewN UNWIND RELATIONSHIPS(p) AS pathViewR WITH DISTINCT pathViewN, pathViewR WITH COLLECT(ID(pathViewN)) as pathViewNid, COLLECT(ID(pathViewR)) as pathViewRid MATCH (n) WHERE ID(n) IN pathViewNid RETURN n");
-//            textBasedSmart("MATCH (n:User)-[:POSTED]-(p1:Post)-[:PARENT_OF]-(p2:Post)-[:POSTED]-(m:User) WHERE n.userId<m.userId AND n.reputation>m.reputation WITH COLLECT(ID(m)) AS V17 MATCH (n) WHERE ID(n) IN V17 RETURN n");
-//            textBasedSmart("MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.upvotes > 0 AND po.comments > 10 AND po2.comments<10  WITH COLLECT(ID(po2)) AS V18 MATCH (n) WHERE ID(n) IN V18 RETURN n");
-//            textBasedSmart("MATCH (n:Post)-[:PARENT_OF]-(m:Post) WHERE n.score =15 AND m.score = 50 WITH COLLECT(ID(n)) AS V19 MATCH (n) WHERE n IN V19 RETURN n");
-//            textBasedSmart("MATCH (n:Post)-[:HAS_TAG]-(t) WHERE n.postId = '1065111' WITH COLLECT(ID(t)) AS V20 MATCH (n) WHERE n IN V20 RETURN n");
-//            textBasedSmart("MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.upvotes > 0 AND po.comments > 10 AND po2.comments<10  WITH COLLECT(ID(po2)) AS V18 MATCH (n:Post)-[:PARENT_OF]-(m:Post) WHERE n.score =15 AND m.score = 50 WITH V18, COLLECT(ID(n)) AS V19 MATCH (n) WHERE n IN V18 AND n IN V19 RETURN n");
-//            textBasedSmart("MATCH (n:Post)-[:HAS_TAG]-(t) WHERE n.postId = '1065111' WITH COLLECT(ID(t)) AS V20 MATCH (n)-[:HAS_TAG]-(p:Post) WHERE n IN V20 RETURN p");
-//            textBasedSmart("MATCH (n:Tag) WHERE n.tagId = 'java' OR n.tagId = 'html' WITH COLLECT(ID(n)) AS V5 MATCH (n)-[:HAS_TAG]-(p:Post) WHERE ID(n) IN V5 RETURN p");
-//            textBasedSmart("MATCH (p2:Post)-[:HAS_TAG]-(t) WHERE t.tagId='html' WITH COLLECT(ID(p2)) AS V15 MATCH (m:User)-[:POSTED]-(n) WHERE ID(n) IN V15 RETURN m");
-
-
-            /*
-            * text based natural queries u13-u21
-            * */
-
-//            textBasedSmart("MATCH (n:User)-[:POSTED]-(p1:Post)-[:PARENT_OF]-(p2:Post)-[:POSTED]-(m:User) WHERE n.userId<50 RETURN m");
-//            textBasedSmart("MATCH (p2:Post)-[:HAS_TAG]-(t) WHERE t.tagId='html' RETURN p2");
-//            textBasedSmart("MATCH p = (n:User)-[:POSTED]-(po:Post) WHERE n.reputation < 50000 RETURN p");
-//            textBasedSmart("MATCH (n:User)-[:POSTED]-(p1:Post)-[:PARENT_OF]-(p2:Post)-[:POSTED]-(m:User) WHERE n.userId<m.userId AND n.reputation>m.reputation RETURN m");
-//            textBasedSmart("MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.upvotes > 0 AND po.comments > 10 AND po2.comments<10  RETURN po2");
-//            textBasedSmart("MATCH (n:Post)-[:PARENT_OF]-(m:Post) WHERE n.score =15 AND m.score = 50 RETURN n");
-//            textBasedSmart("MATCH (n:Post)-[:HAS_TAG]-(t) WHERE n.postId = '1065111' RETURN t");
-//            textBasedSmart("MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.upvotes > 0 AND po.comments > 10 AND po2.comments<10 WITH po2 MATCH (po2)-[:PARENT_OF]-(m:Post) WHERE po2.score=15 AND m.score=50 RETURN po2");
-//            textBasedSmart("MATCH (n:Tag)-[:HAS_TAG]-(p:Post) WHERE n.postId = '1065111' WITH n MATCH (n)-[:HAS_TAG]-(p:Post) RETURN p");
-//            textBasedSmart("MATCH (n:Tag)-[:HAS_TAG]-(p:Post) WHERE n.tagId = 'java' OR n.tagId = 'html' RETURN p");
-//            textBasedSmart("MATCH (m:User)-[:POSTED]-(p2:Post)-[:HAS_TAG]-(t) WHERE t.tagId='html' RETURN m");
-
-
-
-
-//            textBasedSmart("MATCH (n:Post) WHERE n.score > 350 WITH COLLECT(ID(n)) AS v MATCH (n) WHERE ID(n) IN v RETURN n"); // U1
-//            textBasedSmart("MATCH (n:Post) WHERE n.score < 800 AND n.score > 350 WITH COLLECT(ID(n)) AS v MATCH (n) WHERE ID(n) IN v RETURN n"); //U2
-//            textBasedSmart("MATCH (n:User) WHERE n.upvotes > 1000 WITH COLLECT(ID(n)) AS v MATCH (n) WHERE ID(n) IN v RETURN n"); //U3
-//            textBasedSmart("MATCH (n:User) WHERE n.reputation > 90000 WITH COLLECT(ID(n)) AS v MATCH (n) WHERE ID(n) IN v RETURN n"); //U4
-//            textBasedSmart("MATCH p = (n:User)-[:POSTED]-(po:Post) WHERE n.reputation < 500 UNWIND NODES(p) AS pathViewN UNWIND RELATIONSHIPS(p) AS pathViewR WITH DISTINCT pathViewN, pathViewR WITH COLLECT(ID(pathViewN)) as pathViewNid, COLLECT(ID(pathViewR)) as pathViewRid MATCH (n) WHERE ID(n) IN pathViewNid RETURN n"); //U5
-//            textBasedSmart("MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) WHERE n.upvotes > 800 AND po.comments > 10 WITH COLLECT(ID(po2)) AS v MATCH (n) WHERE ID(n) IN v RETURN n"); //6
-//            textBasedSmart("MATCH (n:Post)-[:PARENT_OF]-(m:Post) WHERE m.score > 100 AND m.score < 600 WITH COLLECT(ID(n)) AS v MATCH (n) WHERE ID(n) IN v RETURN n"); //7
-//            textBasedSmart("MATCH (n:Tag) WHERE n.tagId = 'java' OR n.tagId = 'html'  WITH COLLECT(ID(n)) AS v MATCH (n) WHERE ID(n) IN v RETURN n"); // u8
-//
-//            //not smart, actually stupid
-//            textBasedSmart("MATCH (n:Post) \n" +
-//                    "    WHERE n.score > 350 \n" +
-//                    "    WITH COLLECT(ID(n)) as V1\n" +
-//                    "    \n" +
-//                    "    MATCH (n:User)-[:POSTED]-(po:Post)-[:PARENT_OF]-(po2:Post) \n" +
-//                    "    WHERE n.upvotes > 800 AND po.comments > 10  \n" +
-//                    "    WITH V1, COLLECT(ID(po2)) as V8\n" +
-//                    "    \n" +
-//                    "    MATCH (n) WHERE ID(n) IN V1 AND ID(n) IN V8\n" +
-//                    "    RETURN n"); //U9
-//
-//            textBasedSmart("MATCH (n:User) WHERE n.upvotes > 1000 WITH COLLECT(ID(n)) AS v MATCH (n)-[:POSTED]-(p:Post) WHERE ID(n) IN v RETURN p "); //u10
-//
-//            textBasedSmart("MATCH (n:User) WHERE n.upvotes > 1000 WITH COLLECT(ID(n)) AS v1 " +
-//                    "MATCH (n:Post)-[:PARENT_OF]-(m:Post) WHERE m.score > 100 AND m.score < 600 " +
-//                    " WITH v1, COLLECT(ID(n)) AS v2 " +
-//                    " MATCH (n)-[:POSTED]-(p:Post) WHERE ID(n) IN v1 AND ID(p) IN v2 " +
-//                    "AND n.reputation > 2*p.score OR n.downvotes<p.score RETURN COUNT(n)"); //u12
-
-
-
-//            initFile2("./test/singleTest.txt", size);
-//            noGuiTest("CREATE VIEW AS v99 MATCH (n:User) WHERE n.userId < 20 RETURN n", false);
-//            initTest();
-//            graphChangeTest();
-//testTextCopy();
 
 
         }

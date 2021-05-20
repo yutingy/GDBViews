@@ -24,23 +24,9 @@ public class Neo4jGraphConnector{
 
     //NEO4J using enterprise edition 4.0.4 JARS (community will not work for multi databases)
 
-
-    public static String DB_PATH="";
-    public  String propertiesFile = "./etc/neo4j/db.properties";
     public static GraphDatabaseService db;
     public static long startTime;
     public static long endTime;
-
-    //begins variables for demo
-    //TODO remove later on if changes are loaded from a different part EP
-    public static int nextChange = 0;
-    HashMap<Integer,String> newLinks;
-    public static String FILE_PATH_NEW_LINKS="";
-
-
-
-
-    // ends variables for demo
 
 
     DatabaseManagementService databaseManagementService;
@@ -54,7 +40,7 @@ public class Neo4jGraphConnector{
 
     public static Set<Relationship> pathQuery(String query){
 
-        System.out.println("Executing query: " + query);
+ //       System.out.println("Executing query: " + query);
 
         Set<Relationship> retset = new HashSet<>();
 
@@ -64,6 +50,7 @@ public class Neo4jGraphConnector{
             Result result = tx.execute(query);
 
             while (result.hasNext()) {
+//                System.out.println("next");
                 Map<String, Object> row = result.next();
                 for (Map.Entry<String, Object> column : row.entrySet()) {
 
@@ -102,11 +89,14 @@ public class Neo4jGraphConnector{
 
         if(query.equals("")) return nodeids ;
 
-        System.out.println("Executing query: " + query);
+        //System.out.println("Executing query: " + query);
+
+        if(query.contains("REMOVE") || query.contains("SET")) return nodeids; //todo remove when testing
 
 //        if(!query.equals("")) return nodeids;
 
         String rows = "";
+        int numResults = 0;
 
 
         if(query.contains("RETURN DISTINCT ID(")){
@@ -128,11 +118,33 @@ public class Neo4jGraphConnector{
 
         }
 
+        else if(query.contains("RETURN COUNT")){
+            try (Transaction tx = db.beginTx()) {
+                Result result = tx.execute(query);
+
+                while(result.hasNext()){
+                    Map<String, Object> row = result.next();
+                    for (Map.Entry<String, Object> column : row.entrySet()) {
+                        rows += column.getKey() + ": " + column.getValue() + "; ";
+                    }
+                }
+                System.out.println(rows);
+
+//                List<String> columns = result.columns();
+//                Iterator<Long> counts = result.columnAs("c");
+//                counts.forEachRemaining(val -> System.out.println(val));
+////                System.out.println(counts);
+
+
+            }
+        }
+
         else {
             try (Transaction tx = db.beginTx()) {
                 Result result = tx.execute(query);
                 while (result.hasNext()) {
                     Map<String, Object> row = result.next();
+                    numResults++;
                     for (Map.Entry<String, Object> column : row.entrySet()) {
 
 
@@ -148,8 +160,23 @@ public class Neo4jGraphConnector{
             }
         }
         System.out.println("Execution done");
+
+
         return nodeids;
 
+    }
+
+    public static void counts(String q){
+
+        try (Transaction tx = db.beginTx()) {
+            Result result = tx.execute(q);
+
+            List<String> columns = result.columns();
+            Iterator<Long> counts = result.columnAs("c");
+            System.out.println(counts.next());
+
+
+        }
     }
 
 
@@ -173,14 +200,10 @@ public class Neo4jGraphConnector{
         return nodeids;
     }
 
-    public Neo4jGraphConnector() {
-//        File dbHome = new File("C:/Users/yutin/.Neo4jDesktop/neo4jDatabases/database-65f02676-ca76-4513-8b2b-c6580bc2cf38/installation-4.0.4/"); //small example - now empty
-//        File dbHome = new File("C:/Users/yutin/.Neo4jDesktop/neo4jDatabases/database-53cdba25-ce01-41d1-9e6e-cb75ee2a0825/installation-4.0.4/"); //twitter
-        File dbHome = new File("C:/Users/yutin/.Neo4jDesktop/neo4jDatabases/database-8c7060ab-2ba4-41a9-bbf3-2ebd19f0f78d/installation-4.0.4/"); //stackoverflow
+    public Neo4jGraphConnector(String size) {
 
-
-//        dbHome = new File("C:/Users/yutin/Downloads/neo4j-community-4.0.4-windows/neo4j-community-4.0.4/");
-
+        String path = getDbPath(size);
+        File dbHome = new File(path);
 
         databaseManagementService = new DatabaseManagementServiceBuilder(dbHome)
                 .setConfig(GraphDatabaseSettings.default_database, "neo4j")
@@ -191,6 +214,25 @@ public class Neo4jGraphConnector{
         System.out.println("neo4j graph connector set-up done.");
 
     }
+
+
+    public String getDbPath(String size){
+        String configPath = "/test/config";
+        try {
+            Scanner sc = new Scanner(new File(configPath));
+            while(sc.hasNextLine()){
+                String line = sc.nextLine();
+                if(line.startsWith(size.toLowerCase())){
+                    return line.split("=")[1];
+                }
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return "";
+    }
+
 
 
     //for the Jess side...
@@ -410,8 +452,9 @@ public class Neo4jGraphConnector{
 
     public static void main(String[] args){
 
+        //main method not used, only for testing purposes
 
-        Neo4jGraphConnector connector  = new Neo4jGraphConnector();
+        Neo4jGraphConnector connector  = new Neo4jGraphConnector("small");
 
 //        connector.executeQuery("MATCH path = (n)-[]-(m)\n" +
 //                "FOREACH(pathnode in nodes(path) | SET(CASE WHEN NOT EXISTS(pathnode.views) THEN pathnode END).views = [] SET pathnode.views = (CASE WHEN \"hiddenview1\" IN pathnode.views THEN [] ELSE [\"hiddenview1\"] END) + pathnode.views)\n" +
@@ -419,45 +462,11 @@ public class Neo4jGraphConnector{
 
         test("MATCH(n:User) where n.reputation>100 return n");
 
-//        Set<String> ahihi = connector.executeQuery("MATCH (n:User) RETURN DISTINCT ID(n)");
 
-//        System.out.println(ahihi);
-//        System.out.println(connector.executeQuery("MATCH (n) RETURN n.name, n.views"));
 
         connector.shutdown();
 
 
-        //        registerShutDownHook(databaseManagementService);
-
-
-
-        //System.out.println(new String("hola =val"));
-
-        //test.satEdgeNodeConds("username=n_00", "username=n_01", "labels={FRIEND}", "labels={User} & age > 0", "labels={User} & age>1");
-
-        //test.satNodeProperty("username=n_11", "labels={User} & age > 67");
-
-        //test.getDegreeLabel("username=n_11","empty","labels={FRIEND}" );
-        //test.outDegree(3, "labels={FRIEND}", "empty");
-        //test.commonFriend("username=1", "username=2", "labels={FRIEND}", "labels={FRIEND}","empty");
-
-        //test.reverseNeighbors("username=n_11","labels={FRIEND}","labels={User}");
-
-        //test.shortestPath("username=20", "username=4578", "labels={FRIEND}", "empty");
-
-        //test.customQuery("Match (n:User)-[r:FRIEND]->(m) return n,m");
-
-        //test.findNeighbors("username=1", 2, "labels={FRIEND}", "labels={User}");
-        //test.nodeProperty("username=n_00");
-
-		/*
-		Set<SimpleNode> res = test.shortestPath("'node_00'", "'node_22'", "FRIEND", "empty");
-
-		for(SimpleNode node : res)
-			System.out.println(node.getId() +", label=" + node.getLabel() );
-		*/
-        //System.out.println(array.length+ "," + array[0]+","+ array[1]);
-        //System.out.println(test.buildQuery("3", "label=hola, label2=perro", "username=2"));
 
 
     }

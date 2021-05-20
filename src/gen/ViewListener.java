@@ -1,4 +1,4 @@
-// Generated from C:/Users/yutin/IdeaProjects/GraphDBViews/src\View.g4 by ANTLR 4.8
+// Generated from C:/Users/Ting/Documents/GDBViews/src\View.g4 by ANTLR 4.8
 package gen;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -18,6 +18,16 @@ public interface ViewListener extends ParseTreeListener {
 	 */
 	void exitRoot(ViewParser.RootContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ViewParser#scope}.
+	 * @param ctx the parse tree
+	 */
+	void enterScope(ViewParser.ScopeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ViewParser#scope}.
+	 * @param ctx the parse tree
+	 */
+	void exitScope(ViewParser.ScopeContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ViewParser#query}.
 	 * @param ctx the parse tree
 	 */
@@ -27,6 +37,116 @@ public interface ViewListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitQuery(ViewParser.QueryContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ViewParser#changegraph}.
+	 * @param ctx the parse tree
+	 */
+	void enterChangegraph(ViewParser.ChangegraphContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ViewParser#changegraph}.
+	 * @param ctx the parse tree
+	 */
+	void exitChangegraph(ViewParser.ChangegraphContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ViewParser#pipeline}.
+	 * @param ctx the parse tree
+	 */
+	void enterPipeline(ViewParser.PipelineContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ViewParser#pipeline}.
+	 * @param ctx the parse tree
+	 */
+	void exitPipeline(ViewParser.PipelineContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ViewParser#replacements}.
+	 * @param ctx the parse tree
+	 */
+	void enterReplacements(ViewParser.ReplacementsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ViewParser#replacements}.
+	 * @param ctx the parse tree
+	 */
+	void exitReplacements(ViewParser.ReplacementsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ViewParser#iteration}.
+	 * @param ctx the parse tree
+	 */
+	void enterIteration(ViewParser.IterationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ViewParser#iteration}.
+	 * @param ctx the parse tree
+	 */
+	void exitIteration(ViewParser.IterationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ViewParser#validVal}.
+	 * @param ctx the parse tree
+	 */
+	void enterValidVal(ViewParser.ValidValContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ViewParser#validVal}.
+	 * @param ctx the parse tree
+	 */
+	void exitValidVal(ViewParser.ValidValContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ViewParser#iterationCase}.
+	 * @param ctx the parse tree
+	 */
+	void enterIterationCase(ViewParser.IterationCaseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ViewParser#iterationCase}.
+	 * @param ctx the parse tree
+	 */
+	void exitIterationCase(ViewParser.IterationCaseContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ViewParser#size}.
+	 * @param ctx the parse tree
+	 */
+	void enterSize(ViewParser.SizeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ViewParser#size}.
+	 * @param ctx the parse tree
+	 */
+	void exitSize(ViewParser.SizeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ViewParser#range}.
+	 * @param ctx the parse tree
+	 */
+	void enterRange(ViewParser.RangeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ViewParser#range}.
+	 * @param ctx the parse tree
+	 */
+	void exitRange(ViewParser.RangeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ViewParser#pipeconditions}.
+	 * @param ctx the parse tree
+	 */
+	void enterPipeconditions(ViewParser.PipeconditionsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ViewParser#pipeconditions}.
+	 * @param ctx the parse tree
+	 */
+	void exitPipeconditions(ViewParser.PipeconditionsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ViewParser#pipeexpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterPipeexpr(ViewParser.PipeexprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ViewParser#pipeexpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitPipeexpr(ViewParser.PipeexprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ViewParser#function}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunction(ViewParser.FunctionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ViewParser#function}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunction(ViewParser.FunctionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ViewParser#viewuse}.
 	 * @param ctx the parse tree
@@ -188,13 +308,93 @@ public interface ViewListener extends ParseTreeListener {
 	 */
 	void exitVal(ViewParser.ValContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ViewParser#test}.
+	 * Enter a parse tree produced by {@link ViewParser#indexing}.
 	 * @param ctx the parse tree
 	 */
-	void enterTest(ViewParser.TestContext ctx);
+	void enterIndexing(ViewParser.IndexingContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ViewParser#test}.
+	 * Exit a parse tree produced by {@link ViewParser#indexing}.
 	 * @param ctx the parse tree
 	 */
-	void exitTest(ViewParser.TestContext ctx);
+	void exitIndexing(ViewParser.IndexingContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ViewParser#setattr}.
+	 * @param ctx the parse tree
+	 */
+	void enterSetattr(ViewParser.SetattrContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ViewParser#setattr}.
+	 * @param ctx the parse tree
+	 */
+	void exitSetattr(ViewParser.SetattrContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ViewParser#arithmetic}.
+	 * @param ctx the parse tree
+	 */
+	void enterArithmetic(ViewParser.ArithmeticContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ViewParser#arithmetic}.
+	 * @param ctx the parse tree
+	 */
+	void exitArithmetic(ViewParser.ArithmeticContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ViewParser#insertion}.
+	 * @param ctx the parse tree
+	 */
+	void enterInsertion(ViewParser.InsertionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ViewParser#insertion}.
+	 * @param ctx the parse tree
+	 */
+	void exitInsertion(ViewParser.InsertionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ViewParser#insertrelation}.
+	 * @param ctx the parse tree
+	 */
+	void enterInsertrelation(ViewParser.InsertrelationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ViewParser#insertrelation}.
+	 * @param ctx the parse tree
+	 */
+	void exitInsertrelation(ViewParser.InsertrelationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ViewParser#insertionVar}.
+	 * @param ctx the parse tree
+	 */
+	void enterInsertionVar(ViewParser.InsertionVarContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ViewParser#insertionVar}.
+	 * @param ctx the parse tree
+	 */
+	void exitInsertionVar(ViewParser.InsertionVarContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ViewParser#insertAttributes}.
+	 * @param ctx the parse tree
+	 */
+	void enterInsertAttributes(ViewParser.InsertAttributesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ViewParser#insertAttributes}.
+	 * @param ctx the parse tree
+	 */
+	void exitInsertAttributes(ViewParser.InsertAttributesContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ViewParser#as}.
+	 * @param ctx the parse tree
+	 */
+	void enterAs(ViewParser.AsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ViewParser#as}.
+	 * @param ctx the parse tree
+	 */
+	void exitAs(ViewParser.AsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ViewParser#exists}.
+	 * @param ctx the parse tree
+	 */
+	void enterExists(ViewParser.ExistsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ViewParser#exists}.
+	 * @param ctx the parse tree
+	 */
+	void exitExists(ViewParser.ExistsContext ctx);
 }

@@ -1,38 +1,444 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/test/ViewInits.txt" line="21" mnemonic="8" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="56b030f6-5047-4b8e-9a43-8bce73b0373a" name="Default Changelist" comment="" />
+    <list default="true" id="7eeeda74-54a8-4547-b697-c36e8a7aaa22" name="Default Changelist" comment="more cleanup">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EntryData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EntryData.java" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/GDBViews$Main.ic" NAME="Main Coverage Results" MODIFIED="1618977795200" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1163543441">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="40" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.28" value="1" />
+          <entry key="project.open.time.29" value="2" />
+          <entry key="project.open.time.30" value="11" />
+          <entry key="project.open.time.31" value="10" />
+          <entry key="project.open.time.32" value="8" />
+          <entry key="project.open.time.33" value="8" />
+          <entry key="project.open.time.34" value="4" />
+          <entry key="project.open.time.35" value="1" />
+          <entry key="project.open.time.36" value="1" />
+          <entry key="project.open.time.368" value="1" />
+          <entry key="project.open.time.38" value="1" />
+          <entry key="project.open.time.39" value="1" />
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.open.time.45" value="1" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.open.time.63" value="1" />
+          <entry key="project.opened" value="54" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="README" value="1" />
+          <entry key="ReturnVSize" value="1" />
+          <entry key="class" value="1" />
+          <entry key="clp" value="4" />
+          <entry key="config" value="1" />
+          <entry key="g4" value="6" />
+          <entry key="gitignore" value="1" />
+          <entry key="java" value="65" />
+          <entry key="txt" value="114" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="ANTLR v4 grammar file" value="5" />
+          <entry key="CLASS" value="1" />
+          <entry key="JAVA" value="65" />
+          <entry key="PLAIN_TEXT" value="123" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="config" value="21" />
+          <entry key="g4" value="1944" />
+          <entry key="gitignore" value="157" />
+          <entry key="java" value="60175" />
+          <entry key="txt" value="2415" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="ANTLR v4 grammar file" value="1944" />
+          <entry key="JAVA" value="60175" />
+          <entry key="PLAIN_TEXT" value="2593" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.vcs.git.usages">
+        <counts>
+          <entry key="git.branch.create.new" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="GDBViews" />
+  </component>
+  <component name="FileEditorManager">
+    <splitter split-orientation="horizontal" split-proportion="0.33483756">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/Main.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-2242">
+                  <caret line="691" selection-start-line="691" selection-end-line="691" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test/ViewUses.txt">
+              <provider selected="true" editor-type-id="text-editor">
+                <state>
+                  <caret column="2" selection-start-column="2" selection-end-column="2" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/.gitignore">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="350">
+                  <caret line="49" column="4" lean-forward="true" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/jess/graph.clp">
+              <provider selected="true" editor-type-id="text-editor" />
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/jess/scr.clp">
+              <provider selected="true" editor-type-id="text-editor" />
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/jess/test.clp">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-908" />
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/jess/views.clp">
+              <provider selected="true" editor-type-id="text-editor" />
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test/config">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="34">
+                  <caret line="2" column="72" selection-start-line="2" selection-start-column="72" selection-end-line="2" selection-end-column="72" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test/ViewUses2.txt">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="408">
+                  <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test/initFileExample.txt">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="323">
+                  <caret line="19" column="69" lean-forward="true" selection-start-line="19" selection-start-column="69" selection-end-line="19" selection-end-column="69" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/QueryParser.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-340">
+                  <caret line="4" column="45" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/TableEntry.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-1003">
+                  <caret line="86" column="134" selection-start-line="86" selection-start-column="134" selection-end-line="86" selection-end-column="134" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/EntryData.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="442">
+                  <caret line="26" selection-start-line="26" selection-end-line="26" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/DependencyTable.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="34">
+                  <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ViewQueryListener.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1088">
+                  <caret line="335" column="33" selection-start-line="335" selection-start-column="25" selection-end-line="335" selection-end-column="33" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/GraphChange.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="595">
+                  <caret line="37" column="73" selection-start-line="37" selection-start-column="73" selection-end-line="37" selection-end-column="73" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/SetTuple.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state>
+                  <caret column="22" selection-start-column="22" selection-end-column="22" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Condition.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="408">
+                  <caret line="33" column="27" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
+                  <folding>
+                    <element signature="e#827#828#0" expanded="true" />
+                    <element signature="e#865#866#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Neo4jGraphConnector.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="194">
+                  <caret line="432" column="25" lean-forward="true" selection-start-line="432" selection-start-column="25" selection-end-line="432" selection-end-column="25" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/MetaData.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="34">
+                  <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/GraphDBViews" />
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>AND</find>
+      <find>finalAffectedViews</find>
+      <find>varConditions</find>
+      <find>deletedVar</find>
+      <find>cg =</find>
+      <find>cg</find>
+      <find>dependencyTable</find>
+      <find>parseUpdate</find>
+      <find>NODESTARLABEL</find>
+      <find>affectedVar</find>
+      <find>parseRemove</find>
+      <find>varLabel</find>
+      <find>cmd:</find>
+      <find>&quot;:&quot;</find>
+      <find>varLabels.</find>
+      <find>OR</find>
+      <find>&quot;, &quot;</find>
+      <find>System.out.println</find>
+      <find>Im here</find>
+      <find>alwaysReev</find>
+      <find>initFile</find>
+      <find>todo</find>
+      <find>MetaData</find>
+      <find>changeMeta</find>
+      <find>GraphChan</find>
+      <find>NodeEnum</find>
+      <find>pathTa</find>
+      <find>processUseView</find>
+      <find>vql.</find>
+      <find>toFile</find>
+    </findStrings>
   </component>
-  <component name="ProjectId" id="1bdlSpwFlDODiYtr39MBq6a3nOU" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="newArchitecture" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/gen/ViewParser.java" />
+        <option value="$PROJECT_DIR$/src/ChangeType.java" />
+        <option value="$PROJECT_DIR$/src/DependencyTable.java" />
+        <option value="$PROJECT_DIR$/src/MetaData.java" />
+        <option value="$PROJECT_DIR$/src/ViewQueryListener.java" />
+        <option value="$PROJECT_DIR$/src/View.java" />
+        <option value="$PROJECT_DIR$/test/singleTest.txt" />
+        <option value="$PROJECT_DIR$/test/ViewInits2.txt" />
+        <option value="$PROJECT_DIR$/src/mainTests.java" />
+        <option value="$PROJECT_DIR$/test/ViewInits.txt" />
+        <option value="$PROJECT_DIR$/src/Condition.java" />
+        <option value="$PROJECT_DIR$/test/ViewUses2.txt" />
+        <option value="$PROJECT_DIR$/src/View.g4" />
+        <option value="$PROJECT_DIR$/test/ViewUses.txt" />
+        <option value="$PROJECT_DIR$/src/TableEntry.java" />
+        <option value="$PROJECT_DIR$/src/QueryParser.java" />
+        <option value="$PROJECT_DIR$/test/ReturnVSize.txt" />
+        <option value="$PROJECT_DIR$/test/config" />
+        <option value="$PROJECT_DIR$/src/GraphChange.java" />
+        <option value="$PROJECT_DIR$/src/SetTuple.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/Neo4jGraphConnector.java" />
+        <option value="$PROJECT_DIR$/src/EntryData.java" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1094" />
+    <option name="y" value="-19" />
+    <option name="width" value="1452" />
+    <option name="height" value="974" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="GDBViews" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GDBViews" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GDBViews" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GDBViews" type="462c0819:PsiDirectoryNode" />
+              <item name="jess" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GDBViews" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GDBViews" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GDBViews" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GDBViews" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/Ting/Documents/GDBViews/src/Neo4jGraphConnector.java" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1621461127134" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/jess.jar!/" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\yutin\IdeaProjects\GraphDBViews\src" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\yutin\IdeaProjects\GraphDBViews\src" />
+      <recent name="C:\Users\Ting\Documents\GDBViews\test\Largest" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -47,47 +453,622 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.View">
-    <configuration name="Engine" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="GraphEngine" />
-      <module name="GraphDBViews" />
-      <option name="VM_PARAMETERS" value="-Xmx2048m" />
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="GDBViews" />
+      <option name="VM_PARAMETERS" value="-Xms7000m -Xmx14000m" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Neo4jGraphConnector" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="Neo4jGraphConnector" />
-      <module name="GraphDBViews" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="View" type="Application" factoryName="Application" nameIsGenerated="true">
+    <configuration name="View" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="View" />
-      <module name="GraphDBViews" />
+      <module name="GDBViews" />
+      <option name="VM_PARAMETERS" value="-Xms7000m -Xmx14000m" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
       <item itemvalue="Application.View" />
-      <item itemvalue="Application.Engine" />
-      <item itemvalue="Application.Neo4jGraphConnector" />
+      <item itemvalue="Application.Main" />
     </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7eeeda74-54a8-4547-b697-c36e8a7aaa22" name="Default Changelist" comment="" />
+      <created>1594142282882</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1594142282882</updated>
+      <workItem from="1594142287754" duration="17500000" />
+      <workItem from="1594221948601" duration="3587000" />
+      <workItem from="1594309672081" duration="5503000" />
+      <workItem from="1594409418313" duration="10920000" />
+      <workItem from="1594491425388" duration="37182000" />
+      <workItem from="1595257498999" duration="2435000" />
+      <workItem from="1595352236060" duration="9652000" />
+      <workItem from="1595431925778" duration="3315000" />
+      <workItem from="1595707937631" duration="6212000" />
+      <workItem from="1595804602199" duration="16184000" />
+      <workItem from="1595984845048" duration="9726000" />
+      <workItem from="1596477954785" duration="8468000" />
+      <workItem from="1596568391677" duration="15909000" />
+      <workItem from="1597077472762" duration="4303000" />
+      <workItem from="1598299861693" duration="2707000" />
+      <workItem from="1601149060392" duration="116000" />
+      <workItem from="1601860587285" duration="9062000" />
+      <workItem from="1602599190035" duration="12169000" />
+      <workItem from="1604005443341" duration="598000" />
+      <workItem from="1604084424349" duration="2376000" />
+      <workItem from="1604431825534" duration="712000" />
+      <workItem from="1608141370246" duration="5834000" />
+      <workItem from="1608213155195" duration="2324000" />
+      <workItem from="1609618472253" duration="34758000" />
+      <workItem from="1609870178880" duration="11560000" />
+      <workItem from="1609948189589" duration="3944000" />
+      <workItem from="1610389393329" duration="30466000" />
+      <workItem from="1610944850466" duration="10428000" />
+      <workItem from="1611463756576" duration="16407000" />
+      <workItem from="1611719156459" duration="650000" />
+      <workItem from="1611720300787" duration="5873000" />
+      <workItem from="1611813038279" duration="20230000" />
+      <workItem from="1612073220819" duration="7101000" />
+      <workItem from="1612287730257" duration="39570000" />
+      <workItem from="1612901818437" duration="21423000" />
+      <workItem from="1613801585513" duration="7079000" />
+      <workItem from="1614051880944" duration="26272000" />
+      <workItem from="1614472139859" duration="6976000" />
+      <workItem from="1614879773181" duration="596000" />
+      <workItem from="1615388627235" duration="2222000" />
+      <workItem from="1615581544914" duration="30294000" />
+      <workItem from="1616522554193" duration="16171000" />
+      <workItem from="1616600434803" duration="6108000" />
+      <workItem from="1616647969101" duration="10959000" />
+      <workItem from="1617299108437" duration="38551000" />
+      <workItem from="1617733909091" duration="12601000" />
+      <workItem from="1617768454940" duration="9258000" />
+      <workItem from="1618526666682" duration="3816000" />
+      <workItem from="1618590399116" duration="2062000" />
+      <workItem from="1618946526131" duration="18575000" />
+      <workItem from="1619015437576" duration="1412000" />
+      <workItem from="1620089106513" duration="5857000" />
+      <workItem from="1621356722071" duration="4658000" />
+      <workItem from="1621452617655" duration="4482000" />
+    </task>
+    <task id="LOCAL-00001" summary="set-up for testing on varied size databases">
+      <created>1594145223483</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1594145223483</updated>
+    </task>
+    <task id="LOCAL-00002" summary="fixed typo in VQL and added  more testing">
+      <created>1594148851119</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1594148851119</updated>
+    </task>
+    <task id="LOCAL-00003" summary="tests">
+      <created>1594267626088</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1594267626088</updated>
+    </task>
+    <task id="LOCAL-00004" summary="new architecture setup, prepare to change and new branch next">
+      <created>1608213900080</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1608213900081</updated>
+    </task>
+    <task id="LOCAL-00005" summary="new files pertaining to updated architecture; view setup should be more or less complete (actually not fully). conditions are set up. lot of work left to do on the various cases.">
+      <created>1609655759211</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1609655759211</updated>
+    </task>
+    <task id="LOCAL-00006" summary="changed lexer and parser to better reflect syntax in chapter 3. whats left is the many cases for change-graphs. still contains todos for global/local usage">
+      <created>1609714894659</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1609714894659</updated>
+    </task>
+    <task id="LOCAL-00007" summary="done deletions and almost updates">
+      <created>1609912510950</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1609912510950</updated>
+    </task>
+    <task id="LOCAL-00008" summary="updated lexer/parser to fix bug with accidently including SET statement as a changegraph condition..">
+      <created>1609912853342</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1609912853342</updated>
+    </task>
+    <task id="LOCAL-00009" summary="grammar update for insertion">
+      <created>1609948630398</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1609948630398</updated>
+    </task>
+    <task id="LOCAL-00010" summary="finished insertions">
+      <created>1610428869460</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1610428869460</updated>
+    </task>
+    <task id="LOCAL-00011" summary="changed I have not committed for a while: TableEntry updated and QueryParser updated. Test cases also updated. added test files too. cleanup needed.">
+      <created>1616552645326</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1616552645326</updated>
+    </task>
+    <task id="LOCAL-00012" summary="done, needs documentation. 2 bugs remain in todo">
+      <created>1621358331230</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1621358331230</updated>
+    </task>
+    <task id="LOCAL-00013" summary="more cleanup">
+      <created>1621455289959</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1621455289959</updated>
+    </task>
+    <task id="LOCAL-00014" summary="more cleanup">
+      <created>1621455788311</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1621455788311</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="597153000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49942726" visible="true" weight="0.11923689" />
+      <window_info id="Structure" order="1" sideWeight="0.50057274" side_tool="true" weight="0.16057234" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Favorites" order="5" sideWeight="0.50057274" side_tool="true" weight="0.16057234" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32962668" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.23828435" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39952344" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32962668" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32962668" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="9" weight="0.32962668" />
+      <window_info anchor="bottom" id="Java Enterprise" order="10" weight="0.32962668" />
+      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="12" visible="true" weight="0.17553614" />
+      <window_info anchor="bottom" id="Tool Output" order="13" weight="0.32962668" />
+      <window_info anchor="bottom" id="ANTLR Preview" order="14" weight="0.32803813" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Database" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Theme Preview" order="7" />
+      <window_info anchor="right" id="Bean Validation" order="8" />
+      <window_info anchor="right" id="Coverage" order="9" side_tool="true" weight="0.26510334" />
+      <window_info anchor="right" id="Maven Projects" order="10" side_tool="true" weight="0.3298887" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="set-up for testing on varied size databases" />
+    <MESSAGE value="fixed typo in VQL and added  more testing" />
+    <MESSAGE value="tests" />
+    <MESSAGE value="new architecture setup, prepare to change and new branch next" />
+    <MESSAGE value="new files pertaining to updated architecture; view setup should be more or less complete (actually not fully). conditions are set up. lot of work left to do on the various cases." />
+    <MESSAGE value="changed lexer and parser to better reflect syntax in chapter 3. whats left is the many cases for change-graphs. still contains todos for global/local usage" />
+    <MESSAGE value="done deletions and almost updates" />
+    <MESSAGE value="updated lexer/parser to fix bug with accidently including SET statement as a changegraph condition.." />
+    <MESSAGE value="grammar update for insertion" />
+    <MESSAGE value="finished insertions" />
+    <MESSAGE value="changed I have not committed for a while: TableEntry updated and QueryParser updated. Test cases also updated. added test files too. cleanup needed." />
+    <MESSAGE value="done, needs documentation. 2 bugs remain in todo" />
+    <MESSAGE value="more cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="more cleanup" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/test/Small/allUserPostsScoreFilterNode.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/Small/basicPostScoreFilter800Node.txt">
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state relative-caret-position="892">
+          <caret column="1280000" lean-forward="true" selection-start-column="1280000" selection-end-column="1280000" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/Large/allUserPostsReputationFilterNode.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/Medium/allUserPostsReputationFilterNode.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/Small/basicUserReputationFilterNode.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/Small/NodeOR2Node.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/Small/PathORNode.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test2/InitTimeSplit.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="46" lean-forward="true" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test2/InitTimeSplitLarge.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test3/Medium/V6Node.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test3/Medium/V6Rel.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test3/Large/V6Node.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret column="1353" selection-start-column="1353" selection-end-column="1353" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test3/Large/V16Rel.txt">
+      <provider selected="true" editor-type-id="LargeFileEditor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test3/Large/V17Rel.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test3/Large/V17Node.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-120521" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test3/Large/V16Node.txt">
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state relative-caret-position="289">
+          <caret column="2710" selection-start-column="2710" selection-end-column="2710" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test3/Large/V18Node.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2091">
+          <caret line="123" column="72" selection-start-line="123" selection-start-column="72" selection-end-line="123" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test3/Large/NodeORNode.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/log.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/Largest/allUserPostsNode.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/Largest/allUserPostsAllFiltersNode.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/Largest/allUserPostsAllFiltersRel.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README" />
+    <entry file="file://$PROJECT_DIR$/src/mainTests.java" />
+    <entry file="file://$PROJECT_DIR$/src/GraphEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1071">
+          <caret line="75" column="43" selection-start-line="75" selection-start-column="35" selection-end-line="75" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1207">
+          <caret line="71" column="8" selection-start-line="71" selection-end-line="71" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/ViewInits.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="36" selection-start-line="30" selection-start-column="36" selection-end-line="30" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/NodeList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/NodeEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="12" selection-start-column="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MetaData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ViewQueryListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1088">
+          <caret line="335" column="33" selection-start-line="335" selection-start-column="25" selection-end-line="335" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GraphChange.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="37" column="73" selection-start-line="37" selection-start-column="73" selection-end-line="37" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SetTuple.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="22" selection-start-column="22" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Condition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="33" column="27" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
+          <folding>
+            <element signature="e#827#828#0" expanded="true" />
+            <element signature="e#865#866#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/singleTest.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="96" selection-start-column="96" selection-end-column="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="72" selection-start-line="2" selection-start-column="72" selection-end-line="2" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Neo4jGraphConnector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="432" column="25" lean-forward="true" selection-start-line="432" selection-start-column="25" selection-end-line="432" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DependencyTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TableEntry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1003">
+          <caret line="86" column="134" selection-start-line="86" selection-start-column="134" selection-end-line="86" selection-end-column="134" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EntryData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/QueryParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-340">
+          <caret line="4" column="45" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/initFileExample.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="69" lean-forward="true" selection-start-line="19" selection-start-column="69" selection-end-line="19" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/ViewUses.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="2" selection-start-column="2" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/ViewUses2.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="49" column="4" lean-forward="true" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jess/graph.clp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jess/scr.clp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jess/test.clp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-908" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jess/views.clp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2242">
+          <caret line="691" selection-start-line="691" selection-end-line="691" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>11</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>GDBViews</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>10</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>lib</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

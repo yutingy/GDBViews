@@ -1,4 +1,4 @@
-
+//sorry for bad naming
 public class SetTuple<X,Y>{
 
     public X x;

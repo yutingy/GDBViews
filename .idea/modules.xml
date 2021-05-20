@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GraphDBViews.iml" filepath="$PROJECT_DIR$/GraphDBViews.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GDBViews.iml" filepath="$PROJECT_DIR$/GDBViews.iml" />
     </modules>
   </component>
 </project>

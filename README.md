@@ -2,7 +2,7 @@
 
 
 
-Code for views in graph database system (Neo4j), along with some instructions and notes.
+Code for views in graph database system (Neo4j) as part of my Master's thesis, along with some instructions and notes.
   
 Main:
 The main program, which opens a simple terminal for creating and using views with the extended language. Contains the node and edge tables.

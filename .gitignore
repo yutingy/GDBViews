@@ -81,6 +81,7 @@ fabric.properties
 /test2/
 /test3/
 .idea/
+.idea/*
 
 # libraries
 /lib/

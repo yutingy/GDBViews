@@ -34,7 +34,8 @@ In order to test view creation/usage easily, a set of files is required. You can
 In order to load back the data, use the loadTablesFromFiles(size) method to re-populate the node and edge tables. In order to re-populate the dependency tables, use createMetaInfoFromQueries(path_to_init_file) (example commented within the main method). Then you can run testUses(size), in which you may need to modify to adjust paths to your init/use files.
 
 
-All required libraries should be in /lib/
+Neo4j enterprise 4.0.4 libraries should be in /lib/.
+You also need the jess library (jess.jar and jsr94.jar) along with the antlr (currently using antlr-4.8-complete.jar).
 
 
 

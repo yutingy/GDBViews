@@ -18,7 +18,8 @@ public class GraphEngine {
     private WorkingMemoryMarker marker;
     private Database database;
 
-    private Neo4jGraphConnector connector = new Neo4jGraphConnector();
+    //temp hardcoded size db, this file is not used
+    private Neo4jGraphConnector connector = new Neo4jGraphConnector("small");
 
     private static Map<String, Set<JessPath>> viewMap = new ConcurrentHashMap<>();
 
@@ -44,7 +45,8 @@ public class GraphEngine {
 
     public static void main(String[] args){
 
-        Neo4jGraphConnector connector = new Neo4jGraphConnector();
+        //temp hardcoded size db, this file is not used
+        Neo4jGraphConnector connector = new Neo4jGraphConnector("small");
 
         viewMap.put("view100Rep", new HashSet<JessPath>());
         viewMap.put("two-hops-posts", new HashSet<JessPath>());

@@ -80,3 +80,7 @@ fabric.properties
 /test/singleTest.txt
 /test2/
 /test3/
+.idea/
+
+# libraries
+/lib/

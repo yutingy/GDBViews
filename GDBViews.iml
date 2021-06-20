@@ -19,7 +19,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/Jess71p2/Jess71p2/lib/jess.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Jess71p2/Jess71p2/lib/jsr94.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -28,7 +28,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/Jess71p2/Jess71p2/lib/jsr94.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Jess71p2/Jess71p2/lib/jess.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -44,5 +44,33 @@
         <jarDirectory url="file://$USER_HOME$/Downloads/neo4j-enterprise-4.0.4-windows (1)/neo4j-enterprise-4.0.4/lib" recursive="false" />
       </library>
     </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/antlr-4.8-complete.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/jess.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/jsr94.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" exported="" name="lib" level="project" />
   </component>
 </module>

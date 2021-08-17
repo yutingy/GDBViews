@@ -1,3 +1,5 @@
+package jess;
+
 import com.fasterxml.jackson.jaxrs.json.annotation.JSONP;
 import jess.Defrule;
 

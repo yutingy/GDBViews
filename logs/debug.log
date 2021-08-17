@@ -263,7 +263,7 @@
 2021-08-17 18:44:24.951+0000 INFO [o.n.i.d.DiagnosticsManager] sun.java.launcher = SUN_STANDARD
 2021-08-17 18:44:24.951+0000 INFO [o.n.i.d.DiagnosticsManager] user.country = US
 2021-08-17 18:44:24.951+0000 INFO [o.n.i.d.DiagnosticsManager] sun.boot.library.path = C:\Program Files\Java\jdk-11.0.7\bin
-2021-08-17 18:44:24.952+0000 INFO [o.n.i.d.DiagnosticsManager] sun.java.command = Main
+2021-08-17 18:44:24.952+0000 INFO [o.n.i.d.DiagnosticsManager] sun.java.command = main.Main
 2021-08-17 18:44:24.952+0000 INFO [o.n.i.d.DiagnosticsManager] jdk.debug = release
 2021-08-17 18:44:24.952+0000 INFO [o.n.i.d.DiagnosticsManager] sun.cpu.endian = little
 2021-08-17 18:44:24.953+0000 INFO [o.n.i.d.DiagnosticsManager] user.home = C:\Users\Ting

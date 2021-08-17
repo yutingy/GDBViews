@@ -1,9 +1,9 @@
-(import NodeEnum)
+(import jess.NodeEnum)
 
-(deftemplate JessNode (declare (from-class JessNode)) )
-(deftemplate JessEdge (declare (from-class JessEdge)) )
-(deftemplate JessPath (declare (from-class JessPath)) )
-(deftemplate JessView (declare (from-class JessView)) )
+(deftemplate jess.JessNode (declare (from-class jess.JessNode)) )
+(deftemplate jess.JessEdge (declare (from-class jess.JessEdge)) )
+(deftemplate jess.JessPath (declare (from-class jess.JessPath)) )
+(deftemplate jess.JessView (declare (from-class jess.JessView)) )
 
 
 (deffunction find-id (?aFact)
@@ -18,7 +18,7 @@
 
 (deffunction remove-edge (?edgeid)
 ""
-(bind ?params (str-cat "(JessEdge (id " ?edgeid "))"))
+(bind ?params (str-cat "(jess.JessEdge (id " ?edgeid "))"))
 (bind ?id (find-id ?params))
 (if (integerp ?id) then
     (retract ?id)
@@ -35,13 +35,13 @@
 ;"All Users with more than 100 reputation - an example of a node subscription. Return type is not specified but the view is
 ;on the node itself which is typically what we see in Neo4j"
 ;(logical
-;    ?x <- (JessNode)
+;    ?x <- (jess.JessNode)
 ;    (test (eq ( ((?x getSlotValue OBJECT) getLabel) toString) "User"))
 ;    (test ( > ( ( ?x getSlotValue OBJECT) getReputation) 100 ) )
 ;)
 ;=>
 ;
-;    (bind ?p (new JessPath ))
+;    (bind ?p (new jess.JessPath ))
 ;    (?p addNode (?x getSlotValue OBJECT))
 ;    (add ?p)
 ;    (bind ?list (fetch view100Rep))
@@ -49,8 +49,8 @@
 ;)
 
 ;(defrule test
-;?x <- (JessNode (id ?i) (label ?a&:(eq (?a toString) "User")) (views ?b&:(> ?b 500000)))
-;?z <- (JessEdge (start ?s&:(eq ?s ?i)))
+;?x <- (jess.JessNode (id ?i) (label ?a&:(eq (?a toString) "User")) (views ?b&:(> ?b 500000)))
+;?z <- (jess.JessEdge (start ?s&:(eq ?s ?i)))
 ;=>
 ;(printout t "haha" crlf)
 ;)
@@ -58,19 +58,19 @@
 ;(defrule two-hops-posts
 ;"All posts that are children of posts by users with >500,000 reputation on their profile"
 ;(logical
-;    ?x <- (JessNode (label ?a&:(eq (?a toString) "User")) (reputation ?b&:(> ?b 500000)) )
-;    ?y <- (JessNode)
+;    ?x <- (jess.JessNode (label ?a&:(eq (?a toString) "User")) (reputation ?b&:(> ?b 500000)) )
+;    ?y <- (jess.JessNode)
 ;    (test (eq ( ((?y getSlotValue OBJECT) getLabel) toString) "Post"))
-;    ?z <- (JessEdge {start == x.id && end == y.id })
+;    ?z <- (jess.JessEdge {start == x.id && end == y.id })
 ;    (test (eq ( ((?z getSlotValue OBJECT) getLabel) toString) "POSTED"))
 ;
-;    ?w <- (JessNode)
+;    ?w <- (jess.JessNode)
 ;    (test (eq ( ((?w getSlotValue OBJECT) getLabel) toString) "Post"))
-;    ?u <- (JessEdge {start == y.id && end == w.id })
+;    ?u <- (jess.JessEdge {start == y.id && end == w.id })
 ;    (test (eq ( ((?u getSlotValue OBJECT) getLabel) toString) "PARENT_OF"))
 ;)
 ;=>
-;    (bind ?path (new JessPath ))
+;    (bind ?path (new jess.JessPath ))
 ;    (?path addNode ?x)
 ;    (?path addNode ?y)
 ;    (?path addNode ?w)

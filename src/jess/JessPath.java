@@ -1,4 +1,4 @@
-import jess.Rete.*;
+package jess;
 
 import java.io.Serializable;
 import java.beans.*;
@@ -23,14 +23,14 @@ public class JessPath implements Serializable {
     * (logical ?x <- .. ?y <- .. ?z <- ..
     * )
     * =>
-    * (assert (JessPath (x) (y) (z) ))
+    * (assert (jess.JessPath (x) (y) (z) ))
     * )
-    * For example, if the JessPath (fact-id 10) which includes fact id 5 was part of "view-1", and it is removed, then
+    * For example, if the jess.JessPath (fact-id 10) which includes fact id 5 was part of "view-1", and it is removed, then
     * then the Integer 10 is removed from pathIDs. To know about the association between fact-id 5 and fact-id 10, a mapping
     * is required. This mapping is also good for when we want to retrieve the views - if we want to use view-1
-    * then we find all JessViews corresponding to view-1 and all JessPaths found in the JessView list.
+    * then we find all JessViews corresponding to view-1 and all JessPaths found in the jess.JessView list.
     *
-    * The only non-automatic maintenance is related to the updating of the JessView list. When a JessNode is modified
+    * The only non-automatic maintenance is related to the updating of the jess.JessView list. When a jess.JessNode is modified
     * or deleted, any JessPaths dependent on it will automatically be retracted, but references to these JessPaths within
     * JessViews may remain.
     * todo nullify these references. they do not null themselves by default

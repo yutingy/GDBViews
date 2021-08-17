@@ -1,3 +1,5 @@
+package main;
+
 import gen.ViewParser;
 
 import java.util.HashSet;

@@ -1,8 +1,9 @@
+package main;
+
 import java.io.*;
 import java.util.*;
 
-import jess.JessException;
-import jess.Rete;
+import jess.*;
 import org.neo4j.configuration.GraphDatabaseSettings;
 import org.neo4j.dbms.api.DatabaseManagementService;
 import org.neo4j.graphdb.*;
@@ -13,12 +14,7 @@ import org.neo4j.graphdb.*;
 
 
 import org.neo4j.dbms.api.DatabaseManagementServiceBuilder;
-
-import org.neo4j.kernel.impl.factory.GraphDatabaseFacade;
-
-import javax.management.relation.Relation;
-
-import static org.neo4j.configuration.GraphDatabaseSettings.DEFAULT_DATABASE_NAME;
+import org.neo4j.graphdb.Node;
 
 public class Neo4jGraphConnector{
 

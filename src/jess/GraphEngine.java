@@ -1,3 +1,5 @@
+package jess;
+
 import com.fasterxml.jackson.jaxrs.json.annotation.JSONP;
 import jess.*;
 import org.neo4j.configuration.GraphDatabaseSettings;
@@ -11,6 +13,7 @@ import org.neo4j.kernel.database.Database;
 import java.io.File;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import main.*;
 
 public class GraphEngine {
 
@@ -75,7 +78,7 @@ public class GraphEngine {
 //
 //            JessNode exampleNode = new JessNode();
 //            exampleNode.setDisplayname("Joe");
-//            exampleNode.setLabel(NodeEnum.User);
+//            exampleNode.setLabel(jess.NodeEnum.User);
 //            exampleNode.setUserId(3);
 //            exampleNode.setAboutme("I'm a man!");
 //            exampleNode.setReputation(101);

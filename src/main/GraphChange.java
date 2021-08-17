@@ -1,6 +1,10 @@
+package main;
+
 import java.util.List;
 
 public class GraphChange{
+
+    //Do not remember the purpose of this class. It's not used but it may have been an early draft
 
     enum changeType{
         DELETE,

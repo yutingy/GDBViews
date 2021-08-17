@@ -1,3 +1,5 @@
+package main;
+
 //sorry for bad naming
 public class SetTuple<X,Y>{
 

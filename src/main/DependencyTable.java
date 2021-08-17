@@ -1,3 +1,5 @@
+package main;
+
 import java.util.Hashtable;
 import java.util.List;
 
@@ -8,9 +10,9 @@ public class DependencyTable extends Hashtable<String, TableEntry> {
     //on the table.
 
 
-    //One dependency table may contain a set of keys and a set of TableEntry objects. (values)
-    //Each TableEntry object contains none or many EntryData objects
-    //EntryData objects are what encapsulate conditions and dependencies
+    //One dependency table may contain a set of keys and a set of main.TableEntry objects. (values)
+    //Each main.TableEntry object contains none or many main.EntryData objects
+    //main.EntryData objects are what encapsulate conditions and dependencies
 
 
     private List<String> keys;

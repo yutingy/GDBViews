@@ -1,14 +1,14 @@
-(import NodeEnum)
+(import jess.NodeEnum)
 
 (deftemplate Node (slot id (type INTEGER)) (slot label) (slot name) (slot metainfo))
 (deftemplate Edge (slot nodeid1 (type INTEGER)) (slot nodeid2 (type INTEGER)) (slot label) )
 (deftemplate Path (slot startnode (type INTEGER)) (slot endnode (type INTEGER)) (multislot edges) )
 
-(deftemplate JessNode (declare (from-class JessNode)))
+(deftemplate jess.JessNode (declare (from-class jess.JessNode)))
 
-(deftemplate JessEdge (declare (from-class JessEdge)))
+(deftemplate jess.JessEdge (declare (from-class jess.JessEdge)))
 
-(deftemplate JessPath (slot nodeid))
+(deftemplate jess.JessPath (slot nodeid))
 
 (defrule testrule
 (logical
@@ -16,9 +16,9 @@
     ?y <- (Node{id < x.id})
 )
 =>
- (bind ?p (new JessNode ))
+ (bind ?p (new jess.JessNode ))
  (?p setUserId 2)
- (printout t "made a new JessNode" crlf)
+ (printout t "made a new jess.JessNode" crlf)
  (add ?p)
 )
 
@@ -29,12 +29,12 @@
 )
 
 
-(bind ?s (new JessEdge))
-(definstance JessEdge ?s dynamic)
+(bind ?s (new jess.JessEdge))
+(definstance jess.JessEdge ?s dynamic)
 
 (defrule modifyobj
 (logical
-    ?x <- (JessNode {userId < 4})
+    ?x <- (jess.JessNode {userId < 4})
 )
 =>
 (bind ?z ( ?x getSlotValue OBJECT )  )
@@ -78,30 +78,30 @@
    else
       (return nil)))
 
-;(printout t (find-id "(JessEdge (label nil))") crlf )
+;(printout t (find-id "(jess.JessEdge (label nil))") crlf )
 
 ;(fact-id 10)
 
 ;(remove ?s)
 
 (defrule view21
-;todo right here, create a JessView associated with view1 and on the RHS of the pattern match, add the path to the view's list
+;todo right here, create a jess.JessView associated with view1 and on the RHS of the pattern match, add the path to the view's list
 "All Users with more than 100 reputation - an example of a node subscription. Return type is not specified but the view is
 on the node itself which is typically what we see in Neo4j"
 (logical
-    ?x <- (JessNode {reputation > 100})
+    ?x <- (jess.JessNode {reputation > 100})
     (test (eq ( ((?x getSlotValue OBJECT) getLabel) toString) User))
 )
 =>
- (bind ?p (new JessEdge ))
+ (bind ?p (new jess.JessEdge ))
  (?p setId 200)
-      (printout t "made a new JessPath" crlf)
+      (printout t "made a new jess.JessPath" crlf)
 
- (definstance JessEdge ?p dynamic)
+ (definstance jess.JessEdge ?p dynamic)
 )
 
 
- (bind ?p (new JessNode ))
+ (bind ?p (new jess.JessNode ))
  (?p setReputation 200)
  (add ?p)
 

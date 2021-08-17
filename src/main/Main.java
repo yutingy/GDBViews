@@ -1,3 +1,5 @@
+package main;
+
 import gen.ViewLexer;
 import gen.ViewParser;
 import org.antlr.v4.runtime.CharStreams;
@@ -11,7 +13,7 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Main {
-    //main class used for QueryParser.java as the parser.
+    //main class used for main.QueryParser.java as the parser.
 
 
     protected static Set<String> viewCreationTable = new HashSet<String>();

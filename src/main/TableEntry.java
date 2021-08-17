@@ -1,5 +1,6 @@
+package main;
+
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.math.NumberUtils;
 
 import java.util.*;
 
@@ -37,12 +38,12 @@ public class TableEntry {
 
 
 //            System.out.println("Mine: ");
-//            for(Condition c : myED.getConditions()) c.printCondition();
+//            for(main.Condition c : myED.getConditions()) c.printCondition();
 //            System.out.println("Compared with : ");
 
 
             Set<Condition> myConds = new HashSet<>(myED.getConditions());
-//            for(Condition d : myConds) d.printCondition();
+//            for(main.Condition d : myConds) d.printCondition();
 
             if(myConds.equals(edConds)){
 
@@ -66,12 +67,12 @@ public class TableEntry {
 
 
 //            System.out.println("Mine: ");
-//            for(Condition c : myED.getConditions()) c.printCondition();
+//            for(main.Condition c : myED.getConditions()) c.printCondition();
 //            System.out.println("Compared with : ");
 
 
             Set<Condition> myConds = new HashSet<>(myED.getConditions());
-//            for(Condition d : myConds) d.printCondition();
+//            for(main.Condition d : myConds) d.printCondition();
 
             if(myConds.equals(edConds)){
 
@@ -85,21 +86,21 @@ public class TableEntry {
 
     //Used for INSERTIONS
     public Set<EntryData> filterWithInsertion(Set<Condition> attributeKeyValuePairs, Set<String> viewsWithOr, Set<String> extraOrViews){
-        //Given conditions as input, which EntryData will be NOT affected by an insertion of a node with these
+        //Given conditions as input, which main.EntryData will be NOT affected by an insertion of a node with these
         //properties?
         /**
          * THREE CASES
          *  FIRST CASE: Insertion includes an attribute for which this ED contains a condition on
          *              >Use same logic for DELETION and UPDATE: only if it "overlaps" do we continue with update.
-         *  SECOND CASE: EntryData contains a condition on an attribute which is not defined upon insertion
+         *  SECOND CASE: main.EntryData contains a condition on an attribute which is not defined upon insertion
          *              >Immediately filter (i.e we do not re-evaluate, we do not return this ED)
-         *  THIRD CASE: EntryData contains no conditions
+         *  THIRD CASE: main.EntryData contains no conditions
          *              >Immediately continue (i.e we MUST re-evaluate, we MUST keep this in the returnSet)
          *
-         *  FOURTH CASE: A dependent found in this TableEntry has an OR clause. So if ANYTHING matches then IMMEDIATELY CONTINUE
+         *  FOURTH CASE: A dependent found in this main.TableEntry has an OR clause. So if ANYTHING matches then IMMEDIATELY CONTINUE
          *
          *  SPECIAL CASE: If the inserted node has no attributes at all (say it is just a label) then
-         *                  all "no condition" EntryData must be marked - this is handled by case 3
+         *                  all "no condition" main.EntryData must be marked - this is handled by case 3
          *
          */
         Set<EntryData> returnSet = new HashSet<>();
@@ -172,7 +173,7 @@ public class TableEntry {
 
                             if(StringUtils.isNumeric(valMine) && StringUtils.isNumeric(valTheir)){
                                 if((Integer.parseInt(valMine) >= Integer.parseInt(valTheir))){
-                                    //Then WE FILTER THIS. Since this EntryData SHOULD NOT BE AFFECTED
+                                    //Then WE FILTER THIS. Since this main.EntryData SHOULD NOT BE AFFECTED
                                     returnSet.remove(myED);
                                     breakLoop = true;
                                     break;
@@ -189,7 +190,7 @@ public class TableEntry {
 
                             if(StringUtils.isNumeric(valMine) && StringUtils.isNumeric(valTheir)){
                                 if((Integer.parseInt(valMine) <= Integer.parseInt(valTheir))){
-                                    //Then WE FILTER THIS. Since this EntryData SHOULD NOT BE AFFECTED
+                                    //Then WE FILTER THIS. Since this main.EntryData SHOULD NOT BE AFFECTED
                                     returnSet.remove(myED);
                                     breakLoop = true;
                                     break;
@@ -257,17 +258,17 @@ public class TableEntry {
     //Used so FAR for DELETIONS and UPDATES
     public Set<EntryData> filterIrrelevantEntryData(Set<Condition> conditions, Set<String> viewsWithOr, Set<String> extraOrViews){
 
-        //Given the conditions as input, which EntryData will ABSOLUTELY not be affected by
+        //Given the conditions as input, which main.EntryData will ABSOLUTELY not be affected by
         //purely these conditions? ASSUMING all condition sets are joined by AND clauses.
         //>> As long as there is a MISMATCH of a condition, it can be filtered out. Otherwise, it should be
         //marked.
 
 
         //First thing to check: mismatches of conditions (done)
-        //Second thing to check: does the change contain any on attributes not present in an EntryData?
+        //Second thing to check: does the change contain any on attributes not present in an main.EntryData?
         //      if so we FORCE these to be invalidated (keep them!) aka distinct sets. (DONE since
         //              DONE since DEFAULT is ENTIRE SET and in case of disjoint sets LOOP WILL DO NOTHING
-        //Third thing to check: what if we don't have any conditions in our EntryData?
+        //Third thing to check: what if we don't have any conditions in our main.EntryData?
         //      if so then we must be safe an re-evaluate (DONE since DEFAULT IS THE ENTIRE SET)
         //Final thing to check: if the view contains an OR clause then ANY match -> re-evaluate (keep in set)
 
@@ -316,7 +317,7 @@ public class TableEntry {
 
                                     if((Integer.parseInt(valMine) >= Integer.parseInt(valTheir))){
 
-                                        //Then WE FILTER THIS. Since this EntryData SHOULD NOT BE AFFECTED
+                                        //Then WE FILTER THIS. Since this main.EntryData SHOULD NOT BE AFFECTED
                                         returnSet.remove(myED);
                                         System.out.println("Removing the ED would result in removing the following: " + myED.dependents);
                                         breakLoop = true;
@@ -332,7 +333,7 @@ public class TableEntry {
 
                                 if(StringUtils.isNumeric(valMine) && StringUtils.isNumeric(valTheir)){
                                     if((Integer.parseInt(valMine) >= Integer.parseInt(valTheir))){
-                                        //Then WE FILTER THIS. Since this EntryData SHOULD NOT BE AFFECTED
+                                        //Then WE FILTER THIS. Since this main.EntryData SHOULD NOT BE AFFECTED
                                         returnSet.remove(myED);
                                         breakLoop = true;
                                         break;
@@ -353,7 +354,7 @@ public class TableEntry {
 
                                 if(StringUtils.isNumeric(valMine) && StringUtils.isNumeric(valTheir)){
                                     if((Integer.parseInt(valMine) <= Integer.parseInt(valTheir))){
-                                        //Then WE FILTER THIS. Since this EntryData SHOULD NOT BE AFFECTED
+                                        //Then WE FILTER THIS. Since this main.EntryData SHOULD NOT BE AFFECTED
                                         returnSet.remove(myED);
                                         breakLoop = true;
                                         break;
@@ -370,7 +371,7 @@ public class TableEntry {
 
                                 if(StringUtils.isNumeric(valMine) && StringUtils.isNumeric(valTheir)){
                                     if((Integer.parseInt(valMine) <= Integer.parseInt(valTheir))){
-                                        //Then WE FILTER THIS. Since this EntryData SHOULD NOT BE AFFECTED
+                                        //Then WE FILTER THIS. Since this main.EntryData SHOULD NOT BE AFFECTED
                                         returnSet.remove(myED);
                                         breakLoop = true;
                                         break;
@@ -393,7 +394,7 @@ public class TableEntry {
 
                                 if(StringUtils.isNumeric(valMine) && StringUtils.isNumeric(valTheir)){
                                     if((Integer.parseInt(valMine) <= Integer.parseInt(valTheir))){
-                                        //Then WE FILTER THIS. Since this EntryData SHOULD NOT BE AFFECTED
+                                        //Then WE FILTER THIS. Since this main.EntryData SHOULD NOT BE AFFECTED
                                         returnSet.remove(myED);
                                         breakLoop = true;
                                         break;
@@ -408,7 +409,7 @@ public class TableEntry {
 
                                 if(StringUtils.isNumeric(valMine) && StringUtils.isNumeric(valTheir)){
                                     if((Integer.parseInt(valMine) >= Integer.parseInt(valTheir))){
-                                        //Then WE FILTER THIS. Since this EntryData SHOULD NOT BE AFFECTED
+                                        //Then WE FILTER THIS. Since this main.EntryData SHOULD NOT BE AFFECTED
                                         returnSet.remove(myED);
                                         breakLoop = true;
                                         break;

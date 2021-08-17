@@ -1,10 +1,11 @@
+package main;
+
 import gen.ViewBaseListener;
 import gen.ViewParser;
 import org.antlr.v4.runtime.misc.Interval;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -23,7 +24,7 @@ public class QueryParser extends ViewBaseListener {
  * ********/
     //First: the dependency table.
     //Second: a list of labels that are affected: this will be added to during parsing and used at the end to
-    //          attach all EntryData objects to the TableEntry object which are pointed to by the keys in this list.
+    //          attach all main.EntryData objects to the main.TableEntry object which are pointed to by the keys in this list.
     protected DependencyTable dependencyTable = new DependencyTable();
     protected List<String> labelsAffected = new LinkedList<>();
     final String NODESTARLABEL = "_ENTRY_SPECIAL_NODE_STAR_";
@@ -389,7 +390,7 @@ public class QueryParser extends ViewBaseListener {
                 //filterIrrelevantEntryData will fill referencedViews with views that must be updated due to the OR conditions.
                 finalAffectedViews.addAll(referencedViews);
 
-                //Now that we have this, we only continue if the update itself applies to these EntryData
+                //Now that we have this, we only continue if the update itself applies to these main.EntryData
 
                 for(EntryData d : affectedEntryDatas){
                     if(d.containsConditionOnAttribute(affectedAttribute)) {
@@ -442,9 +443,9 @@ public class QueryParser extends ViewBaseListener {
                 *   3) Set difference (2)-(1) for NEWLY CREATED EXPRESSIONS
                 *   4)      For all variables in (3), refer back to insertedVarLabels
                 *           Some of these will have certain attributes. Need a structure to contain these attributes
-                *   5) Match these against the TableEntry that are in the DependencyTable.
-                *   6) For all matches, see if an EntryData contains a condition on any attribute found in (4).
-                *   7) Invalidate all EntryData found in (6).
+                *   5) Match these against the main.TableEntry that are in the main.DependencyTable.
+                *   6) For all matches, see if an main.EntryData contains a condition on any attribute found in (4).
+                *   7) Invalidate all main.EntryData found in (6).
                 * */
 
                 //can optimize by converting these into HashSets for O(1) contains() complexity
@@ -488,7 +489,7 @@ public class QueryParser extends ViewBaseListener {
                      * CASE: The insertion does not include any attributes for which a view contains an attribute condition on.
                      *
                      *  For the second possibility, there are two sub-cases of possibilities.  First, the view may have zero
-                     *   attribute conditions for the EntryData - in this case, we treat it similarly to the node* entry and immediately invalidate it.
+                     *   attribute conditions for the main.EntryData - in this case, we treat it similarly to the node* entry and immediately invalidate it.
                      *  Second, the view may contain other attribute conditions that are not on the
                      *   same attributes that were included during the insertion - in this case, we may safely assume that the
                      *  view in question does not require reevaluation.
@@ -841,7 +842,7 @@ public class QueryParser extends ViewBaseListener {
             //just converting to a list from a set^
 
 
-            //Check if there already exists an EntryData with the EXACT SAME CONDITIONS
+            //Check if there already exists an main.EntryData with the EXACT SAME CONDITIONS
             String label = varLabels.get(key); //this is the label used to search dependency table, for example :Person
 
 //            System.out.println(key);
@@ -861,15 +862,15 @@ public class QueryParser extends ViewBaseListener {
 
             }
             else{
-                //this entry already has a TableEntry
+                //this entry already has a main.TableEntry
 
-                //so we compare ALL EntryData from this tableentry and see if one has EXACT same conditions..
+                //so we compare ALL main.EntryData from this tableentry and see if one has EXACT same conditions..
 
                 if(dependencyTable.get(label).addSameDependents(conditionList, dependents)){
                     //nothing to do here, it has been done in the method. probably should just write "if !..." for clarity
                 }
                 else{
-                    //as with above, then there is no existing entry so we add a new entry to the existing TableEntry
+                    //as with above, then there is no existing entry so we add a new entry to the existing main.TableEntry
 
                     EntryData entryData = new EntryData();
                     entryData.setConditions(list);
@@ -881,14 +882,14 @@ public class QueryParser extends ViewBaseListener {
 
                 }
 
-//                List<EntryData> existingEntries = dependencyTable.get(label).getEntries();
+//                List<main.EntryData> existingEntries = dependencyTable.get(label).getEntries();
 //
-//                for(EntryData e : existingEntries){
+//                for(main.EntryData e : existingEntries){
 //
-//                    Set<Condition> existingConds = new HashSet<>(e.getConditions());
+//                    Set<main.Condition> existingConds = new HashSet<>(e.getConditions());
 //
 //                    if(existingConds.equals(conditionList)){
-//                        //Then instead of creating a new EntryData we add onto this one.
+//                        //Then instead of creating a new main.EntryData we add onto this one.
 //
 //
 ////                        e.addDependent(dependents);

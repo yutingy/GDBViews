@@ -195,7 +195,6 @@ public class Main {
                 break;
             }
             case PATHNODES:{
-                //TODO
                 break;
             }
             case PATH: {
@@ -204,7 +203,7 @@ public class Main {
                         + "\nFOREACH(pathnode in relationships(" + returnSymbol + ") | SET(CASE WHEN NOT EXISTS(pathnode.views) THEN pathnode END).views = []" +
                         " SET pathnode.views = (CASE WHEN \"" +viewname+ "\" IN pathnode.views THEN [] ELSE [\"" + viewname + "\"] END) + pathnode.views)";
 
-                //TODO
+
                 makeMiddlewareView = mainQuery + "RETURN " + returnSymbol;
 
             }
@@ -268,17 +267,6 @@ public class Main {
         }
 
         totalTime = System.currentTimeMillis() - totalTime;
-
-        try{
-
-            BufferedWriter fw = new BufferedWriter(new FileWriter("./test2/InitTimeSplitSmall.txt", true));
-
-            fw.write(cmd + "\t"+totalTime +"\t"+queryTime+"\t"+(totalTime-queryTime)+"\n");
-            fw.close();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
 
 
     }
@@ -386,7 +374,6 @@ public class Main {
             }
         }
 
-//        System.out.println(fullQuery); //todo uncomment
 
         if(fullQuery.contains("IN null")){
             System.out.println("Nothing in view");
@@ -531,7 +518,7 @@ public class Main {
 
     /**
      *
-     * EVERYTHING BELOW THIS POINT IS THE TESTER CODE
+     * EVERYTHING BELOW THIS POINT IS THE TESTER CODE. SORRY BAD PRACTICE SHOULD HAVE IT AS ANOTHER CLASS
      *
      *
      * */
@@ -665,7 +652,7 @@ public class Main {
 
 
 
-    public static void toFile(String size, String viewName){
+    public static void toFile(String size, String viewName){ //todo rename test3 to test as test3 and test2 are no longer used
         File tableNodes = new File("./test3/" + size + "/" +viewName + "Node.txt");
         File tableRels = new File("./test3/"  + size + "/" +viewName + "Rel.txt");
 
@@ -693,7 +680,7 @@ public class Main {
 
     public static void loadTablesFromFiles(String size){
 
-        File directory = new File("./test3/"+size);
+        File directory = new File("./test/"+size);
 
         try {
             for (File fileEntry : directory.listFiles()) {

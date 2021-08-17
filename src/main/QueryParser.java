@@ -82,9 +82,7 @@ public class QueryParser extends ViewBaseListener {
      * Third section, miscellaneous tracking objects
      */
 
-    //changeMeta stores a list of metadata objects that must be true in order for the change to apply.
-    //it can be compared with all metadata entries in metadataTable to locate the views that must be updated as a result.
-    protected List<MetaData> changeMeta = new LinkedList<>();
+
     private String setRemoveCGToken = ""; //local to exitChangeGraph, can be declared locally
     public List<String> outdatedViews = new LinkedList<>();
     private String setRemoveCGType = ""; //necessary for communication between View
@@ -1298,7 +1296,6 @@ need method to handle pairList and attach those as "conditions" for the insertio
         symbolTable = new ConcurrentHashMap<String, Set<ViewParser.BoolexprContext>>();
         addWhereClause = new ConcurrentHashMap<>();
 
-        changeMeta = new LinkedList<>();
         setRemoveCGToken = "";
         setRemoveCGType = "";
 

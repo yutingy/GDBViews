@@ -16,13 +16,11 @@ The interface for the connection between the application and the local Neo4j dat
 Test files:
 All test methods are included inside the main program. For materialized views there is the automatic re-writing using node identifiers, and for non-materialized views, there is no automatic rewriting, but it is described in text. Likewise for the baseline queries they are hard-coded. 
 
-Jess:
+jess:
 All methods or files that use or mention Jess were used when exploring discrimination networks (rule-based systems) to deal with materialized views, which offered an incremental view update. This also includes GraphEngine, NodeEnum, EdgeEnum, and any rule files in the /jess/ directory. However, the space complexity was too high and we abandoned the idea. 
 
-Other:
-main.MetaData and ViewQueryListener are part of old versions of the parser which used a "view atoms" concept to detect outdated views. They serve no purpose now.
-
-
+gen:
+This is the output destination for View.g4. View.g4 is the language extension used for the project and for the rest of the code to work, its output must be in gen. If you change the language you must recompile it, and as main.QueryParser.java extends one of these classes (ViewBaseListener) you will need to update it accordingly. Check ANTLR docs on how to do this.
 
 # Instructions for running:
 
@@ -48,6 +46,6 @@ main.QueryParser: This walks down the tree and executes enter/exit based on whic
 
 main.DependencyTable is a hashtable with a graph component label as the key (Person, PARENT_OF, Post, etc) and a main.TableEntry object as the value.
   main.TableEntry contains a list of main.EntryData which are associated with itself. For instance, a main.TableEntry :Post may have several main.EntryData, which differ due to the set of conditions.
-    main.EntryData contains a condition list (which uniquely identifies it) and a list of views which depend on it. 
+    main.EntryData contains a condition list (which uniquely identifies it) and a list of views which depend on it. More info on these structures are in their java files, mainly in TableEntry.
 
 All other structures used in main.QueryParser.java have relevant commenting in the code itself.

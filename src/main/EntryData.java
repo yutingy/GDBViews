@@ -19,7 +19,7 @@ public class EntryData {
         for(Condition c : conditions){
             if(c.attribute.equals(attributeName)) return true;
             //todo technically can be more specific. eg view condition is "n.attribute = 1" and the change
-            //sets the value to attribute = 3. then it should return false.
+            //sets the value to attribute = 3. then it should return false. So far it only checks if the attribute name is the same
         }
 
 

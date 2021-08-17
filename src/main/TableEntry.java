@@ -4,6 +4,19 @@ import org.apache.commons.lang.StringUtils;
 
 import java.util.*;
 
+
+/*
+    Data structure description:
+
+        an instance of TableEntry is what the DependencyTable stores as a value given a key. This entry corresponds to label information (e.g POST, USER, etc)
+        This also contains a list of pairs, in which each pair contains (1) a list of conditions on the label, and (2) a list of keys in the dependency table for which the pair
+           would affect. This is basically the implementation of the dependency table described in Chapter 5 of the thesis.
+
+
+    Most (?) (all?) of the maintenance work is done within this class. Ignore commented lines as they were probably there for troubleshooting.
+
+ */
+
 public class TableEntry {
 
 

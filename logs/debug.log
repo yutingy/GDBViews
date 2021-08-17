@@ -1,0 +1,617 @@
+2021-08-17 18:44:24.576+0000 WARN [o.n.k.i.JvmChecker] The dbms.memory.heap.max_size setting has not been configured. It is recommended that this setting is always explicitly configured, to ensure the system has a balanced configuration. Until then, a JVM computed heuristic of 4278190080 bytes is used instead. Run `neo4j-admin memrec` for memory configuration suggestions.
+2021-08-17 18:44:24.581+0000 WARN [o.n.k.i.JvmChecker] The dbms.memory.heap.initial_size setting has not been configured. It is recommended that this setting is always explicitly configured, to ensure the system has a balanced configuration. Until then, a JVM computed heuristic of 268435456 bytes is used instead. Run `neo4j-admin memrec` for memory configuration suggestions.
+2021-08-17 18:44:24.628+0000 WARN [o.n.i.p.PageCache] The dbms.memory.pagecache.size setting has not been configured. It is recommended that this setting is always explicitly configured, to ensure the system has a balanced configuration. Until then, a computed heuristic value of 6413924352 bytes will be used instead. Run `neo4j-admin memrec` for memory configuration suggestions.
+2021-08-17 18:44:24.669+0000 INFO [o.n.i.d.DiagnosticsManager] ********************************************************************************
+2021-08-17 18:44:24.670+0000 INFO [o.n.i.d.DiagnosticsManager]                              [ System diagnostics ]                             
+2021-08-17 18:44:24.670+0000 INFO [o.n.i.d.DiagnosticsManager] ********************************************************************************
+2021-08-17 18:44:24.675+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:24.676+0000 INFO [o.n.i.d.DiagnosticsManager]                          [ System memory information ]                          
+2021-08-17 18:44:24.676+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:24.698+0000 INFO [o.n.i.d.DiagnosticsManager] Total Physical memory: 15.93GiB
+2021-08-17 18:44:24.699+0000 INFO [o.n.i.d.DiagnosticsManager] Free Physical memory: 5.389GiB
+2021-08-17 18:44:24.699+0000 INFO [o.n.i.d.DiagnosticsManager] Committed virtual memory: 424.0MiB
+2021-08-17 18:44:24.700+0000 INFO [o.n.i.d.DiagnosticsManager] Total swap space: 28.43GiB
+2021-08-17 18:44:24.700+0000 INFO [o.n.i.d.DiagnosticsManager] Free swap space: 12.79GiB
+2021-08-17 18:44:24.701+0000 INFO [o.n.i.d.DiagnosticsManager] 
+2021-08-17 18:44:24.701+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:24.701+0000 INFO [o.n.i.d.DiagnosticsManager]                            [ JVM memory information ]                           
+2021-08-17 18:44:24.702+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:24.703+0000 INFO [o.n.i.d.DiagnosticsManager] Free  memory: 219.2MiB
+2021-08-17 18:44:24.703+0000 INFO [o.n.i.d.DiagnosticsManager] Total memory: 256.0MiB
+2021-08-17 18:44:24.704+0000 INFO [o.n.i.d.DiagnosticsManager] Max   memory: 3.984GiB
+2021-08-17 18:44:24.712+0000 INFO [o.n.i.d.DiagnosticsManager] Garbage Collector: G1 Young Generation: [G1 Eden Space, G1 Survivor Space, G1 Old Gen]
+2021-08-17 18:44:24.713+0000 INFO [o.n.i.d.DiagnosticsManager] Garbage Collector: G1 Old Generation: [G1 Eden Space, G1 Survivor Space, G1 Old Gen]
+2021-08-17 18:44:24.718+0000 INFO [o.n.i.d.DiagnosticsManager] Memory Pool: CodeHeap 'non-nmethods' (Non-heap memory): committed=2.438MiB, used=1.682MiB, max=7.250MiB, threshold=0B
+2021-08-17 18:44:24.719+0000 INFO [o.n.i.d.DiagnosticsManager] Memory Pool: Metaspace (Non-heap memory): committed=20.13MiB, used=19.69MiB, max=-1B, threshold=0B
+2021-08-17 18:44:24.720+0000 INFO [o.n.i.d.DiagnosticsManager] Memory Pool: CodeHeap 'profiled nmethods' (Non-heap memory): committed=3.375MiB, used=3.335MiB, max=116.4MiB, threshold=0B
+2021-08-17 18:44:24.720+0000 INFO [o.n.i.d.DiagnosticsManager] Memory Pool: Compressed Class Space (Non-heap memory): committed=2.125MiB, used=1.905MiB, max=1024MiB, threshold=0B
+2021-08-17 18:44:24.721+0000 INFO [o.n.i.d.DiagnosticsManager] Memory Pool: G1 Eden Space (Heap memory): committed=62.00MiB, used=24.00MiB, max=-1B, threshold=?
+2021-08-17 18:44:24.721+0000 INFO [o.n.i.d.DiagnosticsManager] Memory Pool: G1 Old Gen (Heap memory): committed=191.0MiB, used=9.840MiB, max=3.984GiB, threshold=0B
+2021-08-17 18:44:24.722+0000 INFO [o.n.i.d.DiagnosticsManager] Memory Pool: G1 Survivor Space (Heap memory): committed=3.000MiB, used=3.000MiB, max=-1B, threshold=?
+2021-08-17 18:44:24.723+0000 INFO [o.n.i.d.DiagnosticsManager] Memory Pool: CodeHeap 'non-profiled nmethods' (Non-heap memory): committed=2.438MiB, used=711.8KiB, max=116.4MiB, threshold=0B
+2021-08-17 18:44:24.723+0000 INFO [o.n.i.d.DiagnosticsManager] 
+2021-08-17 18:44:24.723+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:24.724+0000 INFO [o.n.i.d.DiagnosticsManager]                         [ Operating system information ]                        
+2021-08-17 18:44:24.724+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:24.725+0000 INFO [o.n.i.d.DiagnosticsManager] Operating System: Windows 10; version: 10.0; arch: amd64; cpus: 16
+2021-08-17 18:44:24.742+0000 INFO [o.n.i.d.DiagnosticsManager] Process id: 13328@DESKTOP-JBM0291
+2021-08-17 18:44:24.743+0000 INFO [o.n.i.d.DiagnosticsManager] Byte order: LITTLE_ENDIAN
+2021-08-17 18:44:24.760+0000 INFO [o.n.i.d.DiagnosticsManager] Local timezone: America/New_York
+2021-08-17 18:44:24.760+0000 INFO [o.n.i.d.DiagnosticsManager] 
+2021-08-17 18:44:24.761+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:24.761+0000 INFO [o.n.i.d.DiagnosticsManager]                               [ JVM information ]                               
+2021-08-17 18:44:24.761+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:24.762+0000 INFO [o.n.i.d.DiagnosticsManager] VM Name: Java HotSpot(TM) 64-Bit Server VM
+2021-08-17 18:44:24.763+0000 INFO [o.n.i.d.DiagnosticsManager] VM Vendor: Oracle Corporation
+2021-08-17 18:44:24.763+0000 INFO [o.n.i.d.DiagnosticsManager] VM Version: 11.0.7+8-LTS
+2021-08-17 18:44:24.765+0000 INFO [o.n.i.d.DiagnosticsManager] JIT compiler: HotSpot 64-Bit Tiered Compilers
+2021-08-17 18:44:24.765+0000 INFO [o.n.i.d.DiagnosticsManager] VM Arguments: [-javaagent:D:\Program Files\IntelliJ IDEA 2018.2.4\lib\idea_rt.jar=62622:D:\Program Files\IntelliJ IDEA 2018.2.4\bin, -Dfile.encoding=UTF-8]
+2021-08-17 18:44:24.766+0000 INFO [o.n.i.d.DiagnosticsManager] 
+2021-08-17 18:44:24.766+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:24.766+0000 INFO [o.n.i.d.DiagnosticsManager]                                [ Java classpath ]                               
+2021-08-17 18:44:24.767+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:24.855+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-4.0.4.jar
+2021-08-17 18:44:24.856+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jakarta.inject-2.5.0.jar
+2021-08-17 18:44:24.856+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-kernel-api-4.0.4.jar
+2021-08-17 18:44:24.856+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\commons-beanutils-1.9.4.jar
+2021-08-17 18:44:24.856+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\lucene-codecs-8.2.0.jar
+2021-08-17 18:44:24.857+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jetty-servlet-9.4.17.v20190418.jar
+2021-08-17 18:44:24.857+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\hk2-api-2.5.0.jar
+2021-08-17 18:44:24.857+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\slf4j-nop-1.7.25.jar
+2021-08-17 18:44:24.858+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-ast-4.0-4.0.4.jar
+2021-08-17 18:44:24.858+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\lucene-analyzers-common-8.2.0.jar
+2021-08-17 18:44:24.858+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jetty-xml-9.4.17.v20190418.jar
+2021-08-17 18:44:24.859+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-security-4.0.4.jar
+2021-08-17 18:44:24.859+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-index-4.0.4.jar
+2021-08-17 18:44:24.859+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\commons-logging-1.2.jar
+2021-08-17 18:44:24.860+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\eclipse-collections-api-10.0.0.jar
+2021-08-17 18:44:24.860+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jakarta.xml.bind-api-2.3.2.jar
+2021-08-17 18:44:24.860+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\shiro-event-1.5.2.jar
+2021-08-17 18:44:24.860+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-wal-4.0.4.jar
+2021-08-17 18:44:24.861+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\netty-all-4.1.48.Final.jar
+2021-08-17 18:44:24.861+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jakarta.ws.rs-api-2.1.5.jar
+2021-08-17 18:44:24.861+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-parser-4.0-4.0.4.jar
+2021-08-17 18:44:24.862+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-front-end-4.0-4.0.4.jar
+2021-08-17 18:44:24.862+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jaxb-runtime-2.3.2.jar
+2021-08-17 18:44:24.862+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jna-5.4.0.jar
+2021-08-17 18:44:24.862+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\shiro-crypto-cipher-1.5.2.jar
+2021-08-17 18:44:24.863+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-procedure-api-4.0.4.jar
+2021-08-17 18:44:24.863+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-exceptions-4.0.4.jar
+2021-08-17 18:44:24.863+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\hk2-utils-2.5.0.jar
+2021-08-17 18:44:24.863+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jersey-container-servlet-2.29.jar
+2021-08-17 18:44:24.864+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-unsafe-4.0.4.jar
+2021-08-17 18:44:24.864+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-token-api-4.0.4.jar
+2021-08-17 18:44:24.864+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-cypher-runtime-util-4.0.4.jar
+2021-08-17 18:44:24.865+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-ssl-4.0.4.jar
+2021-08-17 18:44:24.865+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\WMI4Java-1.6.3.jar
+2021-08-17 18:44:24.865+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\commons-configuration-1.10.jar
+2021-08-17 18:44:24.866+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-values-4.0.4.jar
+2021-08-17 18:44:24.866+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-browser-4.0.7.jar
+2021-08-17 18:44:24.866+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-label-index-4.0.4.jar
+2021-08-17 18:44:24.867+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-dbms-4.0.4.jar
+2021-08-17 18:44:24.867+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-expressions-4.0-4.0.4.jar
+2021-08-17 18:44:24.867+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\caffeine-2.8.0.jar
+2021-08-17 18:44:24.868+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\shiro-cache-1.5.2.jar
+2021-08-17 18:44:24.868+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jetty-server-9.4.17.v20190418.jar
+2021-08-17 18:44:24.868+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-graphdb-api-4.0.4.jar
+2021-08-17 18:44:24.868+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Downloads\jsr94.jar
+2021-08-17 18:44:24.869+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-rewriting-4.0-4.0.4.jar
+2021-08-17 18:44:24.869+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\annotations-4.0.4.jar
+2021-08-17 18:44:24.869+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\javax.servlet-api-3.1.0.jar
+2021-08-17 18:44:24.869+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\shiro-crypto-core-1.5.2.jar
+2021-08-17 18:44:24.870+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Downloads\antlr-4.8-complete.jar
+2021-08-17 18:44:24.870+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-common-4.0.4.jar
+2021-08-17 18:44:24.870+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jackson-jaxrs-json-provider-2.10.0.jar
+2021-08-17 18:44:24.871+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-io-4.0.4.jar
+2021-08-17 18:44:24.871+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\javax.ws.rs-api-2.1.1.jar
+2021-08-17 18:44:24.871+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jersey-common-2.29.jar
+2021-08-17 18:44:24.871+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\commons-io-2.6.jar
+2021-08-17 18:44:24.872+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-cypher-expression-evaluator-4.0.4.jar
+2021-08-17 18:44:24.872+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\shiro-config-ogdl-1.5.2.jar
+2021-08-17 18:44:24.872+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jetty-util-9.4.17.v20190418.jar
+2021-08-17 18:44:24.873+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-data-collector-4.0.4.jar
+2021-08-17 18:44:24.873+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\validation-api-2.0.1.Final.jar
+2021-08-17 18:44:24.873+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-kernel-4.0.4.jar
+2021-08-17 18:44:24.873+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-bolt-4.0.4.jar
+2021-08-17 18:44:24.874+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jaxb-api-2.3.0.jar
+2021-08-17 18:44:24.874+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jetty-http-9.4.17.v20190418.jar
+2021-08-17 18:44:24.874+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\commons-lang3-3.9.jar
+2021-08-17 18:44:24.874+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-id-generator-4.0.4.jar
+2021-08-17 18:44:24.875+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\shiro-config-core-1.5.2.jar
+2021-08-17 18:44:24.875+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\slf4j-api-1.7.25.jar
+2021-08-17 18:44:24.875+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\commons-lang-2.6.jar
+2021-08-17 18:44:24.875+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-lock-4.0.4.jar
+2021-08-17 18:44:24.875+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\commons-compress-1.19.jar
+2021-08-17 18:44:24.875+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-native-4.0.4.jar
+2021-08-17 18:44:24.875+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jackson-module-jaxb-annotations-2.10.0.jar
+2021-08-17 18:44:24.876+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jakarta.activation-api-1.2.1.jar
+2021-08-17 18:44:24.876+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\shiro-lang-1.5.2.jar
+2021-08-17 18:44:24.876+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\shiro-crypto-hash-1.5.2.jar
+2021-08-17 18:44:24.877+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\parboiled-scala_2.12-1.2.0.jar
+2021-08-17 18:44:24.877+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-concurrent-4.0.4.jar
+2021-08-17 18:44:24.877+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\bcpkix-jdk15on-1.64.jar
+2021-08-17 18:44:24.878+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\out\production\GDBViews
+2021-08-17 18:44:24.878+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\scala-reflect-2.12.7.jar
+2021-08-17 18:44:24.878+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-logging-4.0.4.jar
+2021-08-17 18:44:24.878+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jctools-core-2.1.2.jar
+2021-08-17 18:44:24.879+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-collections-4.0.4.jar
+2021-08-17 18:44:24.879+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\shiro-core-1.5.2.jar
+2021-08-17 18:44:24.879+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-cypher-logical-plans-4.0.4.jar
+2021-08-17 18:44:24.879+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jersey-container-servlet-core-2.29.jar
+2021-08-17 18:44:24.880+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jProcesses-1.6.5.jar
+2021-08-17 18:44:24.880+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-graph-algo-4.0.4.jar
+2021-08-17 18:44:24.880+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jPowerShell-3.0.jar
+2021-08-17 18:44:24.880+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-resource-4.0.4.jar
+2021-08-17 18:44:24.881+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\commons-text-1.7.jar
+2021-08-17 18:44:24.881+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-cypher-planner-4.0.4.jar
+2021-08-17 18:44:24.881+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jersey-hk2-2.29.jar
+2021-08-17 18:44:24.882+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-util-4.0-4.0.4.jar
+2021-08-17 18:44:24.882+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Downloads\jess.jar
+2021-08-17 18:44:24.882+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-import-tool-4.0.4.jar
+2021-08-17 18:44:24.882+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-command-line-4.0.4.jar
+2021-08-17 18:44:24.883+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jersey-server-2.29.jar
+2021-08-17 18:44:24.883+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\lucene-core-8.2.0.jar
+2021-08-17 18:44:24.883+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-codegen-4.0.4.jar
+2021-08-17 18:44:24.883+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jetty-io-9.4.17.v20190418.jar
+2021-08-17 18:44:24.884+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\zstd-proxy-4.0.4.jar
+2021-08-17 18:44:24.884+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jackson-annotations-2.10.0.jar
+2021-08-17 18:44:24.884+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-fulltext-index-4.0.4.jar
+2021-08-17 18:44:24.884+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jersey-client-2.29.jar
+2021-08-17 18:44:24.885+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-spatial-index-4.0.4.jar
+2021-08-17 18:44:24.885+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jetty-security-9.4.17.v20190418.jar
+2021-08-17 18:44:24.885+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jersey-media-jaxb-2.29.jar
+2021-08-17 18:44:24.885+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\javassist-3.22.0-CR2.jar
+2021-08-17 18:44:24.886+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jakarta.activation-1.2.1.jar
+2021-08-17 18:44:24.886+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-cypher-ir-4.0.4.jar
+2021-08-17 18:44:24.886+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jackson-core-2.10.0.jar
+2021-08-17 18:44:24.886+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-cypher-interpreted-runtime-4.0.4.jar
+2021-08-17 18:44:24.887+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\zstd-jni-1.4.3-1.jar
+2021-08-17 18:44:24.887+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\eclipse-collections-10.0.0.jar
+2021-08-17 18:44:24.887+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-lucene-index-4.0.4.jar
+2021-08-17 18:44:24.888+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jsr94.jar
+2021-08-17 18:44:24.888+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-schema-4.0.4.jar
+2021-08-17 18:44:24.888+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\server-api-4.0.4.jar
+2021-08-17 18:44:24.889+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-import-util-4.0.4.jar
+2021-08-17 18:44:24.889+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-batch-insert-4.0.4.jar
+2021-08-17 18:44:24.889+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-diagnostics-4.0.4.jar
+2021-08-17 18:44:24.889+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jackson-jaxrs-base-2.10.0.jar
+2021-08-17 18:44:24.890+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-configuration-4.0.4.jar
+2021-08-17 18:44:24.890+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\stax-ex-1.8.1.jar
+2021-08-17 18:44:24.890+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\lucene-queryparser-8.2.0.jar
+2021-08-17 18:44:24.890+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\activation-1.1.1.jar
+2021-08-17 18:44:24.891+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\hk2-locator-2.5.0.jar
+2021-08-17 18:44:24.891+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jakarta.annotation-api-1.3.4.jar
+2021-08-17 18:44:24.891+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\txw2-2.3.2.jar
+2021-08-17 18:44:24.891+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\parboiled-core-1.2.0.jar
+2021-08-17 18:44:24.892+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\scala-library-2.12.7.jar
+2021-08-17 18:44:24.892+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-layout-4.0.4.jar
+2021-08-17 18:44:24.892+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\commons-collections-3.2.2.jar
+2021-08-17 18:44:24.893+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\FastInfoset-1.2.16.jar
+2021-08-17 18:44:24.893+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-record-storage-engine-4.0.4.jar
+2021-08-17 18:44:24.893+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\bcprov-jdk15on-1.64.jar
+2021-08-17 18:44:24.893+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\istack-commons-runtime-3.0.8.jar
+2021-08-17 18:44:24.894+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jess.jar
+2021-08-17 18:44:24.894+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-storage-engine-api-4.0.4.jar
+2021-08-17 18:44:24.894+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-monitoring-4.0.4.jar
+2021-08-17 18:44:24.894+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\picocli-4.0.4.jar
+2021-08-17 18:44:24.895+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-procedure-4.0.4.jar
+2021-08-17 18:44:24.895+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jackson-databind-2.10.0.jar
+2021-08-17 18:44:24.895+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\jetty-webapp-9.4.17.v20190418.jar
+2021-08-17 18:44:24.895+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-cypher-4.0.4.jar
+2021-08-17 18:44:24.896+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-cypher-planner-spi-4.0.4.jar
+2021-08-17 18:44:24.896+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-csv-4.0.4.jar
+2021-08-17 18:44:24.896+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-consistency-check-4.0.4.jar
+2021-08-17 18:44:24.897+0000 INFO [o.n.i.d.DiagnosticsManager]  [classpath] C:\Users\Ting\Documents\GDBViews\lib\neo4j-server-4.0.4.jar
+2021-08-17 18:44:24.897+0000 INFO [o.n.i.d.DiagnosticsManager] 
+2021-08-17 18:44:24.897+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:24.897+0000 INFO [o.n.i.d.DiagnosticsManager]                                 [ Library path ]                                
+2021-08-17 18:44:24.898+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:24.899+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Program Files\Java\jdk-11.0.7\bin
+2021-08-17 18:44:24.899+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Windows\Sun\Java\bin
+2021-08-17 18:44:24.900+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Windows\System32
+2021-08-17 18:44:24.901+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Windows
+2021-08-17 18:44:24.901+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Program Files\Java\jdk-11.0.7\bin
+2021-08-17 18:44:24.903+0000 INFO [o.n.i.d.DiagnosticsManager] D:\Program Files\IBM\LOG\CPLEX_Studio128\opl\oplide
+2021-08-17 18:44:24.905+0000 INFO [o.n.i.d.DiagnosticsManager] D:\Program Files\IBM\LOG\CPLEX_Studio128\cplex\bin\x64_win64
+2021-08-17 18:44:24.907+0000 INFO [o.n.i.d.DiagnosticsManager] D:\Program Files\IBM\LOG\CPLEX_Studio128\cpoptimizer\bin\x64_win64
+2021-08-17 18:44:24.908+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Program Files (x86)\Common Files\Oracle\Java\javapath_target_889546562
+2021-08-17 18:44:24.909+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Windows\System32
+2021-08-17 18:44:24.909+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Windows
+2021-08-17 18:44:24.910+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Windows\System32\wbem
+2021-08-17 18:44:24.911+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Windows\System32\WindowsPowerShell\v1.0
+2021-08-17 18:44:24.912+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Windows\System32\OpenSSH
+2021-08-17 18:44:24.913+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common
+2021-08-17 18:44:24.914+0000 INFO [o.n.i.d.DiagnosticsManager] D:\Apps\python3.7
+2021-08-17 18:44:24.915+0000 INFO [o.n.i.d.DiagnosticsManager] D:\Apps\python3.7\Scripts
+2021-08-17 18:44:24.916+0000 INFO [o.n.i.d.DiagnosticsManager] D:\Program Files\MATLAB\bin
+2021-08-17 18:44:24.917+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Windows\System32
+2021-08-17 18:44:24.917+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Windows
+2021-08-17 18:44:24.918+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Windows\System32\wbem
+2021-08-17 18:44:24.918+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Windows\System32\WindowsPowerShell\v1.0
+2021-08-17 18:44:24.919+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Windows\System32\OpenSSH
+2021-08-17 18:44:24.920+0000 INFO [o.n.i.d.DiagnosticsManager] D:\Program Files\Git\cmd
+2021-08-17 18:44:24.922+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Users\Ting\Downloads\openjdk-11.0.2_windows-x64_bin\jdk-11.0.2\bin
+2021-08-17 18:44:24.922+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Users\Ting\Documents\GDBViews
+2021-08-17 18:44:24.923+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR
+2021-08-17 18:44:24.924+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Windows\System32
+2021-08-17 18:44:24.924+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Windows
+2021-08-17 18:44:24.925+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Windows\System32\wbem
+2021-08-17 18:44:24.925+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Windows\System32\WindowsPowerShell\v1.0
+2021-08-17 18:44:24.926+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Windows\System32\OpenSSH
+2021-08-17 18:44:24.927+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Program Files\nodejs
+2021-08-17 18:44:24.927+0000 INFO [o.n.i.d.DiagnosticsManager] D:\Programs\Scripts
+2021-08-17 18:44:24.928+0000 INFO [o.n.i.d.DiagnosticsManager] D:\Programs
+2021-08-17 18:44:24.929+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Users\Ting\AppData\Local\Microsoft\WindowsApps
+2021-08-17 18:44:24.940+0000 INFO [o.n.i.d.DiagnosticsManager] D:\Program Files\Microsoft VS Code\bin
+2021-08-17 18:44:24.941+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Users\Ting\Downloads\chromedriver_win32
+2021-08-17 18:44:24.942+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Program Files\heroku\bin
+2021-08-17 18:44:24.943+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Users\Ting\AppData\Roaming\npm
+2021-08-17 18:44:24.946+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Users\Ting\Downloads\apache-maven-3.8.1-bin\apache-maven-3.8.1\bin
+2021-08-17 18:44:24.946+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Users\Ting\Documents\GDBViews
+2021-08-17 18:44:24.947+0000 INFO [o.n.i.d.DiagnosticsManager] C:\Users\Ting\Documents\GDBViews
+2021-08-17 18:44:24.947+0000 INFO [o.n.i.d.DiagnosticsManager] 
+2021-08-17 18:44:24.948+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:24.948+0000 INFO [o.n.i.d.DiagnosticsManager]                              [ System properties ]                              
+2021-08-17 18:44:24.948+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:24.949+0000 INFO [o.n.i.d.DiagnosticsManager] sun.desktop = windows
+2021-08-17 18:44:24.950+0000 INFO [o.n.i.d.DiagnosticsManager] awt.toolkit = sun.awt.windows.WToolkit
+2021-08-17 18:44:24.950+0000 INFO [o.n.i.d.DiagnosticsManager] sun.cpu.isalist = amd64
+2021-08-17 18:44:24.950+0000 INFO [o.n.i.d.DiagnosticsManager] sun.jnu.encoding = Cp1252
+2021-08-17 18:44:24.950+0000 INFO [o.n.i.d.DiagnosticsManager] sun.arch.data.model = 64
+2021-08-17 18:44:24.950+0000 INFO [o.n.i.d.DiagnosticsManager] user.variant = 
+2021-08-17 18:44:24.950+0000 INFO [o.n.i.d.DiagnosticsManager] user.timezone = America/New_York
+2021-08-17 18:44:24.951+0000 INFO [o.n.i.d.DiagnosticsManager] sun.java.launcher = SUN_STANDARD
+2021-08-17 18:44:24.951+0000 INFO [o.n.i.d.DiagnosticsManager] user.country = US
+2021-08-17 18:44:24.951+0000 INFO [o.n.i.d.DiagnosticsManager] sun.boot.library.path = C:\Program Files\Java\jdk-11.0.7\bin
+2021-08-17 18:44:24.952+0000 INFO [o.n.i.d.DiagnosticsManager] sun.java.command = Main
+2021-08-17 18:44:24.952+0000 INFO [o.n.i.d.DiagnosticsManager] jdk.debug = release
+2021-08-17 18:44:24.952+0000 INFO [o.n.i.d.DiagnosticsManager] sun.cpu.endian = little
+2021-08-17 18:44:24.953+0000 INFO [o.n.i.d.DiagnosticsManager] user.home = C:\Users\Ting
+2021-08-17 18:44:24.953+0000 INFO [o.n.i.d.DiagnosticsManager] user.language = en
+2021-08-17 18:44:24.953+0000 INFO [o.n.i.d.DiagnosticsManager] file.separator = \
+2021-08-17 18:44:24.953+0000 INFO [o.n.i.d.DiagnosticsManager] user.script = 
+2021-08-17 18:44:24.954+0000 INFO [o.n.i.d.DiagnosticsManager] sun.management.compiler = HotSpot 64-Bit Tiered Compilers
+2021-08-17 18:44:24.954+0000 INFO [o.n.i.d.DiagnosticsManager] user.name = Ting
+2021-08-17 18:44:24.954+0000 INFO [o.n.i.d.DiagnosticsManager] path.separator = ;
+2021-08-17 18:44:24.954+0000 INFO [o.n.i.d.DiagnosticsManager] file.encoding = UTF-8
+2021-08-17 18:44:24.955+0000 INFO [o.n.i.d.DiagnosticsManager] user.dir = C:\Users\Ting\Documents\GDBViews
+2021-08-17 18:44:24.955+0000 INFO [o.n.i.d.DiagnosticsManager] sun.os.patch.level = 
+2021-08-17 18:44:24.955+0000 INFO [o.n.i.d.DiagnosticsManager] sun.io.unicode.encoding = UnicodeLittle
+2021-08-17 18:44:24.956+0000 INFO [o.n.i.d.DiagnosticsManager] 
+2021-08-17 18:44:24.956+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:24.956+0000 INFO [o.n.i.d.DiagnosticsManager]                       [ (IANA) TimeZone database version ]                      
+2021-08-17 18:44:24.956+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:24.980+0000 INFO [o.n.i.d.DiagnosticsManager]   TimeZone version: 2019c (available for 600 zone identifiers)
+2021-08-17 18:44:24.980+0000 INFO [o.n.i.d.DiagnosticsManager] 
+2021-08-17 18:44:24.981+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:24.981+0000 INFO [o.n.i.d.DiagnosticsManager]                             [ Network information ]                             
+2021-08-17 18:44:24.981+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:25.149+0000 INFO [o.n.i.d.DiagnosticsManager] Interface Software Loopback Interface 1:
+2021-08-17 18:44:25.149+0000 INFO [o.n.i.d.DiagnosticsManager]     address: 127.0.0.1
+2021-08-17 18:44:25.150+0000 INFO [o.n.i.d.DiagnosticsManager]     address: 0:0:0:0:0:0:0:1
+2021-08-17 18:44:25.150+0000 INFO [o.n.i.d.DiagnosticsManager] Interface Microsoft 6to4 Adapter:
+2021-08-17 18:44:25.150+0000 INFO [o.n.i.d.DiagnosticsManager] Interface Remote NDIS based Internet Sharing Device:
+2021-08-17 18:44:25.151+0000 INFO [o.n.i.d.DiagnosticsManager] Interface WAN Miniport (IPv6):
+2021-08-17 18:44:25.151+0000 INFO [o.n.i.d.DiagnosticsManager] Interface WAN Miniport (PPPOE):
+2021-08-17 18:44:25.151+0000 INFO [o.n.i.d.DiagnosticsManager] Interface Intel(R) I211 Gigabit Network Connection:
+2021-08-17 18:44:25.152+0000 INFO [o.n.i.d.DiagnosticsManager]     address: 192.168.1.188
+2021-08-17 18:44:25.152+0000 INFO [o.n.i.d.DiagnosticsManager] Interface Microsoft IP-HTTPS Platform Adapter:
+2021-08-17 18:44:25.152+0000 INFO [o.n.i.d.DiagnosticsManager] Interface VMware Virtual Ethernet Adapter for VMnet1:
+2021-08-17 18:44:25.153+0000 INFO [o.n.i.d.DiagnosticsManager]     address: 192.168.32.1
+2021-08-17 18:44:25.153+0000 INFO [o.n.i.d.DiagnosticsManager]     address: fe80:0:0:0:83b:4769:cbb1:81b0%eth3
+2021-08-17 18:44:25.153+0000 INFO [o.n.i.d.DiagnosticsManager] Interface Hyper-V Virtual Switch Extension Adapter:
+2021-08-17 18:44:25.154+0000 INFO [o.n.i.d.DiagnosticsManager] Interface WAN Miniport (IP):
+2021-08-17 18:44:25.154+0000 INFO [o.n.i.d.DiagnosticsManager] Interface Hyper-V Virtual Ethernet Adapter:
+2021-08-17 18:44:25.154+0000 INFO [o.n.i.d.DiagnosticsManager]     address: 10.0.2.2
+2021-08-17 18:44:25.154+0000 INFO [o.n.i.d.DiagnosticsManager]     address: fe80:0:0:0:94:3fe4:5033:e657%eth6
+2021-08-17 18:44:25.155+0000 INFO [o.n.i.d.DiagnosticsManager] Interface Microsoft Kernel Debug Network Adapter:
+2021-08-17 18:44:25.155+0000 INFO [o.n.i.d.DiagnosticsManager] Interface Microsoft Teredo Tunneling Adapter:
+2021-08-17 18:44:25.155+0000 INFO [o.n.i.d.DiagnosticsManager] Interface WAN Miniport (IKEv2):
+2021-08-17 18:44:25.156+0000 INFO [o.n.i.d.DiagnosticsManager] Interface WAN Miniport (L2TP):
+2021-08-17 18:44:25.156+0000 INFO [o.n.i.d.DiagnosticsManager] Interface WAN Miniport (SSTP):
+2021-08-17 18:44:25.156+0000 INFO [o.n.i.d.DiagnosticsManager] Interface VMware Virtual Ethernet Adapter for VMnet8:
+2021-08-17 18:44:25.157+0000 INFO [o.n.i.d.DiagnosticsManager]     address: 192.168.76.1
+2021-08-17 18:44:25.157+0000 INFO [o.n.i.d.DiagnosticsManager]     address: fe80:0:0:0:dcf2:b984:87c1:6688%eth8
+2021-08-17 18:44:25.157+0000 INFO [o.n.i.d.DiagnosticsManager] Interface WAN Miniport (PPTP):
+2021-08-17 18:44:25.158+0000 INFO [o.n.i.d.DiagnosticsManager] Interface WAN Miniport (Network Monitor):
+2021-08-17 18:44:25.158+0000 INFO [o.n.i.d.DiagnosticsManager] Interface Cisco AnyConnect Secure Mobility Client Virtual Miniport Adapter for Windows x64:
+2021-08-17 18:44:25.158+0000 INFO [o.n.i.d.DiagnosticsManager] Interface Intel(R) I211 Gigabit Network Connection-WFP Native MAC Layer LightWeight Filter-0000:
+2021-08-17 18:44:25.159+0000 INFO [o.n.i.d.DiagnosticsManager] Interface Intel(R) I211 Gigabit Network Connection-Npcap Packet Driver (NPCAP)-0000:
+2021-08-17 18:44:25.159+0000 INFO [o.n.i.d.DiagnosticsManager] Interface Intel(R) I211 Gigabit Network Connection-QoS Packet Scheduler-0000:
+2021-08-17 18:44:25.159+0000 INFO [o.n.i.d.DiagnosticsManager] Interface Hyper-V Virtual Ethernet Adapter-WFP Native MAC Layer LightWeight Filter-0000:
+2021-08-17 18:44:25.160+0000 INFO [o.n.i.d.DiagnosticsManager] Interface Hyper-V Virtual Ethernet Adapter-Npcap Packet Driver (NPCAP)-0000:
+2021-08-17 18:44:25.160+0000 INFO [o.n.i.d.DiagnosticsManager] Interface Hyper-V Virtual Ethernet Adapter-QoS Packet Scheduler-0000:
+2021-08-17 18:44:25.161+0000 INFO [o.n.i.d.DiagnosticsManager] Interface Hyper-V Virtual Ethernet Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000:
+2021-08-17 18:44:25.161+0000 INFO [o.n.i.d.DiagnosticsManager] Interface Intel(R) I211 Gigabit Network Connection-WFP 802.3 MAC Layer LightWeight Filter-0000:
+2021-08-17 18:44:25.161+0000 INFO [o.n.i.d.DiagnosticsManager] Interface Hyper-V Virtual Switch Extension Adapter-Hyper-V Virtual Switch Extension Filter-0000:
+2021-08-17 18:44:25.161+0000 INFO [o.n.i.d.DiagnosticsManager] Interface VMware Virtual Ethernet Adapter for VMnet1-Npcap Packet Driver (NPCAP)-0000:
+2021-08-17 18:44:25.161+0000 INFO [o.n.i.d.DiagnosticsManager] Interface VMware Virtual Ethernet Adapter for VMnet8-Npcap Packet Driver (NPCAP)-0000:
+2021-08-17 18:44:25.161+0000 INFO [o.n.i.d.DiagnosticsManager] Interface WAN Miniport (IP)-WFP Native MAC Layer LightWeight Filter-0000:
+2021-08-17 18:44:25.162+0000 INFO [o.n.i.d.DiagnosticsManager] Interface WAN Miniport (IP)-Npcap Packet Driver (NPCAP)-0000:
+2021-08-17 18:44:25.162+0000 INFO [o.n.i.d.DiagnosticsManager] Interface WAN Miniport (IP)-QoS Packet Scheduler-0000:
+2021-08-17 18:44:25.162+0000 INFO [o.n.i.d.DiagnosticsManager] Interface WAN Miniport (IPv6)-WFP Native MAC Layer LightWeight Filter-0000:
+2021-08-17 18:44:25.162+0000 INFO [o.n.i.d.DiagnosticsManager] Interface WAN Miniport (IPv6)-Npcap Packet Driver (NPCAP)-0000:
+2021-08-17 18:44:25.163+0000 INFO [o.n.i.d.DiagnosticsManager] Interface WAN Miniport (IPv6)-QoS Packet Scheduler-0000:
+2021-08-17 18:44:25.163+0000 INFO [o.n.i.d.DiagnosticsManager] Interface WAN Miniport (Network Monitor)-WFP Native MAC Layer LightWeight Filter-0000:
+2021-08-17 18:44:25.163+0000 INFO [o.n.i.d.DiagnosticsManager] Interface WAN Miniport (Network Monitor)-Npcap Packet Driver (NPCAP)-0000:
+2021-08-17 18:44:25.164+0000 INFO [o.n.i.d.DiagnosticsManager] Interface WAN Miniport (Network Monitor)-QoS Packet Scheduler-0000:
+2021-08-17 18:44:25.164+0000 INFO [o.n.i.d.DiagnosticsManager] 
+2021-08-17 18:44:25.164+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:25.164+0000 INFO [o.n.i.d.DiagnosticsManager]                          [ Native access information ]                          
+2021-08-17 18:44:25.165+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:25.175+0000 INFO [o.n.i.d.DiagnosticsManager] Native access details: Native access is not available for current platform.
+2021-08-17 18:44:25.176+0000 INFO [o.n.i.d.DiagnosticsManager] 
+2021-08-17 18:44:25.182+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:25.182+0000 INFO [o.n.i.d.DiagnosticsManager]                                 [ DBMS config ]                                 
+2021-08-17 18:44:25.182+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:25.184+0000 INFO [o.n.i.d.DiagnosticsManager] DBMS provided settings:
+2021-08-17 18:44:25.188+0000 INFO [o.n.i.d.DiagnosticsManager] dbms.default_database=neo4j
+2021-08-17 18:44:25.188+0000 INFO [o.n.i.d.DiagnosticsManager] dbms.directories.neo4j_home=C:\Users\Ting\Documents\GDBViews
+2021-08-17 18:44:25.189+0000 INFO [o.n.i.d.DiagnosticsManager] unsupported.dbms.lucene.ephemeral=false
+2021-08-17 18:44:25.189+0000 INFO [o.n.i.d.DiagnosticsManager] 
+2021-08-17 18:44:25.218+0000 INFO [o.n.g.f.EditionLocksFactories] Locking implementation 'community' selected.
+2021-08-17 18:44:26.669+0000 INFO [o.n.d.d.DefaultDatabaseManager] Creating 'system' database.
+2021-08-17 18:44:26.799+0000 INFO [o.n.d.d.DefaultDatabaseManager] Starting 'system' database.
+2021-08-17 18:44:26.967+0000 INFO [o.n.k.i.s.f.RecordFormatSelector] [system] Selected format 'RecordFormat:StandardV4_0[SF4.0.0]' for the new store C:\Users\Ting\Documents\GDBViews\data\databases\system
+2021-08-17 18:44:27.763+0000 INFO [o.n.i.d.DiagnosticsManager] ********************************************************************************
+2021-08-17 18:44:27.763+0000 INFO [o.n.i.d.DiagnosticsManager]                               [ Database: system ]                              
+2021-08-17 18:44:27.764+0000 INFO [o.n.i.d.DiagnosticsManager] ********************************************************************************
+2021-08-17 18:44:27.764+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:27.765+0000 INFO [o.n.i.d.DiagnosticsManager]                                   [ Version ]                                   
+2021-08-17 18:44:27.765+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:27.773+0000 INFO [o.n.i.d.DiagnosticsManager] DBMS: community single StoreId{creationTime=1629225867360, randomId=1333609340249073808, storeVersion=3471765337752883975, upgradeTime=1629225867360, upgradeTxId=1}
+2021-08-17 18:44:27.773+0000 INFO [o.n.i.d.DiagnosticsManager] Kernel version: 4.0.4,5d5f3fc27ee891c0b5e152681a222823fb5ad4c8
+2021-08-17 18:44:27.773+0000 INFO [o.n.i.d.DiagnosticsManager] 
+2021-08-17 18:44:27.778+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:27.778+0000 INFO [o.n.i.d.DiagnosticsManager]                                 [ Store files ]                                 
+2021-08-17 18:44:27.779+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:27.782+0000 INFO [o.n.i.d.DiagnosticsManager] Disk space on partition (Total / Free / Free %): 249414283264 / 25348988928 / 10
+2021-08-17 18:44:27.786+0000 INFO [o.n.i.d.DiagnosticsManager] Storage files stored on file store: NTFS
+2021-08-17 18:44:27.786+0000 INFO [o.n.i.d.DiagnosticsManager] Storage files: (filename : modification date - size)
+2021-08-17 18:44:27.791+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore: 2021-08-17T14:44:27-0400 - 7.998KiB
+2021-08-17 18:44:27.792+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.counts.db: 2021-08-17T14:44:27-0400 - 40.00KiB
+2021-08-17 18:44:27.793+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.id: 2021-08-17T14:44:27-0400 - 40.00KiB
+2021-08-17 18:44:27.793+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.labeltokenstore.db: 2021-08-17T14:44:27-0400 - 0B
+2021-08-17 18:44:27.794+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.labeltokenstore.db.id: 2021-08-17T14:44:27-0400 - 40.00KiB
+2021-08-17 18:44:27.795+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.labeltokenstore.db.names: 2021-08-17T14:44:27-0400 - 7.979KiB
+2021-08-17 18:44:27.795+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.labeltokenstore.db.names.id: 2021-08-17T14:44:27-0400 - 40.00KiB
+2021-08-17 18:44:27.796+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.nodestore.db: 2021-08-17T14:44:27-0400 - 0B
+2021-08-17 18:44:27.796+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.nodestore.db.id: 2021-08-17T14:44:27-0400 - 40.00KiB
+2021-08-17 18:44:27.797+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.nodestore.db.labels: 2021-08-17T14:44:27-0400 - 8.000KiB
+2021-08-17 18:44:27.798+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.nodestore.db.labels.id: 2021-08-17T14:44:27-0400 - 40.00KiB
+2021-08-17 18:44:27.798+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.propertystore.db: 2021-08-17T14:44:27-0400 - 0B
+2021-08-17 18:44:27.799+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.propertystore.db.arrays: 2021-08-17T14:44:27-0400 - 8.000KiB
+2021-08-17 18:44:27.800+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.propertystore.db.arrays.id: 2021-08-17T14:44:27-0400 - 40.00KiB
+2021-08-17 18:44:27.801+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.propertystore.db.id: 2021-08-17T14:44:27-0400 - 40.00KiB
+2021-08-17 18:44:27.802+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.propertystore.db.index: 2021-08-17T14:44:27-0400 - 0B
+2021-08-17 18:44:27.803+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.propertystore.db.index.id: 2021-08-17T14:44:27-0400 - 40.00KiB
+2021-08-17 18:44:27.803+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.propertystore.db.index.keys: 2021-08-17T14:44:27-0400 - 7.979KiB
+2021-08-17 18:44:27.804+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.propertystore.db.index.keys.id: 2021-08-17T14:44:27-0400 - 40.00KiB
+2021-08-17 18:44:27.804+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.propertystore.db.strings: 2021-08-17T14:44:27-0400 - 8.000KiB
+2021-08-17 18:44:27.805+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.propertystore.db.strings.id: 2021-08-17T14:44:27-0400 - 40.00KiB
+2021-08-17 18:44:27.806+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.relationshipgroupstore.db: 2021-08-17T14:44:27-0400 - 7.983KiB
+2021-08-17 18:44:27.806+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.relationshipgroupstore.db.id: 2021-08-17T14:44:27-0400 - 40.00KiB
+2021-08-17 18:44:27.807+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.relationshipstore.db: 2021-08-17T14:44:27-0400 - 0B
+2021-08-17 18:44:27.807+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.relationshipstore.db.id: 2021-08-17T14:44:27-0400 - 40.00KiB
+2021-08-17 18:44:27.808+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.relationshiptypestore.db: 2021-08-17T14:44:27-0400 - 0B
+2021-08-17 18:44:27.808+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.relationshiptypestore.db.id: 2021-08-17T14:44:27-0400 - 40.00KiB
+2021-08-17 18:44:27.809+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.relationshiptypestore.db.names: 2021-08-17T14:44:27-0400 - 7.979KiB
+2021-08-17 18:44:27.810+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.relationshiptypestore.db.names.id: 2021-08-17T14:44:27-0400 - 40.00KiB
+2021-08-17 18:44:27.810+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.schemastore.db: 2021-08-17T14:44:27-0400 - 8.000KiB
+2021-08-17 18:44:27.811+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.schemastore.db.id: 2021-08-17T14:44:27-0400 - 40.00KiB
+2021-08-17 18:44:27.811+0000 INFO [o.n.i.d.DiagnosticsManager] Storage summary: 
+2021-08-17 18:44:27.812+0000 INFO [o.n.i.d.DiagnosticsManager]   Total size of store: 711.9KiB
+2021-08-17 18:44:27.812+0000 INFO [o.n.i.d.DiagnosticsManager]   Total size of mapped files: 71.92KiB
+2021-08-17 18:44:27.813+0000 INFO [o.n.i.d.DiagnosticsManager] 
+2021-08-17 18:44:27.814+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:27.814+0000 INFO [o.n.i.d.DiagnosticsManager]                               [ Transaction log ]                               
+2021-08-17 18:44:27.814+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:27.816+0000 INFO [o.n.i.d.DiagnosticsManager] Transaction log files stored on file store: NTFS
+2021-08-17 18:44:27.818+0000 INFO [o.n.i.d.DiagnosticsManager] No transactions found in any log
+2021-08-17 18:44:27.819+0000 INFO [o.n.i.d.DiagnosticsManager] 
+2021-08-17 18:44:27.820+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:27.820+0000 INFO [o.n.i.d.DiagnosticsManager]                                   [ Id usage ]                                  
+2021-08-17 18:44:27.820+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:27.821+0000 INFO [o.n.i.d.DiagnosticsManager] ArrayPropertyStore: used=1 high=0
+2021-08-17 18:44:27.821+0000 INFO [o.n.i.d.DiagnosticsManager] NodeStore: used=0 high=-1
+2021-08-17 18:44:27.821+0000 INFO [o.n.i.d.DiagnosticsManager] StringPropertyStore: used=1 high=0
+2021-08-17 18:44:27.822+0000 INFO [o.n.i.d.DiagnosticsManager] PropertyIndexStore: used=0 high=-1
+2021-08-17 18:44:27.822+0000 INFO [o.n.i.d.DiagnosticsManager] StringPropertyStore: used=1 high=0
+2021-08-17 18:44:27.822+0000 INFO [o.n.i.d.DiagnosticsManager] ArrayPropertyStore: used=1 high=0
+2021-08-17 18:44:27.822+0000 INFO [o.n.i.d.DiagnosticsManager] PropertyStore: used=0 high=-1
+2021-08-17 18:44:27.823+0000 INFO [o.n.i.d.DiagnosticsManager] RelationshipStore: used=0 high=-1
+2021-08-17 18:44:27.823+0000 INFO [o.n.i.d.DiagnosticsManager] StringPropertyStore: used=1 high=0
+2021-08-17 18:44:27.823+0000 INFO [o.n.i.d.DiagnosticsManager] RelationshipTypeStore: used=0 high=-1
+2021-08-17 18:44:27.824+0000 INFO [o.n.i.d.DiagnosticsManager] StringPropertyStore: used=1 high=0
+2021-08-17 18:44:27.824+0000 INFO [o.n.i.d.DiagnosticsManager] LabelTokenStore: used=0 high=-1
+2021-08-17 18:44:27.824+0000 INFO [o.n.i.d.DiagnosticsManager] SchemaStore: used=1 high=0
+2021-08-17 18:44:27.824+0000 INFO [o.n.i.d.DiagnosticsManager] RelationshipGroupStore: used=1 high=0
+2021-08-17 18:44:27.825+0000 INFO [o.n.i.d.DiagnosticsManager] NeoStore: used=16 high=15
+2021-08-17 18:44:27.825+0000 INFO [o.n.i.d.DiagnosticsManager] 
+2021-08-17 18:44:27.826+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:27.826+0000 INFO [o.n.i.d.DiagnosticsManager]                               [ Neostore records ]                              
+2021-08-17 18:44:27.826+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:27.836+0000 INFO [o.n.i.d.DiagnosticsManager] TIME (Creation time): 1629225867360
+2021-08-17 18:44:27.836+0000 INFO [o.n.i.d.DiagnosticsManager] RANDOM_NUMBER (Random number for store id): 1333609340249073808
+2021-08-17 18:44:27.836+0000 INFO [o.n.i.d.DiagnosticsManager] LOG_VERSION (Current log version): 0
+2021-08-17 18:44:27.836+0000 INFO [o.n.i.d.DiagnosticsManager] LAST_TRANSACTION_ID (Last committed transaction): 1
+2021-08-17 18:44:27.837+0000 INFO [o.n.i.d.DiagnosticsManager] STORE_VERSION (Store format version): 3471765337752883975
+2021-08-17 18:44:27.837+0000 INFO [o.n.i.d.DiagnosticsManager] FIRST_GRAPH_PROPERTY (First property record containing graph properties): -1
+2021-08-17 18:44:27.837+0000 INFO [o.n.i.d.DiagnosticsManager] LAST_CONSTRAINT_TRANSACTION (Last committed transaction containing constraint changes): 0
+2021-08-17 18:44:27.837+0000 INFO [o.n.i.d.DiagnosticsManager] UPGRADE_TRANSACTION_ID (Transaction id most recent upgrade was performed at): 1
+2021-08-17 18:44:27.838+0000 INFO [o.n.i.d.DiagnosticsManager] UPGRADE_TIME (Time of last upgrade): 1629225867360
+2021-08-17 18:44:27.838+0000 INFO [o.n.i.d.DiagnosticsManager] LAST_TRANSACTION_CHECKSUM (Checksum of last committed transaction): -559063315
+2021-08-17 18:44:27.838+0000 INFO [o.n.i.d.DiagnosticsManager] UPGRADE_TRANSACTION_CHECKSUM (Checksum of transaction id the most recent upgrade was performed at): -559063315
+2021-08-17 18:44:27.838+0000 INFO [o.n.i.d.DiagnosticsManager] LAST_CLOSED_TRANSACTION_LOG_VERSION (Log version where the last transaction commit entry has been written into): 0
+2021-08-17 18:44:27.839+0000 INFO [o.n.i.d.DiagnosticsManager] LAST_CLOSED_TRANSACTION_LOG_BYTE_OFFSET (Byte offset in the log file where the last transaction commit entry has been written into): 64
+2021-08-17 18:44:27.839+0000 INFO [o.n.i.d.DiagnosticsManager] LAST_TRANSACTION_COMMIT_TIMESTAMP (Commit time timestamp for last committed transaction): 0
+2021-08-17 18:44:27.839+0000 INFO [o.n.i.d.DiagnosticsManager] UPGRADE_TRANSACTION_COMMIT_TIMESTAMP (Commit timestamp of transaction the most recent upgrade was performed at): 0
+2021-08-17 18:44:27.839+0000 INFO [o.n.i.d.DiagnosticsManager] LAST_MISSING_STORE_FILES_RECOVERY_TIMESTAMP (Timestamp of last attempt to perform a recovery on the store with missing files.): -1
+2021-08-17 18:44:27.840+0000 INFO [o.n.i.d.DiagnosticsManager] 
+2021-08-17 18:44:27.840+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:27.841+0000 INFO [o.n.i.d.DiagnosticsManager]                                [ Store versions ]                               
+2021-08-17 18:44:27.841+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:27.842+0000 INFO [o.n.i.d.DiagnosticsManager] ArrayPropertyStore SF4.0.0
+2021-08-17 18:44:27.842+0000 INFO [o.n.i.d.DiagnosticsManager] NodeStore SF4.0.0
+2021-08-17 18:44:27.842+0000 INFO [o.n.i.d.DiagnosticsManager] StringPropertyStore SF4.0.0
+2021-08-17 18:44:27.842+0000 INFO [o.n.i.d.DiagnosticsManager] PropertyIndexStore SF4.0.0
+2021-08-17 18:44:27.843+0000 INFO [o.n.i.d.DiagnosticsManager] StringPropertyStore SF4.0.0
+2021-08-17 18:44:27.843+0000 INFO [o.n.i.d.DiagnosticsManager] ArrayPropertyStore SF4.0.0
+2021-08-17 18:44:27.843+0000 INFO [o.n.i.d.DiagnosticsManager] PropertyStore SF4.0.0
+2021-08-17 18:44:27.844+0000 INFO [o.n.i.d.DiagnosticsManager] RelationshipStore SF4.0.0
+2021-08-17 18:44:27.844+0000 INFO [o.n.i.d.DiagnosticsManager] StringPropertyStore SF4.0.0
+2021-08-17 18:44:27.844+0000 INFO [o.n.i.d.DiagnosticsManager] RelationshipTypeStore SF4.0.0
+2021-08-17 18:44:27.844+0000 INFO [o.n.i.d.DiagnosticsManager] StringPropertyStore SF4.0.0
+2021-08-17 18:44:27.845+0000 INFO [o.n.i.d.DiagnosticsManager] LabelTokenStore SF4.0.0
+2021-08-17 18:44:27.845+0000 INFO [o.n.i.d.DiagnosticsManager] SchemaStore SF4.0.0
+2021-08-17 18:44:27.845+0000 INFO [o.n.i.d.DiagnosticsManager] RelationshipGroupStore SF4.0.0
+2021-08-17 18:44:27.845+0000 INFO [o.n.i.d.DiagnosticsManager] NeoStore SF4.0.0
+2021-08-17 18:44:27.846+0000 INFO [o.n.i.d.DiagnosticsManager] 
+2021-08-17 18:44:27.851+0000 INFO [o.n.i.i.l.NativeLabelScanStore] [system] No label index found, this might just be first use. Preparing to rebuild.
+2021-08-17 18:44:27.882+0000 INFO [o.n.k.a.DatabaseAvailabilityGuard] [system] Requirement `Database unavailable` makes database system unavailable.
+2021-08-17 18:44:27.883+0000 INFO [o.n.k.a.DatabaseAvailabilityGuard] [system] Database system is unavailable.
+2021-08-17 18:44:27.932+0000 WARN [o.n.k.i.s.MetaDataStore] [system] Missing counts store, rebuilding it.
+2021-08-17 18:44:27.938+0000 WARN [o.n.k.i.s.MetaDataStore] [system] Counts store rebuild completed.
+2021-08-17 18:44:27.956+0000 INFO [o.n.i.i.l.NativeLabelScanStore] [system] Rebuilding label index, this may take a while
+2021-08-17 18:44:27.971+0000 INFO [o.n.i.i.l.NativeLabelScanStore] [system] Label index rebuilt (roughly 0 nodes)
+2021-08-17 18:44:27.985+0000 INFO [o.n.k.a.DatabaseAvailabilityGuard] [system] Fulfilling of requirement 'Database unavailable' makes database system available.
+2021-08-17 18:44:27.985+0000 INFO [o.n.k.a.DatabaseAvailabilityGuard] [system] Database system is ready.
+2021-08-17 18:44:27.987+0000 INFO [o.n.m.DatabaseHealth] [system] Database health set to OK
+2021-08-17 18:44:28.184+0000 INFO [o.n.k.i.a.s.ConstraintIndexCreator] [system] Starting constraint creation: org.neo4j.internal.schema.constraints.ConstraintDescriptorImplementation@1211341.
+2021-08-17 18:44:28.435+0000 INFO [o.n.k.i.a.i.IndexPopulationJob] [system] Index population started: [:Database(name) [provider: {key=native-btree, version=1.0}]]
+2021-08-17 18:44:28.490+0000 INFO [o.n.k.i.a.i.IndexPopulationJob] [system] Completed node store scan. Flushing all pending updates.
+BatchingMultipleIndexPopulator{activeTasks=0, executor=java.util.concurrent.ThreadPoolExecutor@4deb909[Running, pool size = 1, active threads = 0, queued tasks = 0, completed tasks = 1], batchedUpdatesFromScan = [0 updates], concurrentUpdateQueue = 0}
+2021-08-17 18:44:28.534+0000 INFO [o.n.k.i.a.i.IndexPopulationJob] [system] Index creation finished for index [:Database(name) [provider: {key=native-btree, version=1.0}]].
+2021-08-17 18:44:28.550+0000 INFO [o.n.k.i.a.i.IndexPopulationJob] [system] TIME/PHASE Final: WRITE[totalTime=45ms], MERGE[totalTime=0ns], BUILD[totalTime=2ms], APPLY_EXTERNAL[totalTime=7ms], FLIP[totalTime=27ms]
+2021-08-17 18:44:28.557+0000 INFO [o.n.k.i.a.i.IndexPopulationJob] [system] Shutting down executor.
+BatchingMultipleIndexPopulator{activeTasks=0, executor=java.util.concurrent.ThreadPoolExecutor@4deb909[Running, pool size = 2, active threads = 0, queued tasks = 0, completed tasks = 2], batchedUpdatesFromScan = [], concurrentUpdateQueue = 0}
+2021-08-17 18:44:28.558+0000 INFO [o.n.k.i.a.s.ConstraintIndexCreator] [system] Constraint SchemaDescriptor[:label[0](property[0])] populated, starting verification.
+2021-08-17 18:44:28.559+0000 INFO [o.n.k.i.a.s.ConstraintIndexCreator] [system] Constraint SchemaDescriptor[:label[0](property[0])] verified.
+2021-08-17 18:44:28.588+0000 INFO [o.n.k.i.a.i.IndexingService] [system] Constraint Index( 1, 'constraint_6ad50e5f', UNIQUE BTREE, :label[0](property[0]), native-btree-1.0 ) is ONLINE.
+2021-08-17 18:44:28.763+0000 INFO [o.n.d.d.DefaultDatabaseManager] Creating 'neo4j' database.
+2021-08-17 18:44:28.765+0000 INFO [o.n.d.d.DefaultDatabaseManager] Starting 'neo4j' database.
+2021-08-17 18:44:28.772+0000 INFO [o.n.k.i.s.f.RecordFormatSelector] [neo4j] Selected format 'RecordFormat:StandardV4_0[SF4.0.0]' for the new store C:\Users\Ting\Documents\GDBViews\data\databases\neo4j
+2021-08-17 18:44:29.050+0000 INFO [o.n.i.d.DiagnosticsManager] ********************************************************************************
+2021-08-17 18:44:29.050+0000 INFO [o.n.i.d.DiagnosticsManager]                               [ Database: neo4j ]                               
+2021-08-17 18:44:29.050+0000 INFO [o.n.i.d.DiagnosticsManager] ********************************************************************************
+2021-08-17 18:44:29.051+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:29.051+0000 INFO [o.n.i.d.DiagnosticsManager]                                   [ Version ]                                   
+2021-08-17 18:44:29.051+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:29.051+0000 INFO [o.n.i.d.DiagnosticsManager] DBMS: community single StoreId{creationTime=1629225869034, randomId=4029582936466702898, storeVersion=3471765337752883975, upgradeTime=1629225869034, upgradeTxId=1}
+2021-08-17 18:44:29.052+0000 INFO [o.n.i.d.DiagnosticsManager] Kernel version: 4.0.4,5d5f3fc27ee891c0b5e152681a222823fb5ad4c8
+2021-08-17 18:44:29.052+0000 INFO [o.n.i.d.DiagnosticsManager] 
+2021-08-17 18:44:29.052+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:29.053+0000 INFO [o.n.i.d.DiagnosticsManager]                                 [ Store files ]                                 
+2021-08-17 18:44:29.053+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:29.056+0000 INFO [o.n.i.d.DiagnosticsManager] Disk space on partition (Total / Free / Free %): 249414283264 / 25348517888 / 10
+2021-08-17 18:44:29.058+0000 INFO [o.n.i.d.DiagnosticsManager] Storage files stored on file store: NTFS
+2021-08-17 18:44:29.058+0000 INFO [o.n.i.d.DiagnosticsManager] Storage files: (filename : modification date - size)
+2021-08-17 18:44:29.060+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore: 2021-08-17T14:44:29-0400 - 7.998KiB
+2021-08-17 18:44:29.060+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.counts.db: 2021-08-17T14:44:29-0400 - 40.00KiB
+2021-08-17 18:44:29.061+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.id: 2021-08-17T14:44:29-0400 - 40.00KiB
+2021-08-17 18:44:29.062+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.labeltokenstore.db: 2021-08-17T14:44:28-0400 - 0B
+2021-08-17 18:44:29.062+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.labeltokenstore.db.id: 2021-08-17T14:44:28-0400 - 40.00KiB
+2021-08-17 18:44:29.063+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.labeltokenstore.db.names: 2021-08-17T14:44:28-0400 - 7.979KiB
+2021-08-17 18:44:29.064+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.labeltokenstore.db.names.id: 2021-08-17T14:44:28-0400 - 40.00KiB
+2021-08-17 18:44:29.064+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.nodestore.db: 2021-08-17T14:44:28-0400 - 0B
+2021-08-17 18:44:29.065+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.nodestore.db.id: 2021-08-17T14:44:28-0400 - 40.00KiB
+2021-08-17 18:44:29.066+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.nodestore.db.labels: 2021-08-17T14:44:28-0400 - 8.000KiB
+2021-08-17 18:44:29.067+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.nodestore.db.labels.id: 2021-08-17T14:44:28-0400 - 40.00KiB
+2021-08-17 18:44:29.067+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.propertystore.db: 2021-08-17T14:44:28-0400 - 0B
+2021-08-17 18:44:29.068+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.propertystore.db.arrays: 2021-08-17T14:44:28-0400 - 8.000KiB
+2021-08-17 18:44:29.068+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.propertystore.db.arrays.id: 2021-08-17T14:44:28-0400 - 40.00KiB
+2021-08-17 18:44:29.069+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.propertystore.db.id: 2021-08-17T14:44:28-0400 - 40.00KiB
+2021-08-17 18:44:29.070+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.propertystore.db.index: 2021-08-17T14:44:28-0400 - 0B
+2021-08-17 18:44:29.070+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.propertystore.db.index.id: 2021-08-17T14:44:28-0400 - 40.00KiB
+2021-08-17 18:44:29.071+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.propertystore.db.index.keys: 2021-08-17T14:44:28-0400 - 7.979KiB
+2021-08-17 18:44:29.071+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.propertystore.db.index.keys.id: 2021-08-17T14:44:28-0400 - 40.00KiB
+2021-08-17 18:44:29.072+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.propertystore.db.strings: 2021-08-17T14:44:28-0400 - 8.000KiB
+2021-08-17 18:44:29.072+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.propertystore.db.strings.id: 2021-08-17T14:44:28-0400 - 40.00KiB
+2021-08-17 18:44:29.073+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.relationshipgroupstore.db: 2021-08-17T14:44:29-0400 - 7.983KiB
+2021-08-17 18:44:29.073+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.relationshipgroupstore.db.id: 2021-08-17T14:44:29-0400 - 40.00KiB
+2021-08-17 18:44:29.074+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.relationshipstore.db: 2021-08-17T14:44:28-0400 - 0B
+2021-08-17 18:44:29.074+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.relationshipstore.db.id: 2021-08-17T14:44:28-0400 - 40.00KiB
+2021-08-17 18:44:29.075+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.relationshiptypestore.db: 2021-08-17T14:44:28-0400 - 0B
+2021-08-17 18:44:29.076+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.relationshiptypestore.db.id: 2021-08-17T14:44:28-0400 - 40.00KiB
+2021-08-17 18:44:29.076+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.relationshiptypestore.db.names: 2021-08-17T14:44:28-0400 - 7.979KiB
+2021-08-17 18:44:29.077+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.relationshiptypestore.db.names.id: 2021-08-17T14:44:28-0400 - 40.00KiB
+2021-08-17 18:44:29.077+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.schemastore.db: 2021-08-17T14:44:28-0400 - 8.000KiB
+2021-08-17 18:44:29.078+0000 INFO [o.n.i.d.DiagnosticsManager]   neostore.schemastore.db.id: 2021-08-17T14:44:28-0400 - 40.00KiB
+2021-08-17 18:44:29.078+0000 INFO [o.n.i.d.DiagnosticsManager] Storage summary: 
+2021-08-17 18:44:29.078+0000 INFO [o.n.i.d.DiagnosticsManager]   Total size of store: 711.9KiB
+2021-08-17 18:44:29.079+0000 INFO [o.n.i.d.DiagnosticsManager]   Total size of mapped files: 71.92KiB
+2021-08-17 18:44:29.079+0000 INFO [o.n.i.d.DiagnosticsManager] 
+2021-08-17 18:44:29.079+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:29.080+0000 INFO [o.n.i.d.DiagnosticsManager]                               [ Transaction log ]                               
+2021-08-17 18:44:29.080+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:29.082+0000 INFO [o.n.i.d.DiagnosticsManager] Transaction log files stored on file store: NTFS
+2021-08-17 18:44:29.082+0000 INFO [o.n.i.d.DiagnosticsManager] No transactions found in any log
+2021-08-17 18:44:29.083+0000 INFO [o.n.i.d.DiagnosticsManager] 
+2021-08-17 18:44:29.083+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:29.083+0000 INFO [o.n.i.d.DiagnosticsManager]                                   [ Id usage ]                                  
+2021-08-17 18:44:29.083+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:29.084+0000 INFO [o.n.i.d.DiagnosticsManager] ArrayPropertyStore: used=1 high=0
+2021-08-17 18:44:29.084+0000 INFO [o.n.i.d.DiagnosticsManager] NodeStore: used=0 high=-1
+2021-08-17 18:44:29.084+0000 INFO [o.n.i.d.DiagnosticsManager] StringPropertyStore: used=1 high=0
+2021-08-17 18:44:29.084+0000 INFO [o.n.i.d.DiagnosticsManager] PropertyIndexStore: used=0 high=-1
+2021-08-17 18:44:29.085+0000 INFO [o.n.i.d.DiagnosticsManager] StringPropertyStore: used=1 high=0
+2021-08-17 18:44:29.085+0000 INFO [o.n.i.d.DiagnosticsManager] ArrayPropertyStore: used=1 high=0
+2021-08-17 18:44:29.085+0000 INFO [o.n.i.d.DiagnosticsManager] PropertyStore: used=0 high=-1
+2021-08-17 18:44:29.086+0000 INFO [o.n.i.d.DiagnosticsManager] RelationshipStore: used=0 high=-1
+2021-08-17 18:44:29.086+0000 INFO [o.n.i.d.DiagnosticsManager] StringPropertyStore: used=1 high=0
+2021-08-17 18:44:29.086+0000 INFO [o.n.i.d.DiagnosticsManager] RelationshipTypeStore: used=0 high=-1
+2021-08-17 18:44:29.086+0000 INFO [o.n.i.d.DiagnosticsManager] StringPropertyStore: used=1 high=0
+2021-08-17 18:44:29.087+0000 INFO [o.n.i.d.DiagnosticsManager] LabelTokenStore: used=0 high=-1
+2021-08-17 18:44:29.087+0000 INFO [o.n.i.d.DiagnosticsManager] SchemaStore: used=1 high=0
+2021-08-17 18:44:29.087+0000 INFO [o.n.i.d.DiagnosticsManager] RelationshipGroupStore: used=1 high=0
+2021-08-17 18:44:29.087+0000 INFO [o.n.i.d.DiagnosticsManager] NeoStore: used=16 high=15
+2021-08-17 18:44:29.088+0000 INFO [o.n.i.d.DiagnosticsManager] 
+2021-08-17 18:44:29.088+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:29.088+0000 INFO [o.n.i.d.DiagnosticsManager]                               [ Neostore records ]                              
+2021-08-17 18:44:29.088+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:29.089+0000 INFO [o.n.i.d.DiagnosticsManager] TIME (Creation time): 1629225869034
+2021-08-17 18:44:29.089+0000 INFO [o.n.i.d.DiagnosticsManager] RANDOM_NUMBER (Random number for store id): 4029582936466702898
+2021-08-17 18:44:29.089+0000 INFO [o.n.i.d.DiagnosticsManager] LOG_VERSION (Current log version): 0
+2021-08-17 18:44:29.089+0000 INFO [o.n.i.d.DiagnosticsManager] LAST_TRANSACTION_ID (Last committed transaction): 1
+2021-08-17 18:44:29.090+0000 INFO [o.n.i.d.DiagnosticsManager] STORE_VERSION (Store format version): 3471765337752883975
+2021-08-17 18:44:29.090+0000 INFO [o.n.i.d.DiagnosticsManager] FIRST_GRAPH_PROPERTY (First property record containing graph properties): -1
+2021-08-17 18:44:29.090+0000 INFO [o.n.i.d.DiagnosticsManager] LAST_CONSTRAINT_TRANSACTION (Last committed transaction containing constraint changes): 0
+2021-08-17 18:44:29.090+0000 INFO [o.n.i.d.DiagnosticsManager] UPGRADE_TRANSACTION_ID (Transaction id most recent upgrade was performed at): 1
+2021-08-17 18:44:29.091+0000 INFO [o.n.i.d.DiagnosticsManager] UPGRADE_TIME (Time of last upgrade): 1629225869034
+2021-08-17 18:44:29.091+0000 INFO [o.n.i.d.DiagnosticsManager] LAST_TRANSACTION_CHECKSUM (Checksum of last committed transaction): -559063315
+2021-08-17 18:44:29.091+0000 INFO [o.n.i.d.DiagnosticsManager] UPGRADE_TRANSACTION_CHECKSUM (Checksum of transaction id the most recent upgrade was performed at): -559063315
+2021-08-17 18:44:29.091+0000 INFO [o.n.i.d.DiagnosticsManager] LAST_CLOSED_TRANSACTION_LOG_VERSION (Log version where the last transaction commit entry has been written into): 0
+2021-08-17 18:44:29.092+0000 INFO [o.n.i.d.DiagnosticsManager] LAST_CLOSED_TRANSACTION_LOG_BYTE_OFFSET (Byte offset in the log file where the last transaction commit entry has been written into): 64
+2021-08-17 18:44:29.092+0000 INFO [o.n.i.d.DiagnosticsManager] LAST_TRANSACTION_COMMIT_TIMESTAMP (Commit time timestamp for last committed transaction): 0
+2021-08-17 18:44:29.092+0000 INFO [o.n.i.d.DiagnosticsManager] UPGRADE_TRANSACTION_COMMIT_TIMESTAMP (Commit timestamp of transaction the most recent upgrade was performed at): 0
+2021-08-17 18:44:29.092+0000 INFO [o.n.i.d.DiagnosticsManager] LAST_MISSING_STORE_FILES_RECOVERY_TIMESTAMP (Timestamp of last attempt to perform a recovery on the store with missing files.): -1
+2021-08-17 18:44:29.093+0000 INFO [o.n.i.d.DiagnosticsManager] 
+2021-08-17 18:44:29.093+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:29.093+0000 INFO [o.n.i.d.DiagnosticsManager]                                [ Store versions ]                               
+2021-08-17 18:44:29.093+0000 INFO [o.n.i.d.DiagnosticsManager] --------------------------------------------------------------------------------
+2021-08-17 18:44:29.094+0000 INFO [o.n.i.d.DiagnosticsManager] ArrayPropertyStore SF4.0.0
+2021-08-17 18:44:29.094+0000 INFO [o.n.i.d.DiagnosticsManager] NodeStore SF4.0.0
+2021-08-17 18:44:29.094+0000 INFO [o.n.i.d.DiagnosticsManager] StringPropertyStore SF4.0.0
+2021-08-17 18:44:29.095+0000 INFO [o.n.i.d.DiagnosticsManager] PropertyIndexStore SF4.0.0
+2021-08-17 18:44:29.095+0000 INFO [o.n.i.d.DiagnosticsManager] StringPropertyStore SF4.0.0
+2021-08-17 18:44:29.095+0000 INFO [o.n.i.d.DiagnosticsManager] ArrayPropertyStore SF4.0.0
+2021-08-17 18:44:29.095+0000 INFO [o.n.i.d.DiagnosticsManager] PropertyStore SF4.0.0
+2021-08-17 18:44:29.096+0000 INFO [o.n.i.d.DiagnosticsManager] RelationshipStore SF4.0.0
+2021-08-17 18:44:29.096+0000 INFO [o.n.i.d.DiagnosticsManager] StringPropertyStore SF4.0.0
+2021-08-17 18:44:29.096+0000 INFO [o.n.i.d.DiagnosticsManager] RelationshipTypeStore SF4.0.0
+2021-08-17 18:44:29.096+0000 INFO [o.n.i.d.DiagnosticsManager] StringPropertyStore SF4.0.0
+2021-08-17 18:44:29.097+0000 INFO [o.n.i.d.DiagnosticsManager] LabelTokenStore SF4.0.0
+2021-08-17 18:44:29.097+0000 INFO [o.n.i.d.DiagnosticsManager] SchemaStore SF4.0.0
+2021-08-17 18:44:29.097+0000 INFO [o.n.i.d.DiagnosticsManager] RelationshipGroupStore SF4.0.0
+2021-08-17 18:44:29.097+0000 INFO [o.n.i.d.DiagnosticsManager] NeoStore SF4.0.0
+2021-08-17 18:44:29.098+0000 INFO [o.n.i.d.DiagnosticsManager] 
+2021-08-17 18:44:29.098+0000 INFO [o.n.i.i.l.NativeLabelScanStore] [neo4j] No label index found, this might just be first use. Preparing to rebuild.
+2021-08-17 18:44:29.115+0000 INFO [o.n.k.a.DatabaseAvailabilityGuard] [neo4j] Requirement `Database unavailable` makes database neo4j unavailable.
+2021-08-17 18:44:29.115+0000 INFO [o.n.k.a.DatabaseAvailabilityGuard] [neo4j] Database neo4j is unavailable.
+2021-08-17 18:44:29.155+0000 WARN [o.n.k.i.s.MetaDataStore] [neo4j] Missing counts store, rebuilding it.
+2021-08-17 18:44:29.156+0000 WARN [o.n.k.i.s.MetaDataStore] [neo4j] Counts store rebuild completed.
+2021-08-17 18:44:29.158+0000 INFO [o.n.i.i.l.NativeLabelScanStore] [neo4j] Rebuilding label index, this may take a while
+2021-08-17 18:44:29.161+0000 INFO [o.n.i.i.l.NativeLabelScanStore] [neo4j] Label index rebuilt (roughly 0 nodes)
+2021-08-17 18:44:29.162+0000 INFO [o.n.k.a.DatabaseAvailabilityGuard] [neo4j] Fulfilling of requirement 'Database unavailable' makes database neo4j available.
+2021-08-17 18:44:29.162+0000 INFO [o.n.k.a.DatabaseAvailabilityGuard] [neo4j] Database neo4j is ready.
+2021-08-17 18:44:29.162+0000 INFO [o.n.m.DatabaseHealth] [neo4j] Database health set to OK
